@@ -1,46 +1,78 @@
 <script>
-import { useVuelidate } from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 
 export default {
-    data() {
-        return {
-            inputs: {
-                emailOrIdentifier: null,
-                password: null
-            }
-        }
-    },
+  data() {
+    return {
+      inputs: {
+        emailOrIdentifier: null,
+        password: null,
+      },
+    };
+  },
 
-    validations() {
-        inputs: {
-            emailOrIdentifier: { required }
-            password: { required }
-        }
-    },
-
-    methods: {
-        async submitForm() {
-            const test = await this.$axios.get('user-accounts');
-            if (test) {
-                console.log("yeah");
-            }
-        }
+  validations() {
+    inputs: {
+      emailOrIdentifier: {
+        required;
+      }
+      password: {
+        required;
+      }
     }
-}
+  },
+
+  methods: {
+    async submitForm() {
+      const test = await this.$axios.get("user-accounts");
+      if (test) {
+        console.log("goood");
+      }
+    },
+  },
+};
 </script>
 
 <template>
-    <form id="sign-in" @submit.prevent="submitForm">
-        <div class="mb-3">
-            <label for="identifier" class="form-label required">Internal identifier or email</label>
-            <input type="email" name="identifier" class="form-control" id="identifier" v-model="emailOrIdentifier">
-        </div>
-        <div class="mb-3">
-            <label for="passwordSignIn" class="form-label required">Password</label>
-            <input type="password" name="passwordSignIn" class="form-control" id="passwordSignIn" v-model="password">
-        </div>
-        <button type="submit" class="btn btn-outline-dark col-12 col-md-3 btn-wrap">Sign in</button>
+  <main>
+    <form>
+      <img class="mb-4" src="/images/login.png" alt="" width="52" height="47" />
+
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating mt-3">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="text-end">
+        <button
+          class="btn btn-outline-primary col-12 col-md-3 mt-2"
+          type="submit"
+        >
+          S'enregistrer
+        </button>
+      </div>
     </form>
+  </main>
 </template>
-<style scoped></style>
+
+<style>
+/* button {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+} */
+</style>

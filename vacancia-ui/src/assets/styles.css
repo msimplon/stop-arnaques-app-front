@@ -10,3 +10,30 @@ label {
     content: ' *';
     color: red;
 }
+
+.navbar-brand {
+    font-family: 'Bangers', cursive;
+    font-size: font-size-lg;
+    letter-spacing: 1pt;
+}
+
+.navbar-brand:hover {
+    transform: rotate(-2deg);
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 40px !important;
+}
+
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+}
+
+.bi {
+    color: #F9D423 !important;
+}
+/* .button {
+    background-color: #F9D423 !important;
+} */

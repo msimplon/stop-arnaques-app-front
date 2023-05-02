@@ -11,25 +11,25 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/HomeStickers.vue',
-      name: 'stickers-home',
-      component: () => import('../components/stickers/HomeStickers.vue')
+      path: '/HomeArticles.vue',
+      name: 'articles-home',
+      component: () => import('../components/articles/HomeArticles.vue')
     }, {
-      path: '/admin/stickers',
-      name: 'stickers-edit',
-      component: () => import('../components/stickers/Edit.vue')
+      path: '/admin/articles',
+      name: 'articles-edit',
+      component: () => import('../components/articles/Edit.vue')
     }, {
-      path: '/admin/stickers/create',
-      name: 'sticker-create',
-      component: () => import('../components/stickers/Create.vue')
+      path: '/admin/article/create',
+      name: 'articles-create',
+      component: () => import('../components/articles/Create.vue')
     }, {
-      path: '/stickers/:id/detail',
-      name: 'sticker-detail',
-      component: () => import('../components/stickers/Detail.vue')
+      path: '/article/:id/detail',
+      name: 'article-detail',
+      component: () => import('../components/articles/Detail.vue')
     }, {
-      path: '/admin/stickers/:id/update',
-      name: 'sticker-update',
-      component: () => import('../components/stickers/Update.vue')
+      path: '/admin/article/:id/update',
+      name: 'article-update',
+      component: () => import('../components/articles/Update.vue')
     },
     {
       path: '/contact',
@@ -40,22 +40,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../components/Home.vue')
-    },
-    {
-      path: '/sign-in',
-      name: 'sign-in',
-      component: () => import('../components/SignInPage.vue')
-    },
-    {
-      path: '/admin',
-      name: 'admin',
-      component: () => import('../components/Admin.vue')
-    },
-    {
-      path: '/create-account',
-      name: 'create-account',
-      component: () => import('../components/Commons/CreateAccount.vue')
-    },
+    }
   ]
 })
 

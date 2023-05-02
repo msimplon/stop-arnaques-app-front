@@ -22,13 +22,13 @@ app.use(axios);
 // Gestionnaire global des erreurs qui ne sont pas gerees ailleurs (selon les besoins) :
 app.config.errorHandler = (err, comp) => {
     console.error('Vue Global ErrorHandler', err);
-    comp.$toast.error('toast-global', 'A mystic error occurred, sorry for the inconvenience.');
+    comp.$toast.error('toast-global', 'Oups, un problème est survenu');
 };
 // Day JS, enregistrement d'une propriete globale pour faciliter l'utilisation de Day JS
 app.config.globalProperties.$fmt = {
     date: (str) => {
         if (str === null) {
-            z
+
             return 'N/A';
         }
         const date = dayjs(str);

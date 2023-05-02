@@ -10,6 +10,6 @@ export default {
 </script>
 <template>
     <option v-for="item in items" :value="item.id">
-        {{ item.name }}
+        {{ item.title }}
     </option>
 </template>

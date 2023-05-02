@@ -1,157 +1,162 @@
 <script>
 export default {
-    data() {
-        return {
-            count: 0
-        }
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  methods: {
+    getElementFromDOM() {
+      return document.getElementById("element");
     },
-    methods: {
-        getElementFromDOM() {
-            return document.getElementById('element');
-        },
-        isAvailableInDOM() {
-            return this.getElementFromDOM() !== null;
-        }, getDOMCountValue() {
-            return document.getElementById('count').textContent;
-        }
+    isAvailableInDOM() {
+      return this.getElementFromDOM() !== null;
     },
-    beforeCreate() {
-        console.log('Executing beforeCreate hook...');
-        // Uncomment line to see that methods are not yet available before created! (error raised)
-        // console.log(`Element available in DOM=${this.isAvailableInDOM()}`);
-        console.log('Methods not yet available, component is not yet created!');
-        console.log(`Data count=${this.count}`);
-        console.log('Data not yet initialized, component is not yet created!');
-        console.log('beforeCreate hook executed');
-        console.log('#################');
+    getDOMCountValue() {
+      return document.getElementById("count").textContent;
     },
-    created() {
-        console.log('Executing created hook...');
-        console.log(`Element available in DOM=${this.isAvailableInDOM()}`);
-        console.log(`Data count=${this.count}`);
-        console.log('created hook executed');
-        console.log('#################');
-    },
-    beforeMount() {
-        console.log('Executing beforeMount hook...');
-        console.log(`Element available in DOM=${this.isAvailableInDOM()}`);
-        console.log(`Data count=${this.count}`);
-        console.log('beforeMount hook executed');
-        console.log('#################');
-    },
-    mounted() {
-        console.log('Executing mounted hook...');
-        console.log(`Element available in DOM=${this.isAvailableInDOM()}`);
-        console.log(`Data count=${this.count}`);
-        console.log('mounted hook executed');
-        console.log('#################');
-    },
-    beforeUpdate() {
-        console.log('Executing beforeUpdate hook...');
-        console.log(`Element available in DOM=${this.isAvailableInDOM()}`);
-        console.log(`DOM count=${this.getDOMCountValue()}`);
-        console.log(`Data count=${this.count}`);
-        console.log('beforeUpdate hook executed');
-        console.log('#################');
-    },
-    updated() {
-        console.log('Executing updated hook...');
-        console.log(`Element available in DOM=${this.isAvailableInDOM()}`);
-        console.log(`DOM count=${this.getDOMCountValue()}`);
-        console.log(`Data count=${this.count}`);
-        console.log('updated hook executed');
-        console.log('#################');
-    }
-}
+  },
+};
 </script>
 <template>
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h1 class="row justify-content-center mt-4">Contact</h1>
+      </div>
 
-        <section id="contact" class="contact">
-          <div class="container">
-
-            <div class="section-title">
-              <h2 data-aos="fade-up">Contact</h2>
-             
-            </div>
-
-            <div class="row justify-content-center">
-
-              <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up">
-                <div class="info-box">
-                  <!-- <i class="bx bx-map"></i> -->
-                  <h3>Our Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="info-box">
-                  <!-- <i class="bx bx-envelope"></i> -->
-                  <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="info-box">
-                  <!-- <i class="bx bx-phone-call"></i> -->
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
-              <div class="col-xl-9 col-lg-12 mt-4">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                  <div class="row">
-                    <div class="col-md-6 form-group">
-                      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="col-md-6 form-group mt-3 mt-md-0">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                    </div>
-                  </div>
-                  <div class="form-group mt-3">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                  </div>
-                  <div class="form-group mt-3">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                  </div>
-                  <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                  </div>
-                  <div class="text-center"><button type="submit">Send Message</button></div>
-                </form>
-              </div>
-
-            </div>
-
+      <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up">
+          <div class="info-box">
+            <i class="bi bi-geo-alt mydimension"></i>
+            <h3>Notre localisation</h3>
+            <p>A108 Adam Street,73400, Paris</p>
           </div>
-        </section><!-- End Contact Section -->
- 
+        </div>
 
+        <div
+          class="col-xl-3 col-lg-4 mt-4"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div class="info-box">
+            <i class="bi bi-mailbox mydimension"></i>
+            <h3>Notre adresse email</h3>
+            <p>info@gmail.com<br />Stoparnaque@gmail.com</p>
+          </div>
+        </div>
+        <div
+          class="col-xl-3 col-lg-4 mt-4"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="info-box">
+            <i class="bi bi-telephone mydimension"></i>
+            <h3>Notre numéro</h3>
+            <p>+33 558 95 59 85<br />+33 558 95 59 89</p>
+          </div>
+        </div>
+      </div>
 
+      <div
+        class="row justify-content-center"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <div class="col-xl-9 col-lg-12 mt-4">
+          <form
+            action="forms/contact.php"
+            method="post"
+            role="form"
+            class="email-form"
+          >
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input
+                  type="text"
+                  name="title"
+                  class="form-control"
+                  id="title"
+                  placeholder="Your title"
+                  required
+                />
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input
+                type="text"
+                class="form-control"
+                name="sujet"
+                id="subject"
+                placeholder="Subject"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <textarea
+                class="form-control"
+                name="message"
+                rows="5"
+                placeholder="Message"
+                required
+              ></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Chargement</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Votre message à été envoyé. Merci !
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button
+                class="btn btn-outline-primary col-12 col-md-3 mt-3"
+                type="submit"
+              >
+                Envoyer
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style>
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
+.h2 {
+  justify-content: center;
+}
 .contact .info-box {
   color: #313030;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
-  padding: 20px;
+  padding: 15px;
 }
 
 .contact .info-box i {
   font-size: 32px;
-  color: #ff5821;
+  margin-right: 15px;
+  color: blue;
   border-radius: 50%;
-  padding: 8px;
-  border: 2px dotted #ffded4;
+  padding: 15px;
+  border: 2px dotted rgba(214, 215, 216, 0.6);
   float: left;
+}
+
+.rich-text {
+  text-align: center !important;
+  overflow-wrap: break-word;
 }
 
 .contact .info-box h3 {
@@ -161,6 +166,14 @@ export default {
   margin: 10px 0 10px 68px;
 }
 
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
 .contact .info-box p {
   padding: 0;
   line-height: 24px;
@@ -168,93 +181,84 @@ export default {
   margin: 0 0 0 68px;
 }
 
-.contact .php-email-form {
+.contact .email-form {
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
   padding: 30px;
 }
 
-.contact .php-email-form .error-message {
+.bi {
+  color: rgb(0, 119, 255) !important;
+}
+.contact .email-form .error-message {
   display: none;
   color: #fff;
-  background: #ed3c0d;
+  background: rgb(0, 119, 255);
   text-align: left;
   padding: 15px;
   font-weight: 600;
 }
 
-.contact .php-email-form .error-message br+br {
+.contact .email-form .error-message br + br {
   margin-top: 25px;
 }
 
-.contact .php-email-form .sent-message {
+.contact .email-form .sent-message {
   display: none;
   color: #fff;
-  background: #18d26e;
+  background: rgb(0, 119, 255);
   text-align: center;
   padding: 15px;
   font-weight: 600;
 }
 
-.contact .php-email-form .loading {
+.contact .email-form .loading {
   display: none;
   background: #fff;
   text-align: center;
   padding: 15px;
 }
 
-.contact .php-email-form .loading:before {
+.contact .email-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
+  border: 9px solid rgb(0, 119, 255);
   border-top-color: #eee;
   animation: animate-loading 1s linear infinite;
 }
 
-.contact .php-email-form input,
-.contact .php-email-form textarea {
-  border-radius: 0;
+.contact .email-form input,
+.contact .email-form textarea {
+  border-radius: 10px;
   box-shadow: none;
   font-size: 14px;
 }
 
-.contact .php-email-form input:focus,
-.contact .php-email-form textarea:focus {
-  border-color: #ff5821;
+.contact .email-form input:focus,
+.contact .email-form textarea:focus {
+  border-color: rgb(0, 119, 255);
 }
 
-.contact .php-email-form input {
+.contact .email-form input {
   padding: 10px 15px;
 }
 
-.contact .php-email-form textarea {
+.contact .email-form textarea {
   padding: 12px 15px;
 }
 
-.contact .php-email-form button[type=submit] {
-  background: #ff5821;
-  border: 0;
+.contact .email-form button[type="submit"] {
+  background: rgb(0, 119, 255);
+  border: 10px;
   padding: 10px 24px;
   color: #fff;
   transition: 0.4s;
 }
 
-.contact .php-email-form button[type=submit]:hover {
-  background: #ff7e54;
+.contact .email-form button[type="submit"]:hover {
+  background: #78cbec;
 }
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-
 </style>
