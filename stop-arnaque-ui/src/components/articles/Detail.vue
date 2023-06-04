@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         async initArticle() {
-            const resp = await this.$http.get(`/articles/${this.id}/detail`);
+            const resp = await this.$http.get(`/articles/article-view/${this.id}`);
             this.article = resp.body;
         }
     },

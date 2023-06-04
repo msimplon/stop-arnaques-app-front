@@ -38,7 +38,7 @@ const router = createRouter({
       name: 'articles-create',
       component: () => import('../components/articles/Create.vue')
     }, {
-      path: '/article/:id/detail',
+      path: '/article/:id/',
       name: 'article-detail',
       component: () => import('../components/articles/Detail.vue')
     }, {

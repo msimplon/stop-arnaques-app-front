@@ -16,6 +16,7 @@ export default {
       inputs: {
         title: null,
         subTitle: null,
+        actor: null,
         description: null,
         imageUrl: null,
         date: null,
@@ -28,6 +29,7 @@ export default {
       inputs: {
         title: { required, maxLength: maxLength(100) },
         subTitle: { required, maxLength: maxLength(100) },
+        actor: {required, maxLenght: maxLength(100) },
         description: { required, maxLength: maxLength(1000) },
         imageUrl: { required, maxLength: maxLength(50) },
         categoryId: { required },
@@ -42,6 +44,7 @@ export default {
         Object.assign(this.inputs, this.$options.data().inputs);
         this.validator.$reset();
         this.$toast.success("toast-global", "L'article a été créé !!!");
+         this.$router.push({ name: "articles-edit" });
         // this.router.navigateByUrl('my-articles');
       } else {
         console.error(resp);
@@ -99,6 +102,18 @@ export default {
             maxlength="100"
             class="form-control"
             :class="{ 'is-invalid': validator.inputs.subTitle.$error }"
+          />
+        </div>
+         <div class="col-12">
+          <label for="actor" class="form-label required">Acteur</label>
+          <input
+            v-model.trim="inputs.actor"
+            id="actor"
+            name="actor"
+            type="text"
+            maxlength="100"
+            class="form-control"
+            :class="{ 'is-invalid': validator.inputs.actor.$error }"
           />
         </div>
         <div class="col-12">

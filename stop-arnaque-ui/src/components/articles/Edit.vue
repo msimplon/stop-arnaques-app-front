@@ -20,12 +20,15 @@ export default {
       const resp = await this.$http.delete(`/articles/byId/${id}`);
       if (resp.status === 200) {
         this.$toast.success("toast-global", "Article supprimé avec succes.");
+        this.$router.push({ name: "articles-edit" });
         await this.initArticles();
       } else {
         console.error(resp);
         this.$toast.error("toast-global", "erreur.");
       }
     },
+
+    
   },
   beforeMount() {
     this.initArticles();
