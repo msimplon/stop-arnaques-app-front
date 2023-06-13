@@ -83,8 +83,8 @@ export default {
 
   <div class="container marketing mt-4">
     <hr class="featurette-divider" />
-    <div class="row-featurette" v-for="article in articles">
-      <div class="col-md-7">
+    <div class="featurette" v-for="article in articles">
+      <div class="flex-container">
         <h2 class="featurette-heading fw-normal lh-1">
           {{ article.title }}
           <h3>{{ article.subTitle }}</h3>
@@ -265,7 +265,7 @@ export default {
   }
 }
 
-.b-example-divider {
+/* .b-example-divider {
   width: 100%;
   height: 3rem;
   background-color: rgba(0, 0, 0, 0.1);
@@ -283,7 +283,7 @@ export default {
 
 .row-featurette {
   justify-content: space-around
-}
+} */
 
 .bi {
   vertical-align: -0.125em;
@@ -344,8 +344,38 @@ export default {
   opacity: 1;
 }
 
-/* p,
+
+/* .container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: normal;
+  align-content: center;
+
+} */
+
+/* 
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+/* align-items: center;
+  align-content: center; */
+/* margin-left: 10%; */
+
+
+/* .child-1 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  width: 50px;
+  height: 50px;
+  background-color: #bc0111;
+} */
+
 .text {
   font-family: "Raleway", sans-serif !important;
-} */
+}
 </style>

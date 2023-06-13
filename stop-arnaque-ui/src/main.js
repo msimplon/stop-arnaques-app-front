@@ -8,6 +8,8 @@ import axios from './plugins/axios';
 import dayjs from 'dayjs';
 import i18n from './i18n/i18n.js';
 import VueSkeletor from 'vue-skeletor';
+import CKEditor from '@ckeditor/ckeditor5-vue';
+
 
 
 // Importer les styles en JS pour que Vite "inline" les styles
@@ -42,6 +44,8 @@ app.config.globalProperties.$fmt = {
 };
 
 app.use(i18n)
+app.use(CKEditor);
+
 
 // On "monte" l'application dans l'element racine (lien avec le DOM) :
 app.mount('#app');

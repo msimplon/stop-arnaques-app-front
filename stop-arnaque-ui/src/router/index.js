@@ -30,8 +30,7 @@ const router = createRouter({
     {
       path: '/recours/articles',
       name: 'conso',
-      component: () => import('../components/articles/Conso.vue'),
-      beforeEnter() { location.href = 'https://signal.conso.gouv.fr/' }
+      component: () => import('../components/articles/Conso.vue')
     },
     {
       path: '/admin/article/create',
