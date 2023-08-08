@@ -9,7 +9,7 @@ import enMessages from "./en.js"
 // nous allons appelé cette fonction avec un object d'option et dans cet object on définit 
 // les paramètres régionnaux et les messages dans un object avec sa clé et valeur 
 const i18n = createI18n({
-    locale: "en",
+    locale: "fr",
     messages: {
         en: enMessages,
         fr: frMessages,

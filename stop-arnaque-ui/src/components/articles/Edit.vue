@@ -1,9 +1,9 @@
 <script>
 // import TableSkeleton from '../skeletons/TableSkeleton.vue';
 export default {
-//  component: {
-//  TableSkeleton
-//  },
+  //  component: {
+  //  TableSkeleton
+  //  },
   data() {
     return {
       baseUrl: import.meta.env.VITE_IMG_BASE_URL,
@@ -28,7 +28,7 @@ export default {
       }
     },
 
-    
+
   },
   beforeMount() {
     this.initArticles();
@@ -43,8 +43,8 @@ export default {
 </script>
 <template>
   <h1 class="row justify-content-center mt-2 mb-3">Modifier un article</h1>
-  <div  class="table-responsive" >
-      
+  <div class="table-responsive">
+
     <table class="table table-hover table-bordered">
       <thead>
         <tr class="text-center align-middle">
@@ -55,35 +55,24 @@ export default {
           <th scope="col">Supprimer</th>
         </tr>
       </thead>
-      <!-- <TableSkeleton v-else></TableSkeleton> -->
       <tbody class="text-nowrap align-middle">
         <tr v-for="article in articles">
-          <td class="text-center" >
-            <img
-            :src="baseUrl + article.imageUrl"
-            class="img-fluid rounded-top"
-            :alt="article.title"
-            />
+          <td class="text-center">
+            <img :src="baseUrl + article.imageUrl" class="img-fluid rounded-top" :alt="article.title" />
           </td>
           <td class="text-center">{{ article.title }}</td>
           <td class="text-center">{{ this.$fmt.date(article.dateAdded) }}</td>
           <td class="text-center">
-            <RouterLink
-              :to="{ name: 'article-update', params: { id: article.id } }"
-              title="Update article"
-            >
+            <RouterLink :to="{ name: 'article-update', params: { id: article.id } }" title="Update article">
               <i class="bi bi-pencil-square"></i>
             </RouterLink>
           </td>
           <td class="text-center">
-            <a href="#" @click="remove(article.id)"
-            ><i class="bi bi-trash3"></i
-              ></a>
-            </td>
-          </tr>
+            <a href="#" @click="remove(article.id)"><i class="bi bi-trash3"></i></a>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <!-- <TableSkeleton v-else></TableSkeleton> -->
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
@@ -126,6 +115,7 @@ tbody {
 .bi-trash3 {
   color: red !important;
 }
+
 /* .col {
   border: 4px solid #185999;
   background: #f2f2f2;

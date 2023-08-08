@@ -1,6 +1,19 @@
+/******COMMUN ********/
 h1 {
     margin-top: 1rem;
 }
+
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+
+}
+
+.bi {
+    color: rgb(0, 119, 255) ! important;
+}
+
+/******FORM *****/
 
 label {
     font-weight: 600;
@@ -11,15 +24,20 @@ label {
     color: red;
 }
 
-/* @media (min-width: 768px) .navbar-expand-md .navbar-collapse { */
-    /* display: flex !important; */
-    /* flex-basis: auto;
-    flex-direction: row-reverse;
-} */
 
-.navbar-brand-md .navbar-collapse{
-    /* font-family: 'Bangers', cursive; */
-    font-size: font-size-lg;
+/********* Navbar **********/
+
+.navbar a {
+    font-size: large;
+}
+
+
+.navbar-brand {
+    font-size: 30px !important;
+}
+
+
+.navbar-brand-md .navbar-collapse {
     letter-spacing: 1pt;
     display: flex;
     flex-direction: row-reverse !important;
@@ -28,19 +46,3 @@ label {
 .navbar-brand:hover {
     transform: rotate(-2deg);
 }
-
-p,
-.text {
-    font-family: 'Raleway', sans-serif !important;
-}
-
-.aside-text-info {
-    text-align: left;
-    margin-top: 1em;
-
-}
-
-.bi {
-    color:rgb(0, 119, 255)! important;
-}
-

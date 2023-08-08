@@ -28,10 +28,11 @@ const router = createRouter({
 
     },
     {
-      path: '/recours/articles',
+      path: '/actualité/articles',
       name: 'conso',
       component: () => import('../components/articles/Conso.vue')
     },
+
     {
       path: '/admin/article/create',
       name: 'articles-create',

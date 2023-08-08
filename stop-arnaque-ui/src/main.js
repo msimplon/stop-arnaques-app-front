@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createPinia } from 'pinia'
 import App from './App.vue';
 import router from './router';
 import LabelValues from './components/commons/LabelValues.vue';
@@ -8,7 +9,10 @@ import axios from './plugins/axios';
 import dayjs from 'dayjs';
 import i18n from './i18n/i18n.js';
 import VueSkeletor from 'vue-skeletor';
-import CKEditor from '@ckeditor/ckeditor5-vue';
+// import { Keyframes } from 'keyframes';
+
+
+
 
 
 
@@ -18,12 +22,16 @@ import './assets/styles.css';
 
 // Instanciation de l'application Vue a partir du "root component" App.vue :
 const app = createApp(App);
+const pinia = createPinia();
+// app.use(Keyframes);
+
 // Enregistrement du router comme un plugin :
 app.use(router);
 // Composant global, pas utile de l'importer ou on en a besoin :
 app.component('LabelValues', LabelValues);
 // Enregistrement des plugins :
 app.use(toast);
+app.use(pinia);
 app.use(axios);
 app.use(VueSkeletor);
 // Gestionnaire global des erreurs qui ne sont pas gerees ailleurs (selon les besoins) :
@@ -44,7 +52,6 @@ app.config.globalProperties.$fmt = {
 };
 
 app.use(i18n)
-app.use(CKEditor);
 
 
 // On "monte" l'application dans l'element racine (lien avec le DOM) :

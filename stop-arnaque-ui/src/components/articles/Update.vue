@@ -7,17 +7,19 @@ export default {
   setup() {
     return {
       route: useRoute(),
+      // v$: useVuelidate(),
       validator: useVuelidate({ $autoDirty: true }),
     };
   },
   data() {
     return {
       id: this.route.params.id,
-      baseUrl: import.meta.env.VITE_IMG_BASE_URL,
+      // baseUrl: import.meta.env.VITE_IMG_BASE_URL,
       categoryId: [],
       inputs: {
         title: null,
         subTitle: null,
+        actor: null,
         description: null,
         imageUrl: null,
         date: null,
@@ -30,23 +32,57 @@ export default {
       inputs: {
         title: { required, maxLength: maxLength(100) },
         subTitle: { required, maxLength: maxLength(100) },
+        actor: { required, maxLenght: maxLength(100) },
         description: { required, maxLength: maxLength(1000) },
-        imageUrl: { required, maxLength: maxLength(50) },
+        imageUrl: {
+          maxValue: (imageUrl) => {
+            return imageUrl === null || imageUrl.size < 512000
+          }
+        },
         categoryId: { required },
         date: { required }
       },
     };
   },
   methods: {
-    async submit() {
-      const resp = await this.$http.put(`/articles/${this.id}`, this.inputs);
-      if (resp.status === 200) {
-        this.$toast.success("toast-global", "Article modifié avec succès");
-        this.$router.push({ name: "articles-edit" });
-      } else {
-        console.error(resp);
-        this.$toast.error("toast-global", "validation erreur.");
+    async initInputs() {
+      const resp = await this.$http.get(`/articles/article-view/${this.id}`);
+      // const data = response.data
+      this.inputs = resp.body;
+    },
+    async updateArticle() {
+      const valid = await this.validator.$validate()
+      if (valid) {
+        const formData = new FormData()
+        if (this.inputs.imageUrl != null) {
+          formData.append('imageUrl', this.inputs.imageUrl)
+        }
+        formData.append('title', this.inputs.title)
+        formData.append('subTitle', this.inputs.subTitle)
+        formData.append('actor', this.inputs.actor)
+        formData.append('date', this.inputs.date)
+        formData.append('description', this.inputs.description)
+        formData.append('categoryId', this.inputs.categoryId)
+        console.log(formData)
+
+        const response = await this.$http.patch(`/articles/${this.id}`, formData)
+
+        console.log(formData)
+
+        if (response.status === 200) {
+          // Object.assign(this.inputs, this.$options.data().inputs);
+          this.$toast.success("toast-global", "Article modifié avec succès");
+          this.$router.push({ name: "articles-edit" });
+        } else {
+          console.error(response);
+          this.$toast.error("toast-global", "validation erreur.");
+        }
       }
+
+    },
+
+    handleFileUpload(event) {
+      this.inputs.imageUrl = event.target.files[0]
     },
     async initcategory() {
       const resp = await this.$http.get("/categories");
@@ -56,117 +92,78 @@ export default {
       // proprietes globales en s'appuyant sur un plugin pour l'enregsitrer dans l'application
       // resp = reponse "simplifiee" grace a l'interceptor (cf. plugin axios)
     },
-    async initInputs() {
-      const resp = await this.$http.get(`/articles/article-view/${this.id}`);
-      this.inputs = resp.body;
-    },
+
   },
   beforeMount() {
     this.initcategory();
     this.initInputs();
-  },
-};
+  }
+}
 </script>
 
 <template>
-  <div
-    class="row justify-content-center"
-    data-aos="fade-up"
-    data-aos-delay="300"
-  >
+  <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
     <div class="col-xl-9 col-lg-12">
-      <h1>Update article</h1>
-      <form novalidate @submit.prevent="submit">
-        <!-- <div class="row mb-3"> -->
-   <div class="col-12">
-          <label for="name" class="form-label required">Titre</label>
-          <input
-            v-model.trim="inputs.title"
-            id="title"
-            name="title"
-            type="text"
-            maxlength="100"
-            class="form-control"
-            :class="{ 'is-invalid': validator.inputs.title.$error }"
-          />
-        </div>
-        <div class="col-12">
-          <label for="name" class="form-label required">Sous-titre</label>
-          <input
-            v-model.trim="inputs.subTitle"
-            id="subTitle"
-            name="subTitle"
-            type="text"
-            maxlength="100"
-            class="form-control"
-            :class="{ 'is-invalid': validator.inputs.subTitle.$error }"
-          />
+      <h1 class="row justify-content-center mt-2 mb-3">Modifier l'article</h1>
+      <form novalidate @submit.prevent="updateArticle">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="name" class="form-label required">Titre</label>
+            <input v-model.trim="inputs.title" id="title" name="title" type="text" maxlength="100" class="form-control"
+              :class="{ 'is-invalid': validator.inputs.title.$error }" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="name" class="form-label required">Sous-titre</label>
+            <input v-model.trim="inputs.subTitle" id="subTitle" name="subTitle" type="text" maxlength="100"
+              class="form-control" :class="{ 'is-invalid': validator.inputs.subTitle.$error }" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="actor" class="form-label required">Acteur</label>
+            <input v-model.trim="inputs.actor" id="actor" name="actor" type="text" maxlength="100" class="form-control"
+              :class="{ 'is-invalid': validator.inputs.actor.$error }" />
+          </div>
         </div>
         <div class="col-12">
           <label for="description" class="form-label required">{{
             $t("categoryFormLabels.formDescription")
           }}</label>
-          <textarea
-            v-model.trim="inputs.description"
-            id="description"
-            name="description"
-            maxlength="1000"
-            rows="12"
-            class="form-control"
-            :class="{ 'is-invalid': validator.inputs.description.$error }"
-          ></textarea>
+          <textarea v-model.trim="inputs.description" id="description" name="description" maxlength="1000" rows="12"
+            class="form-control" :class="{ 'is-invalid': validator.inputs.description.$error }"></textarea>
         </div>
-        <div class="col-12">
-          <label for="imageUrl" class="form-label required">{{
-            $t("categoryFormLabels.formImageUrl")
-          }}</label>
-          <div class="input-group">
-            <span class="input-group-text">{{ baseUrl }}</span>
-            <input
-              v-model.trim="inputs.imageUrl"
-              id="imageUrl"
-              name="imageUrl"
-              type="text"
-              maxlength="50"
-              class="form-control"
-              :class="{ 'is-invalid': validator.inputs.imageUrl.$error }"
-            />
+        <div class="row mt-4">
+          <div class="col-md-4 mb-3">
+            <div class="mb-3">
+              <div class="mb-3">
+                <label for="imageUrl" class="form-label required">Ajouter une image</label>
+                <input name="imageUrl" id="imageUrl" type="file" class="form-control"
+                  accept="image/png,image/gif,image/jpeg" @change="handleFileUpload">
+
+                <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
+                  Image size must be less than 500ko
+                </div>
+
+                <div class="form-text mb-3" v-else>Photo or any image.</div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-12">
-          <label for="name" class="form-label required">date</label>
-          <input
-            v-model.trim="inputs.date"
-            id="date"
-            name="date"
-            type="date"
-            class="form-control"
-            :class="{ 'is-invalid': validator.inputs.date.$error }"
-          />
-        </div>
-        <div class="row">
-          <div class="col-md-4 mt-2">
-            <label for="categoryId" class="form-label required"
-              >Catégorie</label
-            >
-            <select
-              v-model.number="inputs.categoryId"
-              id="categoryId"
-              name="categoryId"
-              class="form-select"
-              :class="{ 'is-invalid': validator.inputs.categoryId.$error }"
-            >
+          <div class="col-md-4 mb-3">
+            <label for="name" class="form-label required">Date</label>
+            <input v-model.trim="inputs.date" id="date" name="date" type="date" class="form-control"
+              :class="{ 'is-invalid': validator.inputs.date.$error }" />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="categoryId" class="form-label required">Catégorie</label>
+            <select v-model.number="inputs.categoryId" id="categoryId" name="categoryId" class="form-select"
+              :class="{ 'is-invalid': validator.inputs.categoryId.$error }">
               <option selected disabled value="0">Choisir une catégorie</option>
               <LabelValues :items="categoryId" />
             </select>
           </div>
         </div>
         <div class="text-center d-flex justify-content-end">
-          <button
-            class="btn btn-outline-primary col-12 col-md-2 mt-3"
-            type="submit"
-          >
-            Créer
+          <button class="btn btn-outline-primary col-12 col-md-2 mt-3" type="submit">
+            Modifier
           </button>
         </div>
       </form>

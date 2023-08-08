@@ -1,18 +1,22 @@
 <script>
-import { RouterLink } from "vue-router";
 
 export default {
+
+
   data() {
     return {
       baseUrl: import.meta.env.VITE_IMG_BASE_URL,
       articles: [],
     };
   },
+
   methods: {
     async initArticles() {
       const resp = await this.$http.get("/articles/list-articles");
       this.articles = resp.body;
     },
+
+
   },
 
   beforeMount() {
@@ -22,358 +26,440 @@ export default {
 </script>
 
 <template>
-  <div id="myCarousel" class="carousel slide mt-3" data-bs-ride="carousel">
-    <a href="#" class="to-top">
-      <i class="fas fa-chevron-up"></i>
-    </a>
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-        aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
-        class="btn btn-primary btn-sm"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/images/new.png" class="d-block w-100 rounded" alt="..." />
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>
-              test1
-            </p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+  <main>
+    <a href="#" class="toTheTop"><img src="/images/arrow.svg" alt="up"></a>
+    <section id="carrousel" class="carrousel">
+      <div class="carrousel__content container-fluide">
+        <div id="left" class="carrousel__left-arrow">←</div>
+        <div class="carrousel__center-content">
+          <div class="carrousel__creed">
+            <hr>
+            <p>THE PAST IS OUR FUTURE</p>
+            <hr>
+          </div>
+          <h1 class="carrousel__title"> ARRÊTEZ LES ARNAQUES DANS LEUR ÉLAN AVEC STOP ARNAQUE
+          </h1>
+          <p class="carrousel__quote">Let your Inner Light Grow With the Silence of History</p>
+          <a class="carrousel__more" href="#">FIND OUT MORE</a>
+          <div class="carrousel__dots">
+            <div class="carrousel__dot--current carrousel__dot"></div>
+            <div class="carrousel__dot"></div>
+            <div class="carrousel__dot"></div>
           </div>
         </div>
+        <div id="right" class="carrousel__right-arrow">→</div>
       </div>
-      <div class="carousel-item">
-        <img src="/images/project.png" class="d-block w-100 rounded" alt="..." />
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>
-              test 2
-            </p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="/images/e-commerce.png" class="d-block w-100 rounded" alt="..." />
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>
-              test 3
-            </p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+    </section>
 
-  <div class="container marketing mt-4">
-    <hr class="featurette-divider" />
-    <div class="featurette" v-for="article in articles">
-      <div class="flex-container">
-        <h2 class="featurette-heading fw-normal lh-1">
-          {{ article.title }}
-          <h3>{{ article.subTitle }}</h3>
-        </h2>
-        <p class="lead">
-          {{ article.description }}
-          <a href="#" class="stretched-link">Continue reading</a>
+    <hr class="featurette-divider">
+
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-3 p-3">
+      <div class="col" v-for="article in articles">
+        <div class="card shadow-sm h-100">
+          <div class="p-3"><img :src="baseUrl + article.imageUrl" class="card-img-top"></div>
+          <div class="d-flex justify-content-evenly">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <span>{{ article.date }}</span>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">{{ article.subTitle }}</h6>
+          </div>
+          <div>
+            <p class="d-flex align-items-center">
+              {{ article.description }}
+            </p>
+            <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link" title="Details...">
+              En savoir plus
+            </RouterLink>
+          </div>
+          <p class="d-flex align-items-center">
+            {{ article.actor }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section class="about whiteBG">
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary">World</strong>
+              <h3 class="mb-0">Featured post</h3>
+              <div class="mb-1 text-muted">Nov 12</div>
+              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                additional content.</p>
+              <a href="#" class="link">Continue reading</a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+                aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                  dy=".3em">Thumbnail</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-success">Design</strong>
+              <h3 class="mb-0">Post title</h3>
+              <div class="mb-1 text-muted">Nov 11</div>
+              <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
+                content.
+              </p>
+              <a href="#" class="link">Continue reading</a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+                aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                  dy=".3em">Thumbnail</text>
+              </svg>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="featurette-divider">
+
+    <section class="stats darkgreyBG row row-cols-6 row-cols-md-5">
+      <article class="stats__article">
+        <img src="/images/people.svg" alt="icon" class="stats__icon">
+        <div class="stats__description">
+          <p class="stats__number">245</p>
+          <p class="stats__name">EXHIBITIONS<br>Have Been Held</p>
+        </div>
+      </article>
+      <article class="stats__article">
+        <img src="/images/bank.svg" alt="icon" class="stats__icon">
+        <div class="stats__description">
+          <p class="stats__number">93k</p>
+          <p class="stats__name">VISITORS<br>In Last Year</p>
+        </div>
+      </article>
+      <article class="stats__article">
+        <img src="/images/cash-coin.svg" alt="icon" class="stats__icon">
+        <div class="stats__description">
+          <p class="stats__number">106</p>
+          <p class="stats__name">AWARDS<br>Recieved</p>
+        </div>
+      </article>
+      <article class="stats__article">
+        <img src="/images/shop-window.svg" alt="icon" class="stats__icon">
+        <div class="stats__description">
+          <p class="stats__number">15k</p>
+          <p class="stats__name">COLLECTIONS<br>Of Art & Designs</p>
+        </div>
+      </article>
+    </section>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll blow your
+            mind.</span></h2>
+        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.
         </p>
-        <p>
-          {{ article.actor }}
-        </p>
-        <p>
-          {{ article.date }}
-        </p>
-        <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="ms-auto" title="Details...">
-          <i class="bi bi-three-dots fs-5 text-primary"></i>
-        </RouterLink>
       </div>
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
           xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
           preserveAspectRatio="xMidYMid slice" focusable="false">
-          <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-          <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-            500x500
-          </text>
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
         </svg>
+
       </div>
     </div>
 
-    <!-- <hr class="featurette-divider" />
+    <hr class="featurette-divider">
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading fw-normal lh-1">
-          Oh yeah, it’s that good.
-          <span class="text-body-secondary">See for yourself.</span>
-        </h2>
-        <p class="lead">
-          echouer -->
-    <!-- {{ article.description }} -->
-    <!-- <a href="#" class="stretched-link">Continue reading</a>
-        </p>
+        <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for
+            yourself.</span></h2>
+        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
+          layout would work with some actual real-world content in place.</p>
       </div>
       <div class="col-md-5 order-md-1">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
           xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
           preserveAspectRatio="xMidYMid slice" focusable="false">
           <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
+          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
         </svg>
-      </div>
-    </div> -->
 
-    <!-- <hr class="featurette-divider" />
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">
-          And lastly, this one.
-          <span class="text-body-secondary">Checkmate.</span>
+        <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-muted">Checkmate.</span>
         </h2>
-        <p class="lead">
-          echouer 2
-          <a href="#" class="stretched-link">Continue reading</a>
-        </p>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended
+          to be actually read, simply here to give you a better view of what this would look like with some actual
+          content. Your content.</p>
       </div>
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
           xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
           preserveAspectRatio="xMidYMid slice" focusable="false">
           <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-          <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-            500x500
-          </text>
+          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
         </svg>
-      </div> -->
 
-    <!-- <hr class="featurette-divider" />
-    </div>
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">World</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">
-              {{ article.description }}
-            </p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c" />
-              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Design</strong>
-            <h3 class="mb-0">Post title</h3>
-            <div class="mb-1 text-muted">Nov 11</div>
-            <p class="mb-auto">
-              {{ article.description }}
-            </p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c" />
-              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="p-3 mb-3 bg-light rounded-3">
-      <div class="container-fluid py-1">
-        <h4>Custom jumbotron</h4>
-        <p class="col-md-12">
-          {{ article.description }}
-        </p>
-        <button class="btn btn-outline-secondary" type="button">
-          Example button
-        </button>
       </div>
     </div>
 
-    <div class="row align-items-md-stretch">
-      <div class="col-md-6">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h4>Change the background</h4>
-          <p>
-            {{ article.description }}
-          </p>
-          <button class="btn btn-outline-light" type="button">
-            Example button
-          </button>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-light border rounded-3">
-          <h4>Add borders</h4>
-          <p>
-            {{ article.description }}
-          </p>
-          <button class="btn btn-outline-secondary" type="button">
-            Example button
-          </button>
-        </div>
-      </div> -->
-    <!-- </div>
-</div> -->
-  </div>
+    <hr class="featurette-divider">
+  </main>
 </template>
 
+
 <style>
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
-
-/* .b-example-divider {
+.carrousel {
   width: 100%;
-  height: 3rem;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: solid rgba(0, 0, 0, 0.15);
-  border-width: 1px 0;
-  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+  position: relative;
+  background-image: url("../public/images/R.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px;
+
 }
 
-.b-example-vr {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 100vh;
+.carrousel__content {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  display: grid;
+  grid-template: 1fr / 1fr 80% 1fr;
+  grid-template-areas: "left center-content right";
+  /* prendre toute la largeur  */
 }
 
-.row-featurette {
-  justify-content: space-around
-} */
-
-.bi {
-  vertical-align: -0.125em;
-  fill: currentColor;
+.carrousel__center-content {
+  height: 100%;
 }
 
-.btn-bd-primary {
-  --bd-violet-bg: #712cf9;
-  --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: var(--bd-violet-bg);
-  --bs-btn-border-color: var(--bd-violet-bg);
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #6528e0;
-  --bs-btn-hover-border-color: #6528e0;
-  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-  --bs-btn-active-color: var(--bs-btn-hover-color);
-  --bs-btn-active-bg: #5a23c8;
-  --bs-btn-active-border-color: #5a23c8;
-}
-
-.bd-mode-toggle {
-  z-index: 1500;
-}
-
-/* .fs-4 {
-  font-size: 20px !important;
-} */
-
-.fw-bold {
-  font-size: 20px !important;
-}
-
-.to-top {
-  background: white;
-  position: fixed;
-  bottom: 16px;
-  right: 32px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.carrousel__content>* {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  color: #1f1f1f;
-  text-decoration: none;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s;
+  flex-direction: column;
 }
 
-.to-top.active {
-  bottom: 32px;
-  pointer-events: auto;
-  opacity: 1;
+.carrousel__left-arrow {
+  grid-area: left;
+  font-size: 4rem;
+  font-size: min(4rem, 7vw);
+  transition: background-color 0.6s, opacity 0.6s;
 }
 
+.carrousel__left-arrow:hover {
+  opacity: 0.3;
+}
 
-/* .container {
+/* body {
+  background-color: light;
+} */
+
+/* main {
+  background-color: blue;
+} */
+
+.carrousel__creed {
+  width: 100%;
+  margin-top: 15%;
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.carrousel__creed>p {
+  color: var(--color-white);
+  margin: 0;
+  width: 12rem;
+  text-align: center;
+}
+
+.carrousel__creed>hr {
+  width: 40%;
+  size: 1px;
+  color: var(--color-white);
+}
+
+.carrousel__title {
+  position: relative;
+  object-position: 50% 50%;
+  margin: 1em 0;
+  grid-area: center-content;
+  width: min(600px, 100%);
+  text-align: center;
+}
+
+.carrousel__quote {
+  font-weight: 600;
+  text-align: center;
+}
+
+.carrousel__more {
+  border-radius: 3px;
+  padding: 10px 25px;
+  font-size: 0.5rem;
+  font-weight: 600;
+  margin-top: 1vw;
+}
+
+.carrousel__dots {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  align-items: normal;
-  align-content: center;
+  width: 100%;
+}
 
-} */
+.carrousel__dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-orange);
+  border-radius: 50%;
+  margin: 5px 10px;
+  z-index: 1;
+}
 
-/* 
-.container {
+.carrousel__dot--current {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-darkgrey);
+  border-radius: 50%;
+  margin: 5px 10px;
+  z-index: 1;
+  border: 1px solid var(--color-white);
+}
+
+.carrousel__right-arrow {
+  grid-area: right;
+  font-size: min(4rem, 7vw);
+  color: var(--color-white);
+  transition: background-color 0.6s, opacity 0.6s;
+}
+
+.carrousel__right-arrow:hover {
+  background-color: var(--color-darkgrey);
+  opacity: 0.3;
+}
+
+/*BACK TO TOP BUTTON*/
+.toTheTop {
+  height: 55px;
+  width: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 10;
+
+
+  background-color: grey;
+  border-radius: 10px;
+}
+
+.toTheTop>img {
+  height: 50%;
+  width: 50%;
+  filter: invert();
+}
+
+/*STATS*/
+.stats {
+  height: max-content;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between; */
-/* align-items: center;
-  align-content: center; */
-/* margin-left: 10%; */
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.stats__article {
+  margin: 5px 20px;
+}
+
+.stats__icon {
+  width: 60px;
+  color: rgb(0, 119, 255) ! important;
+  filter: invert(69%) sepia(29%) saturate(67%) hue-rotate(330deg) brightness(91%) contrast(36%);
+}
+
+.stats__description {
+  display: flex;
+  flex-direction: row;
+}
+
+.stats__number {
+  font-size: 2rem;
+  font-family: prata;
+  font-weight: 550;
+  color: rgb(0, 119, 255) ! important;
+  margin: 0.2rem;
+}
+
+.stats__name {
+  font-size: 0.8rem;
+  font-family: muli;
+  font-weight: 600;
+  color: var(--color-white);
+  margin: 0.2rem;
+}
 
 
-/* .child-1 {
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  width: 50px;
-  height: 50px;
-  background-color: #bc0111;
-} */
+
+
+/* *****TEXT***** */
+
+.align-items-center {
+  margin-left: 5%;
+  margin-right: 5%;
+  justify-content: right;
+
+}
+
+p {
+  justify-content: center;
+}
+
+.subtitle {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: uppercase;
+}
+
+.link {
+  font-size: large;
+  margin-left: 5%;
+  color: black;
+  text-decoration: none;
+}
 
 .text {
   font-family: "Raleway", sans-serif !important;

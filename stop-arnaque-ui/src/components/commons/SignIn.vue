@@ -50,32 +50,22 @@ export default {
         /> -->
 
         <div class="form-floating">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-          />
-          <label for="floatingInput" class="form-label required"
-            >Email address</label
-          >
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+          <label for="floatingInput" class="form-label required"><i class="bi bi-envelope-at"></i> Email address</label>
+        </div>
+        <div id="emailHelp" class="form-text">
+          ex.: prenom.nom@domain.com
         </div>
         <div class="form-floating mt-3">
-          <input
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          />
-          <label for="floatingPassword" class="form-label required"
-            >Password</label
-          >
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+          <!-- <i class="bi bi-key"></i> -->
+          <label for="floatingPassword" class="form-label required"><i class="bi bi-key"></i> Password</label>
+        </div>
+        <div id="passwordHelp" class="form-text">
+          Vous avez oublié votre mot de passe ?
         </div>
         <div class="text-center d-flex justify-content-end">
-          <button
-            class="btn btn-outline-primary col-12 col-md-3 mt-3"
-            type="submit"
-          >
+          <button class="btn btn-outline-primary col-12 col-md-3 mt-3" type="submit">
             Connexion
           </button>
         </div>

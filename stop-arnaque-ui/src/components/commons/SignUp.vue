@@ -64,42 +64,30 @@ export default {
         /> -->
 
         <div class="form-floating">
-          <input
-            type="email"
-            name="internalEmail"
-            placeholder="email"
-            class="form-control"
-            id="internalEmail"
-            v-model="inputs.internalEmail"
-            :class="{ 'is-invalid': validator.inputs.internalEmail.$error }"
-          />
-          <label for="internalEmail" class="form-label required"
-            >Adresse email</label
-          >
+          <input type="email" name="internalEmail" placeholder="email" class="form-control" id="internalEmail"
+            v-model="inputs.internalEmail" :class="{ 'is-invalid': validator.inputs.internalEmail.$error }" />
+          <label for="internalEmail" class="form-label required">Adresse email</label>
           <span v-if="validator.inputs.internalEmail.$error">
             {{ validator.inputs.internalEmail.$errors[0].$message }}
           </span>
         </div>
+        <div id="emailHelp" class="form-text">
+          ex.: prenom.nom@domain.com
+        </div>
         <div class="form-floating mt-3">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Password"
-            name="password"
-            id="password"
-            v-model="inputs.password"
-            :class="{ 'is-invalid': validator.inputs.password.$error }"
-          />
+          <input type="password" class="form-control" placeholder="Password" name="password" id="password"
+            v-model="inputs.password" :class="{ 'is-invalid': validator.inputs.password.$error }" />
           <label for="password" class="form-label required">Password</label>
           <span v-if="validator.inputs.password.$error">
             {{ validator.inputs.password.$errors[0].$message }}
           </span>
+          <div id="passwordHelp" class="form-text">
+            Au moins 1 majuscule et 1 miniscule, au moins un nombre
+            au moins 1 de !@#%&*?
+          </div>
         </div>
         <div class="text-center d-flex justify-content-end">
-          <button
-            class="btn btn-outline-primary col-12 col-md-3 mt-3"
-            type="submit"
-          >
+          <button class="btn btn-outline-primary col-12 col-md-3 mt-3" type="submit">
             S'inscrire
           </button>
         </div>

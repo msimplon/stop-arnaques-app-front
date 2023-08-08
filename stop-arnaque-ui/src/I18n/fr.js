@@ -1,8 +1,8 @@
 const frmessages = {
     categoryFormLabels: {
         title: {
-            create: "Créer un projet",
-            update: "Modifier un projet"
+            create: "Créer un article",
+            update: "Modifier un article"
         },
         formTitle: "Titre",
         formName: "Nom",
