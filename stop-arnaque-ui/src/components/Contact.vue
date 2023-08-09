@@ -34,11 +34,7 @@ export default {
           </div>
         </div>
 
-        <div
-          class="col-xl-3 col-lg-4 mt-4"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
+        <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="100">
           <div class="info-box">
             <i class="bi bi-mailbox mydimension"></i>
             <h3>Adresse email</h3>
@@ -46,11 +42,7 @@ export default {
             <p>rdv@gmail.com</p>
           </div>
         </div>
-        <div
-          class="col-xl-3 col-lg-4 mt-4"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
+        <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="200">
           <div class="info-box">
             <i class="bi bi-telephone mydimension"></i>
             <h3>Numéro</h3>
@@ -59,53 +51,22 @@ export default {
         </div>
       </div>
 
-      <div
-        class="row justify-content-center"
-        data-aos="fade-up"
-        data-aos-delay="300"
-      >
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
         <div class="col-xl-9 col-lg-12 mt-4">
           <form method="post" role="form" class="email-form">
             <div class="row">
               <div class="col-md-6 form-group">
-                <input
-                  type="text"
-                  name="title"
-                  class="form-control"
-                  id="title"
-                  placeholder="Votre nom"
-                  required
-                />
+                <input type="text" name="title" class="form-control" id="title" placeholder="Votre nom" required />
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input
-                  type="email"
-                  class="form-control"
-                  name="email"
-                  id="email"
-                  placeholder="Votre Email"
-                  required
-                />
+                <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" required />
               </div>
             </div>
             <div class="form-group mt-3">
-              <input
-                type="text"
-                class="form-control"
-                name="sujet"
-                id="subject"
-                placeholder="Sujet"
-                required
-              />
+              <input type="text" class="form-control" name="sujet" id="subject" placeholder="Sujet" required />
             </div>
             <div class="form-group mt-3">
-              <textarea
-                class="form-control"
-                name="message"
-                rows="5"
-                placeholder="Message"
-                required
-              ></textarea>
+              <textarea class="form-control" name="message" rows="5" placeholder="Message " required></textarea>
             </div>
             <div class="my-3">
               <div class="loading">Chargement</div>
@@ -115,10 +76,7 @@ export default {
               </div>
             </div>
             <div class="text-center d-flex justify-content-end">
-              <button
-                class="btn btn-outline-primary col-12 col-md-2 mt-3"
-                type="submit"
-              >
+              <button class="btn btn-outline-primary col-12 col-md-2 mt-3" type="submit">
                 Envoyer
               </button>
             </div>
@@ -133,6 +91,7 @@ export default {
 .h2 {
   justify-content: center;
 }
+
 .contact .info-box {
   color: #313030;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
@@ -159,6 +118,10 @@ export default {
   color: #656262;
   font-weight: 700;
   margin: 10px 0 10px 68px;
+}
+
+.bi {
+  color: #313030
 }
 
 p {
@@ -190,7 +153,7 @@ p {
   font-weight: 600;
 }
 
-.contact .email-form .error-message br + br {
+.contact .email-form .error-message br+br {
   margin-top: 25px;
 }
 

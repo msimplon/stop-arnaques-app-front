@@ -30,24 +30,24 @@ export default {
     <a href="#" class="toTheTop"><img src="/images/arrow.svg" alt="up"></a>
     <section id="carrousel" class="carrousel">
       <div class="carrousel__content container-fluide">
-        <div id="left" class="carrousel__left-arrow">←</div>
+        <div id="left" class="carrousel__left-arrow"></div>
         <div class="carrousel__center-content">
           <div class="carrousel__creed">
             <hr>
-            <p>THE PAST IS OUR FUTURE</p>
+            <p>3000 alertes déjà envoyées</p>
             <hr>
           </div>
           <h1 class="carrousel__title"> ARRÊTEZ LES ARNAQUES DANS LEUR ÉLAN AVEC STOP ARNAQUE
           </h1>
-          <p class="carrousel__quote">Let your Inner Light Grow With the Silence of History</p>
-          <a class="carrousel__more" href="#">FIND OUT MORE</a>
+          <p class="carrousel__quote">Stop Arnaque bloque les fraudes et escrocs d'internet pour vous</p>
+          <a class="carrousel__more" href="#">Voir les dernières actualités</a>
           <div class="carrousel__dots">
             <div class="carrousel__dot--current carrousel__dot"></div>
             <div class="carrousel__dot"></div>
             <div class="carrousel__dot"></div>
           </div>
         </div>
-        <div id="right" class="carrousel__right-arrow">→</div>
+        <div id="right" class="carrousel__right-arrow"></div>
       </div>
     </section>
 
@@ -133,28 +133,28 @@ export default {
         <img src="/images/people.svg" alt="icon" class="stats__icon">
         <div class="stats__description">
           <p class="stats__number">245</p>
-          <p class="stats__name">EXHIBITIONS<br>Have Been Held</p>
+          <p class="stats__name">AlERTES EN <br>TEMPS REEL</p>
         </div>
       </article>
       <article class="stats__article">
         <img src="/images/bank.svg" alt="icon" class="stats__icon">
         <div class="stats__description">
           <p class="stats__number">93k</p>
-          <p class="stats__name">VISITORS<br>In Last Year</p>
+          <p class="stats__name">RECOURS JURIDIQUE<br>SUR MESURE</p>
         </div>
       </article>
       <article class="stats__article">
         <img src="/images/cash-coin.svg" alt="icon" class="stats__icon">
         <div class="stats__description">
           <p class="stats__number">106</p>
-          <p class="stats__name">AWARDS<br>Recieved</p>
+          <p class="stats__name">DISPOSITIF<br>ANTI-PHISHING</p>
         </div>
       </article>
       <article class="stats__article">
         <img src="/images/shop-window.svg" alt="icon" class="stats__icon">
         <div class="stats__description">
-          <p class="stats__number">15k</p>
-          <p class="stats__name">COLLECTIONS<br>Of Art & Designs</p>
+          <p class="stats__number">1k</p>
+          <p class="stats__name">VICTIMES<br>PLUS JEUNES</p>
         </div>
       </article>
     </section>
@@ -162,64 +162,32 @@ export default {
     <hr class="featurette-divider">
 
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll blow your
+      <div class="col-md-6">
+        <h2 class="featurette-heading fw-normal lh-1 ms-4">First featurette heading. <span class="text-muted">It’ll blow
+            your
             mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.
+        <p class="lead ms-4">Some great placeholder content for the first featurette here. Imagine some exciting prose
+          here.
         </p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-          xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
-
+      <div class="col-md-6 order-md-2">
+        <img src="/images/e-commerce.png" class="rounded float-rigth w-200" alt="...">
       </div>
     </div>
 
     <hr class="featurette-divider">
 
     <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for
+      <div class="col-md-6 order-md-2">
+        <h2 class="featurette-heading fw-normal ms-4">Oh yeah, it’s that good. <span class="text-muted">See for
             yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
+        <p class="lead ms-4">Another featurette? Of course. More placeholder content here to give you an idea of how this
           layout would work with some actual real-world content in place.</p>
       </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-          xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
-
+      <div class="col-md-6 order-md-1">
+        <img src=" /images/e-commerce.png" class="rounded float-left" alt="...">
       </div>
     </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-muted">Checkmate.</span>
-        </h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended
-          to be actually read, simply here to give you a better view of what this would look like with some actual
-          content. Your content.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-          xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
-
-      </div>
-    </div>
-
     <hr class="featurette-divider">
   </main>
 </template>
@@ -268,13 +236,9 @@ export default {
   opacity: 0.3;
 }
 
-/* body {
-  background-color: light;
-} */
-
-/* main {
-  background-color: blue;
-} */
+.lh-1 {
+  flex-direction: row-reverse !important;
+}
 
 .carrousel__creed {
   width: 100%;

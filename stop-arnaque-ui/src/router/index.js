@@ -47,6 +47,12 @@ const router = createRouter({
       component: () => import('../components/articles/Update.vue')
     },
     {
+      path: '/article/signal',
+      name: 'article-signal-arnaque',
+      component: () => import('../components/articles/SignalArnaque.vue')
+    },
+
+    {
       path: '/contact',
       name: 'contact',
       component: () => import('../components/Contact.vue')
@@ -61,6 +67,8 @@ const router = createRouter({
       name: 'cgu',
       component: () => import('../components/cgu/cgu.vue')
     },
+
+
   ]
 
 })

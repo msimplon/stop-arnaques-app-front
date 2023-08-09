@@ -1,16 +1,9 @@
 <script>
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength, minValue, between } from "@vuelidate/validators";
-// import { Carousel, Slide, Pagination } from 'vue3-carousel'
-
 
 export default {
-  // name: "articles-create",
-  // components: {
-  //   Carousel,
-  //   Slide,
-  //   Pagination
-  // },
+
   setup() {
     return {
       validator: useVuelidate({ $autoDirty: true }),
@@ -18,7 +11,6 @@ export default {
   },
   data() {
     return {
-      // baseUrl: import.meta.env.VITE_IMG_BASE_URL,
       categoryId: [],
       inputs: {
         title: null,
@@ -49,19 +41,13 @@ export default {
         date: { required }
       },
     };
-    // problème ici car form data a faire et non input 
   },
   methods: {
     async submit() {
       const formData = new FormData()
       const valid = await this.validator.$validate()
-      formData.append('ossama', 99999)
-      // console.log("test", formData.get('ossama'), formData)
-
-
       if (valid) {
         const [year, month, day] = this.inputs.date.toString().split("-")
-        // console.log("ok", this.inputs, formData)
         if (this.inputs.imageUrl != null) {
           formData.append("imageUrl", this.inputs.imageUrl)
         }
@@ -75,17 +61,7 @@ export default {
         console.log(formData)
 
         const resp = await this.$http.post("/articles", formData);
-        // this.inputs = resp.data;
-        //   const resp = await this.$http.post("/articles", {
-        //     method: 'POST',
-        //     headers: {
-        //     'method': 'Post',
-        //       'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(
-        //     formData)
 
-        // })
         console.log(formData)
         console.log(resp, "resp")
 
@@ -94,7 +70,7 @@ export default {
           // this.validator.$reset();
           this.$toast.success("toast-global", "L'article a été créé !!!");
           this.$router.push({ name: "articles-edit" });
-          // this.router.navigateByUrl('my-articles');
+          this.router.navigateByUrl('my-articles');
         } else {
           console.error(resp);
           this.$toast.error("toast-global", "problème de validation");
@@ -114,13 +90,7 @@ export default {
   beforeMount() {
     this.initcategory();
   },
-  // mounted() {
-  //   let user = localStorage.getItem("user-info");
-  //   if (!user) {
-  //     this.$router.push({ name: "home" });
-  //   }
-  // },
-  //redirection à decommenter une fois le create marche
+
 };
 </script>
 
@@ -132,22 +102,36 @@ export default {
       </h1>
       <form novalidate @submit.prevent="submit">
         <div class="row">
-          {{ (inputs) }}""""
           <div class="col-md-4 mb-3">
             <label for="name" class="form-label required">Titre</label>
             <input v-model.trim="inputs.title" id="title" name="title" type="text" maxlength="100" class="form-control"
               :class="{ 'is-invalid': validator.inputs.title.$error }" />
+            <div class="form-text text-danger" v-if="validator.inputs.title.$error">
+              Veuillez renseigner ce champs.
+            </div>
+
+            <div class="form-text mb-3" v-else>Titre de l'article.</div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="name" class="form-label required">Sous-titre</label>
             <input v-model.trim="inputs.subTitle" id="subTitle" name="subTitle" type="text" maxlength="100"
               class="form-control" :class="{ 'is-invalid': validator.inputs.subTitle.$error }" />
+            <div class="form-text text-danger" v-if="validator.inputs.subTitle.$error">
+              Veuillez renseigner ce champs.
+            </div>
+
+            <div class="form-text mb-3" v-else>Sous-titre de l'article.</div>
           </div>
 
           <div class="col-md-4 mb-3">
             <label for="actor" class="form-label required">Acteur</label>
             <input v-model.trim="inputs.actor" id="actor" name="actor" type="text" maxlength="100" class="form-control"
               :class="{ 'is-invalid': validator.inputs.actor.$error }" />
+            <div class="form-text text-danger" v-if="validator.inputs.actor.$error">
+              Veuillez renseigner ce champs.
+            </div>
+
+            <div class="form-text mb-3" v-else>Acteur de l'article.</div>
           </div>
         </div>
         <div class="col-12">
@@ -156,6 +140,11 @@ export default {
           }}</label>
           <textarea v-model.trim="inputs.description" id="description" name="description" maxlength="1000" rows="12"
             class="form-control" :class="{ 'is-invalid': validator.inputs.description.$error }"></textarea>
+          <div class="form-text text-danger" v-if="validator.inputs.description.$error">
+            Veuillez renseigner ce champs.
+          </div>
+
+          <div class="form-text mb-3" v-else>Contenu de l'article.</div>
         </div>
         <div class="row mt-4">
           <div class="col-md-4 mb-3">
@@ -166,10 +155,10 @@ export default {
                   class="form-control" @change="handleFileUpload">
 
                 <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
-                  Image size must be less than 500ko
+                  La taille de l'image ne peut pas dépasser 500ko
                 </div>
 
-                <div class="form-text mb-3" v-else>Photo or any image.</div>
+                <div class="form-text mb-3" v-else>Photo ou image.</div>
               </div>
             </div>
 
@@ -179,6 +168,11 @@ export default {
             <label for="name" class="form-label required">Date</label>
             <input v-model.trim="inputs.date" id="date" name="date" type="date" class="form-control"
               :class="{ 'is-invalid': validator.inputs.date.$error }" />
+            <div class="form-text text-danger" v-if="validator.inputs.date.$error">
+              Veuillez renseigner ce champs.
+            </div>
+
+            <div class="form-text mb-3" v-else>Date de publication.</div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="categoryId" class="form-label required">Catégorie</label>
@@ -187,6 +181,11 @@ export default {
               <option selected disabled value="0">Choisir une catégorie</option>
               <LabelValues :items="categoryId" />
             </select>
+            <div class="form-text text-danger" v-if="validator.inputs.categoryId.$error">
+              Veuillez saisir une catégorie
+            </div>
+
+            <div class="form-text mb-3" v-else>Actualité ou conseil.</div>
           </div>
         </div>
         <div class="text-center d-flex justify-content-end">
@@ -200,7 +199,6 @@ export default {
 </template>
 <style>
 form {
-  /* box-shadow: 0 0 30px rgba(214, 215, 216, 0.6); */
   padding: 30px;
 }
 

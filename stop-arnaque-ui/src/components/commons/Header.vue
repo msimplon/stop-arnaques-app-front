@@ -55,6 +55,11 @@ import { RouterLink } from "vue-router";
                 Connexion/inscription
               </RouterLink>
             </li>
+            <li class="nav-item">
+              <RouterLink :to="{ name: 'article-signal-arnaque' }" class="nav-link">
+                Signaler une arnaque
+              </RouterLink>
+            </li>
           </ul>
         </div>
       </div>

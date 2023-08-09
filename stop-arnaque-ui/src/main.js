@@ -16,6 +16,7 @@ import VueSkeletor from 'vue-skeletor';
 
 
 
+
 // Importer les styles en JS pour que Vite "inline" les styles
 // dans index.html (cf. avec outils dev dans le navigateur)
 import './assets/styles.css';
@@ -34,11 +35,12 @@ app.use(toast);
 app.use(pinia);
 app.use(axios);
 app.use(VueSkeletor);
+
 // Gestionnaire global des erreurs qui ne sont pas gerees ailleurs (selon les besoins) :
-app.config.errorHandler = (err, comp) => {
-    console.error('ErrorHandler', err);
-    comp.$toast.error('toast-global', 'Oups, un problème est survenu');
-};
+// app.config.errorHandler = (err, comp) => {
+//     console.error('ErrorHandler', err);
+//     comp.$toast.error('toast-global', 'Oups, un problème est survenu');
+// };
 // Day JS, enregistrement d'une propriete globale pour faciliter l'utilisation de Day JS
 app.config.globalProperties.$fmt = {
     date: (str) => {

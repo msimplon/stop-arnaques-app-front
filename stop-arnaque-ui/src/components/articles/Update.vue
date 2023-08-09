@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       id: this.route.params.id,
-      // baseUrl: import.meta.env.VITE_IMG_BASE_URL,
+
       categoryId: [],
       inputs: {
         title: null,
@@ -51,16 +51,17 @@ export default {
       this.inputs = resp.body;
     },
     async updateArticle() {
+      const formData = new FormData()
       const valid = await this.validator.$validate()
       if (valid) {
-        const formData = new FormData()
+        const [year, month, day] = this.inputs.date.toString().split("-")
         if (this.inputs.imageUrl != null) {
           formData.append('imageUrl', this.inputs.imageUrl)
         }
         formData.append('title', this.inputs.title)
         formData.append('subTitle', this.inputs.subTitle)
         formData.append('actor', this.inputs.actor)
-        formData.append('date', this.inputs.date)
+        formData.append('date', `${day}/${month}/${year}`)
         formData.append('description', this.inputs.description)
         formData.append('categoryId', this.inputs.categoryId)
         console.log(formData)
@@ -70,7 +71,7 @@ export default {
         console.log(formData)
 
         if (response.status === 200) {
-          // Object.assign(this.inputs, this.$options.data().inputs);
+          Object.assign(this.inputs, this.$options.data().inputs);
           this.$toast.success("toast-global", "Article modifié avec succès");
           this.$router.push({ name: "articles-edit" });
         } else {
@@ -137,7 +138,7 @@ export default {
               <div class="mb-3">
                 <label for="imageUrl" class="form-label required">Ajouter une image</label>
                 <input name="imageUrl" id="imageUrl" type="file" class="form-control"
-                  accept="image/png,image/gif,image/jpeg" @change="handleFileUpload">
+                  accept="image/png,image/gif,image/jpg" @change="handleFileUpload">
 
                 <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
                   Image size must be less than 500ko

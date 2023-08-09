@@ -18,8 +18,8 @@ export default {
   data() {
     return {
       inputs: {
-        internalEmail: "manal.ben@domain.com",
-        password: "manal2022!",
+        internalEmail: null,
+        password: null,
       },
     };
   },
@@ -66,7 +66,7 @@ export default {
         <div class="form-floating">
           <input type="email" name="internalEmail" placeholder="email" class="form-control" id="internalEmail"
             v-model="inputs.internalEmail" :class="{ 'is-invalid': validator.inputs.internalEmail.$error }" />
-          <label for="internalEmail" class="form-label required">Adresse email</label>
+          <label for="internalEmail" class="form-label required"><i class="bi bi-envelope-at"></i> Adresse email</label>
           <span v-if="validator.inputs.internalEmail.$error">
             {{ validator.inputs.internalEmail.$errors[0].$message }}
           </span>
@@ -77,7 +77,7 @@ export default {
         <div class="form-floating mt-3">
           <input type="password" class="form-control" placeholder="Password" name="password" id="password"
             v-model="inputs.password" :class="{ 'is-invalid': validator.inputs.password.$error }" />
-          <label for="password" class="form-label required">Password</label>
+          <label for="password" class="form-label required"><i class="bi bi-key"></i> Password</label>
           <span v-if="validator.inputs.password.$error">
             {{ validator.inputs.password.$errors[0].$message }}
           </span>
