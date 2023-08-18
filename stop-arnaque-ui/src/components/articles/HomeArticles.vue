@@ -1,7 +1,11 @@
 <script>
 
+import SearchComponent from "../commons/SearchComponent.vue";
 export default {
-
+  name: "HomeArtciles",
+  components: {
+    SearchComponent,
+  },
 
   data() {
     return {
@@ -73,7 +77,7 @@ export default {
             </RouterLink>
           </div>
           <p class="d-flex align-items-center">
-            {{ article.actor }}
+            {{ article.editor }}
           </p>
         </div>
       </div>
@@ -128,6 +132,7 @@ export default {
     </section>
     <hr class="featurette-divider">
 
+    <SearchComponent />
     <section class="stats darkgreyBG row row-cols-6 row-cols-md-5">
       <article class="stats__article">
         <img src="/images/people.svg" alt="icon" class="stats__icon">

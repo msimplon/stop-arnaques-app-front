@@ -29,8 +29,8 @@ const router = createRouter({
     },
     {
       path: '/actualité/articles',
-      name: 'conso',
-      component: () => import('../components/articles/Conso.vue')
+      name: 'actualité',
+      component: () => import('../components/articles/Actualité.vue')
     },
 
     {
@@ -58,9 +58,14 @@ const router = createRouter({
       component: () => import('../components/Contact.vue')
     },
     {
-      path: '/home',
-      name: 'inscription-connexion',
-      component: () => import('../components/Home.vue')
+      path: '/signIn',
+      name: 'signIn',
+      component: () => import('../components/SignIn.vue')
+    },
+    {
+      path: '/signUp',
+      name: 'signUp',
+      component: () => import('../components/SignUp.vue')
     },
     {
       path: '/cgu',

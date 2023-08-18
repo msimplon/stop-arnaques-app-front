@@ -34,12 +34,14 @@ export default {
             </div>
             <div class="col-md-8">
                 <div class="card-body p-0">
+                    <p class="card-text fs-5">
+                        <span class="badge bg-primary">{{ article.categoryId }}</span>
+                    </p>
                     <h2>{{ article.title }}</h2>
                     <h3>{{ article.subTitle }}</h3>
+                    <h4>{{ article.editor }}</h4>
                     <p class="card-text">{{ article.description }}</p>
-                    <p class="card-text fs-5">
-                        <span class="badge bg-primary">{{ article.category }}</span>
-                    </p>
+
                 </div>
             </div>
         </div>

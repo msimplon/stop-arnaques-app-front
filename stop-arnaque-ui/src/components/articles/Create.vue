@@ -15,7 +15,7 @@ export default {
       inputs: {
         title: null,
         subTitle: null,
-        actor: null,
+        editor: null,
         description: null,
         imageUrl: null,
         date: null,
@@ -30,7 +30,7 @@ export default {
       inputs: {
         title: { required, maxLength: maxLength(100) },
         subTitle: { required, maxLength: maxLength(100) },
-        actor: { required, maxLenght: maxLength(100) },
+        editor: { required, maxLenght: maxLength(100) },
         description: { required, maxLength: maxLength(1000) },
         imageUrl: {
           maxValue: (imageUrl) => {
@@ -38,7 +38,11 @@ export default {
           }
         },
         categoryId: { required },
-        date: { required }
+        date: {
+          required, minValue: () => {
+            return this.inputs.date == this.inputs.date ? true : false
+          }
+        }
       },
     };
   },
@@ -53,7 +57,7 @@ export default {
         }
         formData.append("title", this.inputs.title);
         formData.append("subTitle", this.inputs.subTitle);
-        formData.append("actor", this.inputs.actor);
+        formData.append("editor", this.inputs.editor);
         formData.append("description", this.inputs.description);
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
@@ -69,7 +73,7 @@ export default {
           Object.assign(this.inputs, this.$options.data().inputs);
           // this.validator.$reset();
           this.$toast.success("toast-global", "L'article a été créé !!!");
-          this.$router.push({ name: "articles-edit" });
+          // this.$router.push({ name: "articles-edit" });
           this.router.navigateByUrl('my-articles');
         } else {
           console.error(resp);
@@ -124,14 +128,14 @@ export default {
           </div>
 
           <div class="col-md-4 mb-3">
-            <label for="actor" class="form-label required">Acteur</label>
-            <input v-model.trim="inputs.actor" id="actor" name="actor" type="text" maxlength="100" class="form-control"
-              :class="{ 'is-invalid': validator.inputs.actor.$error }" />
-            <div class="form-text text-danger" v-if="validator.inputs.actor.$error">
+            <label for="editor" class="form-label required">Editeur</label>
+            <input v-model.trim="inputs.editor" id="editor" name="editor" type="text" maxlength="100" class="form-control"
+              :class="{ 'is-invalid': validator.inputs.editor.$error }" />
+            <div class="form-text text-danger" v-if="validator.inputs.editor.$error">
               Veuillez renseigner ce champs.
             </div>
 
-            <div class="form-text mb-3" v-else>Acteur de l'article.</div>
+            <div class="form-text mb-3" v-else>Editeur de l'article.</div>
           </div>
         </div>
         <div class="col-12">
@@ -143,9 +147,10 @@ export default {
           <div class="form-text text-danger" v-if="validator.inputs.description.$error">
             Veuillez renseigner ce champs.
           </div>
-
           <div class="form-text mb-3" v-else>Contenu de l'article.</div>
         </div>
+
+
         <div class="row mt-4">
           <div class="col-md-4 mb-3">
             <div class="mb-3">
@@ -158,6 +163,10 @@ export default {
                   La taille de l'image ne peut pas dépasser 500ko
                 </div>
 
+                <div class="form-text text-danger" v-else-if="validator.inputs.imageUrl === null">
+                  L'ajout d'une image est obligatoire.
+                </div>
+
                 <div class="form-text mb-3" v-else>Photo ou image.</div>
               </div>
             </div>
@@ -168,6 +177,7 @@ export default {
             <label for="name" class="form-label required">Date</label>
             <input v-model.trim="inputs.date" id="date" name="date" type="date" class="form-control"
               :class="{ 'is-invalid': validator.inputs.date.$error }" />
+
             <div class="form-text text-danger" v-if="validator.inputs.date.$error">
               Veuillez renseigner ce champs.
             </div>

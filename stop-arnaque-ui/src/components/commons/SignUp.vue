@@ -1,59 +1,111 @@
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
-
-const emailValidator = helpers.regex(
-  /[A-Za-z]+\.[A-Za-z]+@[A-Za-z]+\.[A-Za-z]{2,4}$/
-);
-const passwordValidator = helpers.regex(
-  /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[%||!||*])(?!.* ).{8,42}/
-);
+// import { required } from "@vuelidate/validators";
+import { reactive, computed } from "vue";
+import useValidate from "@vuelidate/core";
+import {
+  helpers,
+  minLength,
+  maxLength,
+  required,
+} from "@vuelidate/validators";
+import { AuthStore } from "../../stores/auth-store.js";
 
 export default {
   setup() {
-    return {
-      validator: useVuelidate(),
-    };
-  },
-  data() {
-    return {
-      inputs: {
-        internalEmail: null,
+    const state = reactive({
+      user: {
+        username: null,
         password: null,
       },
-    };
-  },
-  validations() {
+    });
+
+    const validateEmailError = function (email) {
+      const pattern = /^\w+([\.-]?\w+)*@/;
+      if (
+        pattern.test(email) &&
+        (email.endsWith("@gmail.com") ||
+          email.endsWith("@hotmail.com"))
+      ) {
+        return true;
+      }
+    }
+
+    const validPassword = helpers.regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*?]).{8,42}$/
+    )
+
+    const rules = computed(() => {
+      return {
+        user: {
+          username: {
+            required: helpers.withMessage(
+              "Veuillez renseigner ce champ.",
+              required
+            ),
+            minLength: helpers.withMessage(
+              "Veuillez saisir au moins 2 caractères.",
+              minLength(2)
+            ),
+            maxLength: helpers.withMessage(
+              "Veuillez saisir moins de 30 caractères.",
+              maxLength(30)
+            ),
+          },
+          password: {
+            required: helpers.withMessage(
+              "Veuillez renseigner ce champ.",
+              required
+            ),
+            validPassword: helpers.withMessage(
+              "Mot de passe non valide.",
+              validPassword
+            ),
+          },
+
+        },
+      };
+    })
+
+    const v$ = useValidate(rules, state);
     return {
-      inputs: {
-        internalEmail: { required, emailValidator },
-        password: { required, passwordValidator },
-      },
+      state,
+      v$,
+      validPassword,
+      validateEmailError
     };
   },
+
   methods: {
     async submit() {
-      const valid = await this.validator.$validate();
-      if (valid) {
-        const response = await this.$axios.post("/user-accounts", this.inputs);
-        console.log(response.status);
-        if (response.status == 204) {
-          this.$router.push("sign-in");
+      const auth_store = AuthStore();
+      his.v$.$validate();
+      if (!this.v$.$error) {
+        const my_user = this.state.user;
+        console.log(my_user);
+        const resp = await auth_store.register(my_user);
+        console.log(resp);
+        if (resp.status === 204) {
+          alert(
+            `Utilisateur ${my_user.username} a été créer avec success.`
+          );
         } else {
-          console.log("Server Error");
+          alert(
+            `Nous n'avons pas pu créer utilisateur ${my_user.username}.`
+          );
         }
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <template>
-  <main class="form-signin w-100 m-auto">
-    <form id="sign-up" @submit.prevent="submit">
+  <main>
+    <form>
       <fieldset>
         <legend class="w-auto px-2">
-          <h4>Formulaire d'inscription</h4>
+          <h4>Formulaire d'insription</h4>
         </legend>
         <!-- <img
           class="mb-4"
@@ -64,31 +116,26 @@ export default {
         /> -->
 
         <div class="form-floating">
-          <input type="email" name="internalEmail" placeholder="email" class="form-control" id="internalEmail"
-            v-model="inputs.internalEmail" :class="{ 'is-invalid': validator.inputs.internalEmail.$error }" />
-          <label for="internalEmail" class="form-label required"><i class="bi bi-envelope-at"></i> Adresse email</label>
-          <span v-if="validator.inputs.internalEmail.$error">
-            {{ validator.inputs.internalEmail.$errors[0].$message }}
-          </span>
+          <input v-model.trim="state.user.username" type="email" class="form-control" id="username"
+            placeholder="name@example.com" :class="{
+              'is-invalid': v$.user.username.$error,
+            }" />
+          <label for="username" class="form-label required"><i class="bi bi-envelope-at"></i> Adresse e-mail</label>
         </div>
         <div id="emailHelp" class="form-text">
           ex.: prenom.nom@domain.com
         </div>
         <div class="form-floating mt-3">
-          <input type="password" class="form-control" placeholder="Password" name="password" id="password"
-            v-model="inputs.password" :class="{ 'is-invalid': validator.inputs.password.$error }" />
-          <label for="password" class="form-label required"><i class="bi bi-key"></i> Password</label>
-          <span v-if="validator.inputs.password.$error">
-            {{ validator.inputs.password.$errors[0].$message }}
-          </span>
-          <div id="passwordHelp" class="form-text">
-            Au moins 1 majuscule et 1 miniscule, au moins un nombre
-            au moins 1 de !@#%&*?
-          </div>
+          <input v-model.trim="state.user.password" type="password" class="form-control" id="password"
+            placeholder="Password" :class="{ 'is-invalid': v$.user.password.$error }" />
+          <label for="password" class="form-label required"><i class="bi bi-key"></i> Mot de passe</label>
+        </div>
+        <div id="passwordHelp" class="form-text">
+          Vous avez oublié votre mot de passe ?
         </div>
         <div class="text-center d-flex justify-content-end">
           <button class="btn btn-outline-primary col-12 col-md-3 mt-3" type="submit">
-            S'inscrire
+            Se connecter
           </button>
         </div>
       </fieldset>
@@ -97,18 +144,6 @@ export default {
 </template>
 
 <style>
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-img {
-  text-align: center;
-}
-
 button[type="submit"] {
   background: rgb(0, 119, 255);
   border: 20px;

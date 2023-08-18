@@ -14,7 +14,7 @@ export default {
     //         inputs: {
     //             title: null,
     //             subTitle: null,
-    //             actor: null,
+    //             editor: null,
     //             description: null,
     //             imageUrl: null,
     //             date: null,
@@ -29,7 +29,7 @@ export default {
     //         inputs: {
     //             title: { required, maxLength: maxLength(100) },
     //             subTitle: { required, maxLength: maxLength(100) },
-    //             actor: { required, maxLenght: maxLength(100) },
+    //             editor: { required, maxLenght: maxLength(100) },
     //             description: { required, maxLength: maxLength(1000) },
     //             imageUrl: {
     //                 maxValue: (imageUrl) => {
@@ -52,7 +52,7 @@ export default {
     //             }
     //             formData.append("title", this.inputs.title);
     //             formData.append("subTitle", this.inputs.subTitle);
-    //             formData.append("actor", this.inputs.actor);
+    //             formData.append("editor", this.inputs.editor);
     //             formData.append("description", this.inputs.description);
     //             formData.append("date", `${day}/${month}/${year}`);
     //             formData.append("categoryId", this.inputs.categoryId);

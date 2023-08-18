@@ -13,7 +13,7 @@ import { RouterLink } from "vue-router";
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                Admin
+                Administrateur
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -30,7 +30,7 @@ import { RouterLink } from "vue-router";
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                Actualités
+                Actualité
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -39,8 +39,8 @@ import { RouterLink } from "vue-router";
                   </RouterLink>
                 </li>
                 <li>
-                  <RouterLink :to="{ name: 'conso' }" class="dropdown-item">
-                    Dernières actu
+                  <RouterLink :to="{ name: 'actualité' }" class="dropdown-item">
+                    A la une
                   </RouterLink>
                 </li>
               </ul>
@@ -51,8 +51,13 @@ import { RouterLink } from "vue-router";
               </RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink :to="{ name: 'inscription-connexion' }" class="nav-link">
-                Connexion/inscription
+              <RouterLink :to="{ name: 'signIn' }" class="nav-link">
+                Connexion
+              </RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink :to="{ name: 'signUp' }" class="nav-link">
+                Inscription
               </RouterLink>
             </li>
             <li class="nav-item">

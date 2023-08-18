@@ -31,7 +31,7 @@ export default {
         <img src="/images/project.png" class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title text-center">
-            {{ article.name }}
+            {{ article.title }}
           </h5>
           <p class="card-subtitle mb-2 text-muted text-center">
             {{ article.description }}

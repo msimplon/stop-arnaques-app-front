@@ -14,7 +14,7 @@ export class ArticleHttp {
     };
 
     async get_last_added_articles() {
-        const url = `/articles`;
+        const url = `/articles/articleLastAdded`;
         const response = await http.get(url);
         return response;
     };
