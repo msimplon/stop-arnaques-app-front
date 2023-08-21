@@ -13,7 +13,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'articles-home',
-      component: () => import('../components/articles/HomeArticles.vue')
+      component: () => import('../components/articles/HomeArticles.vue'),
+      children: [
+        { path: 'infoCards', component: () => import('../components/articles/InfoCards.vue'), name: "infoCards" },
+      ],
     }, {
       path: '/admin/articles',
       name: 'articles-edit',

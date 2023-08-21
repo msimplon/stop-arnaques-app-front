@@ -105,7 +105,7 @@ export default {
                     Veuillez renseigner ce champs.
                   </div>
 
-                  <div class="form-text mb-3" v-else>email.</div>
+                  <div class="form-text mb-3" v-else>Email.</div>
                 </div>
                 <div class="form-floating">
                   <input v-model.trim="inputs.password" id="password" name="password" type="text" maxlength="100"
@@ -118,6 +118,12 @@ export default {
 
                   <div class="form-text mb-3" v-else>Mot de passe.</div>
                 </div>
+                <div class="aside-text-info">
+                  En validant votre inscription, vous accepter les
+                  <RouterLink :to="{ name: 'cgu' }">
+                    conditions générales d’utilisation (CGU)
+                  </RouterLink>
+                </div>
 
 
                 <div class="text-center d-flex justify-content-end">
@@ -125,6 +131,7 @@ export default {
                     S'inscrire
                   </button>
                 </div>
+
               </fieldset>
             </form>
           </section>

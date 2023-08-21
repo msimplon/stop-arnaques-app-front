@@ -1,31 +1,14 @@
 <script>
 
 import SearchComponent from "../commons/SearchComponent.vue";
+import InfoCards from "./infoCards.vue";
 export default {
   name: "HomeArtciles",
   components: {
     SearchComponent,
+    InfoCards
   },
 
-  data() {
-    return {
-      baseUrl: import.meta.env.VITE_IMG_BASE_URL,
-      articles: [],
-    };
-  },
-
-  methods: {
-    async initArticles() {
-      const resp = await this.$http.get("/articles/list-articles");
-      this.articles = resp.body;
-    },
-
-
-  },
-
-  beforeMount() {
-    this.initArticles();
-  },
 };
 </script>
 
@@ -57,32 +40,8 @@ export default {
 
     <hr class="featurette-divider">
 
-    <div class="row row-cols-1 row-cols-md-3 g-3 mb-3 p-3">
-      <div class="col" v-for="article in articles">
-        <div class="card shadow-sm h-100">
-          <div class="p-3"><img :src="baseUrl + article.imageUrl" class="card-img-top"></div>
-          <div class="d-flex justify-content-evenly">
-            <h5 class="card-title">{{ article.title }}</h5>
-            <span>{{ article.date }}</span>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">{{ article.subTitle }}</h6>
-          </div>
-          <div>
-            <p class="d-flex align-items-center">
-              {{ article.description }}
-            </p>
-            <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link" title="Details...">
-              En savoir plus
-            </RouterLink>
-          </div>
-          <p class="d-flex align-items-center">
-            {{ article.editor }}
-          </p>
-        </div>
-      </div>
-    </div>
-
+    <SearchComponent />
+    <InfoCards />
     <section class="about whiteBG">
       <div class="row mb-2">
         <div class="col-md-6">
@@ -132,7 +91,6 @@ export default {
     </section>
     <hr class="featurette-divider">
 
-    <SearchComponent />
     <section class="stats darkgreyBG row row-cols-6 row-cols-md-5">
       <article class="stats__article">
         <img src="/images/people.svg" alt="icon" class="stats__icon">

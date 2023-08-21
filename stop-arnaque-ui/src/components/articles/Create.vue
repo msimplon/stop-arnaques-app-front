@@ -74,7 +74,7 @@ export default {
           // this.validator.$reset();
           this.$toast.success("toast-global", "L'article a été créé !!!");
           // this.$router.push({ name: "articles-edit" });
-          this.router.navigateByUrl('my-articles');
+          this.$router.push({ name: "articles-home" });
         } else {
           console.error(resp);
           this.$toast.error("toast-global", "problème de validation");

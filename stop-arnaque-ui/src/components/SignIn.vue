@@ -62,15 +62,7 @@ export default {
 <template>
     <main>
         <div class="container-xl mt-2">
-            <div class="presentation">
-                <div class="welcome">Bienvenue sur stop arnaque!</div>
-                <div>
-                    <p>Arrêtez les arnaques dans leur élan avec stop arnaque !</p>
-                </div>
-                <div class="description">
-                    <p>Inscrivez-vous ou connectez-vous pour tester!</p>
-                </div>
-            </div>
+
             <div class="row mt-4">
                 <div class="col-md my-6 mx-auto">
                     <section id="section1">
@@ -90,7 +82,7 @@ export default {
                                         Veuillez renseigner ce champs.
                                     </div>
 
-                                    <div class="form-text mb-3" v-else>email.</div>
+                                    <div class="form-text mb-3" v-else>Email.</div>
                                 </div>
                                 <div class="form-floating">
                                     <input v-model.trim="inputs.password" id="password" name="password" type="text"
@@ -104,8 +96,14 @@ export default {
 
                                     <div class="form-text mb-3" v-else>Mot de passe.</div>
                                 </div>
-                                <div id="passwordHelp" class="form-text">
-                                    Vous avez oublié votre mot de passe ?
+                                <!-- <div id="passwordHelp" class="form-text">
+                                    <RouterLink :to="{ name: 'ResetPassword' }">
+                                        Mot de passe oublier ? </RouterLink>
+                                </div> -->
+                                <div class="aside-text-info">
+                                    Vous n'avez pas encore de compte ?
+                                    <RouterLink :to="{ name: 'signUp' }">
+                                        Inscription </RouterLink>
                                 </div>
 
                                 <div class="text-center d-flex justify-content-end">
