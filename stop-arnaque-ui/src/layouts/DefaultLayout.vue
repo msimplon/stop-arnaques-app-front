@@ -7,9 +7,9 @@ import Footer from "../components/commons/Footer.vue";
 
 <template>
   <Header />
-  <main class="container-xl">
-    <RouterView />
-  </main>
+
+  <RouterView />
+
   <Footer />
   <Toast id="toast-global" />
 </template>

@@ -16,6 +16,7 @@ const router = createRouter({
       component: () => import('../components/articles/HomeArticles.vue'),
       children: [
         { path: 'infoCards', component: () => import('../components/articles/InfoCards.vue'), name: "infoCards" },
+        { path: 'homeLead', component: () => import('../components/articles/HomeLead.vue'), name: "homeLead" },
       ],
     }, {
       path: '/admin/articles',
