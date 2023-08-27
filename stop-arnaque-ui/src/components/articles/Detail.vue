@@ -35,13 +35,13 @@ export default {
             <div class="col-md-8">
                 <div class="card-body p-0">
                     <p class="card-text fs-5">
-                        <span class="badge bg-primary">{{ article.categoryId }}</span>
+                        <span>{{ article.categoryId }}</span>
                     </p>
                     <h2>{{ article.title }}</h2>
                     <h3>{{ article.subTitle }}</h3>
                     <h4>{{ article.editor }}</h4>
+                    <h5>{{ article.date }}</h5>
                     <p class="card-text">{{ article.description }}</p>
-
                 </div>
             </div>
         </div>

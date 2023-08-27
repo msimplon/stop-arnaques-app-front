@@ -5,7 +5,7 @@ import InfoCards from "./infoCards.vue";
 import Temoignages from "./Temoignages.vue";
 import HomeLead from "./HomeLead.vue";
 export default {
-  name: "HomeArtciles",
+  name: "HomeArticles",
   components: {
     // SearchComponent,
     InfoCards,
@@ -26,7 +26,7 @@ export default {
     <InfoCards />
     <Temoignages />
 
-    <section class="stats darkgreyBG row row-cols-6 row-cols-md-5">
+    <section class="stats darkgreyBG row row-cols-2 row-cols-md-5">
       <article class="stats__article">
         <img src="/images/people.svg" alt="icon" class="stats__icon">
         <div class="stats__description">
@@ -57,21 +57,17 @@ export default {
       </article>
     </section>
 
-    <hr class="featurette-divider">
-
-    <section>
-      <h2 class="display-6 text-center mb-4">Ils nous font confiance</h2>
-      <div class="flex-container">
-        <div class="flex-items">
-          <a href="https://simplon.co/" rel="noreferrer nofollow" target="_blank" class="mx-4">
-            <img src="/images/DGCCRF.jpg" class="img-fluid" alt="Logo Simplon">
-          </a>
-          <a href="https://moovjee.fr/" rel="noreferrer nofollow" target="_blank" class="mx-4">
-            <img src="/images/DGCCRF.jpg" class="img-fluid" alt="Logo Moovjee">
-          </a>
-        </div>
+    <!-- <section>
+      <h2 class="display-6 text-center mt-0">Ils nous font confiance</h2>
+      <div class="d-flex justify-content-center align-items-center">
+        <a href="https://simplon.co/" rel="noreferrer nofollow" target="_blank" class="mx-4">
+          <img src="/images/DGCCRF.jpg" class="img-fluid" alt="Logo Simplon">
+        </a>
+        <a href="https://moovjee.fr/" rel="noreferrer nofollow" target="_blank" class="mx-4">
+          <img src="/images/DGCCRF.jpg" class="img-fluid" alt="Logo Moovjee">
+        </a>
       </div>
-    </section>
+    </section> -->
 
 
   </main>
@@ -115,6 +111,10 @@ export default {
 
 .stats__article {
   margin: 5px 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .stats__icon {
@@ -146,14 +146,14 @@ export default {
 
 /* Ils nous ont fait confiance */
 .img-fluid {
-  max-width: 10%;
-  max-height: 10%;
+  max-width: 30%;
+  max-height: 30%;
 }
 
-.flex-container {
+.flex-items {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -203,5 +203,14 @@ p {
 .whiteBG {
   background-color: grey;
   background-size: cover;
+}
+
+.featurette-divider {
+  background-color: rgb(232, 232, 245)
+}
+
+.darkgreyBG {
+  margin-bottom: 0px;
+  background-color: rgb(232, 232, 245)
 }
 </style>

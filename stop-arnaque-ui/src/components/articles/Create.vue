@@ -16,6 +16,7 @@ export default {
         title: null,
         subTitle: null,
         editor: null,
+        introduction: null,
         description: null,
         imageUrl: null,
         date: null,
@@ -31,6 +32,7 @@ export default {
         title: { required, maxLength: maxLength(100) },
         subTitle: { required, maxLength: maxLength(100) },
         editor: { required, maxLenght: maxLength(100) },
+        introduction: { required, maxLength: maxLength(700) },
         description: { required, maxLength: maxLength(1000) },
         imageUrl: {
           maxValue: (imageUrl) => {
@@ -59,6 +61,7 @@ export default {
         formData.append("subTitle", this.inputs.subTitle);
         formData.append("editor", this.inputs.editor);
         formData.append("description", this.inputs.description);
+        formData.append("introduction", this.inputs.introduction);
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
 
@@ -150,6 +153,15 @@ export default {
           <div class="form-text mb-3" v-else>Contenu de l'article.</div>
         </div>
 
+        <div class="col-12">
+          <label for="introduction" class="form-label required">Introduction</label>
+          <textarea v-model.trim="inputs.introduction" id="introduction" name="introduction" maxlength="1000" rows="12"
+            class="form-control" :class="{ 'is-invalid': validator.inputs.introduction.$error }"></textarea>
+          <div class="form-text text-danger" v-if="validator.inputs.introduction.$error">
+            Veuillez renseigner ce champs.
+          </div>
+          <div class="form-text mb-3" v-else>Introduction de l'article.</div>
+        </div>
 
         <div class="row mt-4">
           <div class="col-md-4 mb-3">

@@ -30,7 +30,7 @@ export default {
           <div class="info-box">
             <i class="bi bi-geo-alt mydimension"></i>
             <h3>Localisation</h3>
-            <p class="justify-content">A108 Adam Street,73400, Paris</p>
+            <p class="justify-content">A108 Adam Street,73400, Paris, France</p>
           </div>
         </div>
 

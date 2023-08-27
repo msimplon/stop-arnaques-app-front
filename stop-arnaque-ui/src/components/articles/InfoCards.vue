@@ -29,7 +29,7 @@ export default {
 
 <template>
     <section>
-        <div class="row row-cols-1 row-cols-md-3 g-3 mb-3 p-3">
+        <div class="row row-cols-1 row-cols-md-3 g-3 mb-3 p-4">
             <!-- <h1>Who We Are</h1> -->
             <div class="col" v-for="article in articles">
                 <div class="card-title">
@@ -41,8 +41,14 @@ export default {
                             <h1>{{ article.title }}</h1>
                             <h2>{{ article.editor }}</h2>
                             <span>{{ article.date }} </span>
-                            <p>
+                            <!-- <p>
+                                {{ article.introduction }}
+                            </p> -->
+                            <!-- <p class="card-subtitle mb-2 text-muted text-center">
                                 {{ article.description }}
+                            </p> -->
+                            <p class="card-subtitle mb-2 text-muted text-center">
+                                {{ article.introduction }}
                             </p>
                             <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link"
                                 title="Details...">
@@ -58,7 +64,7 @@ export default {
 
 <style lang="css">
 section {
-    margin-bottom: 40px;
+    background-color: rgb(232, 232, 245)
 }
 
 .card-list {
@@ -72,7 +78,7 @@ section {
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 
@@ -108,15 +114,6 @@ p {
     color: black;
 }
 
-.contact {
-    width: 100%;
-    height: 35px;
-    background: #f1f1f1;
-    color: black;
-    border: none;
-    cursor: pointer;
-}
-
 /* 
 :hover {
     background: gray;
@@ -130,7 +127,7 @@ p {
         display: flex;
         flex-direction: column !important;
         align-items: center !important;
-        margin-bottom: 20px !important;
+        /* margin-bottom: 20px !important; */
 
     }
 }

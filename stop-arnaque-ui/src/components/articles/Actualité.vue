@@ -36,6 +36,9 @@ export default {
           <p class="card-subtitle mb-2 text-muted text-center">
             {{ article.description }}
           </p>
+          <p class="card-subtitle mb-2 text-muted text-center">
+            {{ article.introduction }}
+          </p>
         </div>
       </div>
     </div>
