@@ -41,6 +41,8 @@ export default {
         <tr class="text-center align-middle">
           <th scope="col">Image</th>
           <th scope="col">Titre</th>
+          <th scope="col">Sous-titre</th>
+          <th scopr="col">Editeur</th>
           <th scope="col">Date d'ajout</th>
           <th scope="col">Modifier</th>
           <th scope="col">Supprimer</th>
@@ -52,6 +54,8 @@ export default {
             <img :src="baseUrl + article.imageUrl" class="img-fluid rounded-top" :alt="article.title" />
           </td>
           <td class="text-center">{{ article.title }}</td>
+          <td class="text-center">{{ article.subTitle }}</td>
+          <td class="text-center">{{ article.editor }}</td>
           <td class="text-center">{{ this.$fmt.date(article.dateAdded) }}</td>
           <td class="text-center">
             <RouterLink :to="{ name: 'article-update', params: { id: article.id } }" title="Update article">

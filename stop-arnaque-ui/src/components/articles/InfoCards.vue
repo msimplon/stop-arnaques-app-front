@@ -25,11 +25,9 @@ export default {
 </script>
 
 
-
-
 <template>
-    <section>
-        <div class="row row-cols-1 row-cols-md-3 g-3 mb-3 p-4">
+    <section class="section2">
+        <div class="row row-cols-1 row-cols-md-3 g-3 mb-3 p-2">
             <!-- <h1>Who We Are</h1> -->
             <div class="col" v-for="article in articles">
                 <div class="card-title">
@@ -40,7 +38,7 @@ export default {
                         <div class="card-info">
                             <h1>{{ article.title }}</h1>
                             <h2>{{ article.editor }}</h2>
-                            <span>{{ article.date }} </span>
+                            <h3>{{ article.date }} </h3>
                             <!-- <p>
                                 {{ article.introduction }}
                             </p> -->
@@ -62,11 +60,7 @@ export default {
     </section>
 </template>
 
-<style lang="css">
-section {
-    background-color: rgb(232, 232, 245)
-}
-
+<style>
 .card-list {
     display: flex;
     flex-direction: column;
@@ -80,6 +74,7 @@ section {
 h1 {
     font-size: 20px;
 }
+
 
 
 
@@ -106,8 +101,9 @@ img {
     box-sizing: border-box;
 }
 
-span {
+.date {
     color: gray;
+    font-size: 80px;
 }
 
 p {

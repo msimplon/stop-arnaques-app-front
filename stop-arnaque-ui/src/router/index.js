@@ -76,6 +76,16 @@ const router = createRouter({
       name: 'cgu',
       component: () => import('../components/cgu/cgu.vue')
     },
+    {
+      path: '/brouillon',
+      name: 'brouillon',
+      component: () => import('../components/commons/Brouillon.vue')
+    },
+    {
+      path: '/brouillon2',
+      name: 'brouillon2',
+      component: () => import('../components/commons/Brouillon2.vue')
+    }
 
 
   ]

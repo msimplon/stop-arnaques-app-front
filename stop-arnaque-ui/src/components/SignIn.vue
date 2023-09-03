@@ -61,7 +61,7 @@ export default {
 
 <template>
     <main>
-        <div class="container-xl mt-2">
+        <div class="container-xl mt-2 signInContain">
 
             <div class="row mt-4">
                 <div class="col-md my-6 mx-auto">
@@ -69,7 +69,7 @@ export default {
                         <form novalidate @submit.prevent="submit">
                             <fieldset>
                                 <legend class="w-auto px-2">
-                                    <h4>Formulaire de connexion</h4>
+                                    <h4 class="mt-2">Formulaire de connexion</h4>
                                 </legend>
 
                                 <div class="form-floating">
@@ -148,10 +148,12 @@ legend {
     padding: 0 0.1em;
     text-transform: uppercase;
     white-space: nowrap;
-
-
 }
 
+/* 
+.signInContain {
+    margin-left: 30%;
+} */
 
 .presentation {
     text-align: center;

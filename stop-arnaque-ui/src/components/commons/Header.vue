@@ -5,7 +5,8 @@ import { RouterLink } from "vue-router";
   <header class="bg-light sticky-top">
     <nav class="container-xl navbar-light navbar navbar-expand-md">
       <div class="container-fluid">
-        <RouterLink :to="{ name: 'articles-home' }" class="navbar-brand">Stop Arnaque</RouterLink>
+        <RouterLink :to="{ name: 'articles-home' }" class="navbar-brand">Stop Arnaque
+        </RouterLink>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -65,6 +66,11 @@ import { RouterLink } from "vue-router";
                 Signaler une arnaque
               </RouterLink>
             </li>
+            <li class="nav-item logout">
+              <RouterLink :to="{ name: 'signUp' }" class="nav-link">
+                <i class="bi bi-box-arrow-right"></i>
+              </RouterLink>
+            </li>
 
 
           </ul>
@@ -84,4 +90,16 @@ import { RouterLink } from "vue-router";
     </nav>
   </header>
 </template>
+<!-- <img src="favicon.ico"> -->
 
+
+<style>
+.logout {
+  margin-left: 20px;
+  /* font-size: medium; */
+}
+
+.bi-box-arrow-right {
+  font-size: 20px;
+}
+</style>

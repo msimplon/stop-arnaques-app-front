@@ -40,10 +40,10 @@ export default {
         introduction: { required, maxLength: maxLength(700) },
         imageUrl: {
           maxValue: (imageUrl) => {
-            return imageUrl === null || imageUrl.size < 512000
+            return imageUrl ? imageUrl.size <= 512000 : true;
           }
         },
-        categoryId: { required },
+        categoryId: { required, minValue: minValue(1) },
         date: { required }
       },
     };
@@ -59,14 +59,15 @@ export default {
       const valid = await this.validator.$validate()
       if (valid) {
         const [year, month, day] = this.inputs.date.toString().split("-")
-        if (this.inputs.imageUrl != null) {
-          formData.append("imageUrl", this.inputs.imageUrl)
-        }
+        // if (this.inputs.imageUrl != null) {
+        //   formData.append("imageUrl", this.inputs.imageUrl)
+        // }
         formData.append("title", this.inputs.title);
         formData.append("subTitle", this.inputs.subTitle);
         formData.append("editor", this.inputs.editor);
         formData.append("description", this.inputs.description);
         formData.append("introduction", this.inputs.introduction);
+        formData.append("imageUrl", this.inputs.imageUrl);
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
 
@@ -92,6 +93,7 @@ export default {
     },
 
     handleFileUpload(event) {
+      console.log(event.target.files[0]);
       this.inputs.imageUrl = event.target.files[0]
     },
     async initcategory() {
@@ -174,14 +176,14 @@ export default {
             <div class="mb-3">
               <div class="mb-3">
                 <label for="imageUrl" class="form-label required">Ajouter une image</label>
-                <input name="imageUrl" id="imageUrl" type="file" accept="images/png,image/jpeg,image/jpg"
-                  class="form-control" @change="handleFileUpload">
+                <input name="imageUrl" id="imageUrl" type="file" class="form-control" @change="handleFileUpload">
 
                 <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
                   La taille de l'image ne peut pas dépasser 500ko
                 </div>
 
-                <div class="form-text mb-3" v-else>Photo ou image.</div>
+                <div class="form-text mb-3" v-else>Must be JPEG, PNG or GIF, and not exceed 1MB. Will replace current
+                  image.</div>
               </div>
             </div>
 

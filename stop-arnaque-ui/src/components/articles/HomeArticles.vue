@@ -24,6 +24,22 @@ export default {
 
     <!-- <SearchComponent /> -->
     <InfoCards />
+
+    <section>
+      <div class="my-5">
+        <div class="p-5 text-center bg-body-tertiary">
+          <div class="container py-5">
+            <h1 class="text-body-emphasis">Full-width jumbotron</h1>
+            <p class="col-lg-8 mx-auto lead">
+              This takes the basic jumbotron above and makes its background edge-to-edge with a <code>.container</code>
+              inside to align content. Similar to above, it's been recreated with built-in grid and utility classes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
     <Temoignages />
 
     <section class="stats darkgreyBG row row-cols-2 row-cols-md-5">
@@ -61,10 +77,10 @@ export default {
       <h2 class="display-6 text-center mt-0">Ils nous font confiance</h2>
       <div class="d-flex justify-content-center align-items-center">
         <a href="https://simplon.co/" rel="noreferrer nofollow" target="_blank" class="mx-4">
-          <img src="/images/DGCCRF.jpg" class="img-fluid" alt="Logo Simplon">
+          <img src="/images/DGCCRF.jpg" class="img-circle" alt="Logo Simplon">
         </a>
         <a href="https://moovjee.fr/" rel="noreferrer nofollow" target="_blank" class="mx-4">
-          <img src="/images/DGCCRF.jpg" class="img-fluid" alt="Logo Moovjee">
+          <img src="/images/DGCCRF.jpg" class="img-circle" alt="Logo Moovjee">
         </a>
       </div>
     </section> -->
@@ -145,7 +161,7 @@ export default {
 }
 
 /* Ils nous ont fait confiance */
-.img-fluid {
+.img-circle {
   max-width: 30%;
   max-height: 30%;
 }
@@ -209,8 +225,8 @@ p {
   background-color: rgb(232, 232, 245)
 }
 
-.darkgreyBG {
+/* .darkgreyBG {
   margin-bottom: 0px;
   background-color: rgb(232, 232, 245)
-}
+} */
 </style>

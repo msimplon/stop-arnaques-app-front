@@ -27,7 +27,7 @@ export default {
 </script>
 <template>
     <h1>Article detail</h1>
-    <div class="card mb-3 shadow-sm">
+    <div class="card mb-3 shadow-sm ">
         <div class="row p-3 align-items-center">
             <div class="col-md-4 text-center">
                 <img :src="baseUrl + article.imageUrl" class="img-fluid" :alt="article.name">
@@ -47,3 +47,18 @@ export default {
         </div>
     </div>
 </template>
+
+<style scoped>
+/* #demoFont {
+font-family: Georgia, serif;
+font-size: 23px;
+letter-spacing: 0.2px;
+word-spacing: 2px;
+color: #000000;
+font-weight: 700;
+text-decoration: overline solid rgb(68, 68, 68);
+font-style: normal;
+font-variant: small-caps;
+text-transform: uppercase;
+} */
+</style>

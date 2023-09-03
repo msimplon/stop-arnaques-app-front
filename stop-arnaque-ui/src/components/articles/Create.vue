@@ -1,6 +1,8 @@
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { required, maxLength, minValue, between } from "@vuelidate/validators";
+import { required, maxLength, minValue, requiredIf, between, helpers } from "@vuelidate/validators";
+
+
 
 export default {
 
@@ -26,6 +28,8 @@ export default {
 
     };
   },
+
+
   validations() {
     return {
       inputs: {
@@ -35,11 +39,21 @@ export default {
         introduction: { required, maxLength: maxLength(700) },
         description: { required, maxLength: maxLength(1000) },
         imageUrl: {
-          maxValue: (imageUrl) => {
-            return imageUrl === null || imageUrl.size < 512000
-          }
+          required,
+          maxValue: (file) => {
+            return file === null || file.size < 512000
+          },
+
+
+          //   required: requiredIf(() => {
+          //     return this.inputs.imageUrl === null
+          //   }),
+
+          //   maxValue: (imageUrl) => {
+          //     return imageUrl ? imageUrl.size <= 512000 : true;
+          //   }
         },
-        categoryId: { required },
+        categoryId: { required, minValue: minValue(1) },
         date: {
           required, minValue: () => {
             return this.inputs.date == this.inputs.date ? true : false
@@ -52,6 +66,7 @@ export default {
     async submit() {
       const formData = new FormData()
       const valid = await this.validator.$validate()
+      console.log(this.validator.inputs.imageUrl.$errors)
       if (valid) {
         const [year, month, day] = this.inputs.date.toString().split("-")
         if (this.inputs.imageUrl != null) {
@@ -99,6 +114,7 @@ export default {
   },
 
 };
+// const imageUrlPattern = helpers.$error(imageUrl === null)
 </script>
 
 <template>
@@ -168,16 +184,16 @@ export default {
             <div class="mb-3">
               <div class="mb-3">
                 <label for="imageUrl" class="form-label required">Ajouter une image</label>
-                <input name="imageUrl" id="imageUrl" type="file" accept="images/png,image/jpeg,image/jpg"
-                  class="form-control" @change="handleFileUpload">
+                <input :class="{ 'is-invalid': validator.inputs.imageUrl.$error }" name="imageUrl" id="imageUrl"
+                  type="file" accept="images/png,images/jpeg,images/jpg" class="form-control" @change="handleFileUpload">
 
-                <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
+                <div class="form-text text-danger"
+                  v-if="validator.inputs.imageUrl.$error || validator.inputs.imageUrl.maxValue.$invalid">
+                  Veillez renseiger ce champs et la taille de l'image ne peut pas dépasser 500ko. </div>
+
+                <!-- <div class="form-text text-danger" v-else-if="validator.inputs.imageUrl.maxValue.$invalid">
                   La taille de l'image ne peut pas dépasser 500ko
-                </div>
-
-                <div class="form-text text-danger" v-else-if="validator.inputs.imageUrl === null">
-                  L'ajout d'une image est obligatoire.
-                </div>
+                </div> -->
 
                 <div class="form-text mb-3" v-else>Photo ou image.</div>
               </div>
@@ -203,6 +219,7 @@ export default {
               <option selected disabled value="0">Choisir une catégorie</option>
               <LabelValues :items="categoryId" />
             </select>
+
             <div class="form-text text-danger" v-if="validator.inputs.categoryId.$error">
               Veuillez saisir une catégorie
             </div>
