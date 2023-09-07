@@ -2,8 +2,6 @@
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength, minValue, requiredIf, between, helpers } from "@vuelidate/validators";
 
-
-
 export default {
 
   setup() {
@@ -44,14 +42,6 @@ export default {
             return file === null || file.size < 512000
           },
 
-
-          //   required: requiredIf(() => {
-          //     return this.inputs.imageUrl === null
-          //   }),
-
-          //   maxValue: (imageUrl) => {
-          //     return imageUrl ? imageUrl.size <= 512000 : true;
-          //   }
         },
         categoryId: { required, minValue: minValue(1) },
         date: {

@@ -14,16 +14,19 @@ import { RouterLink } from "vue-router";
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="bi bi-shield-lock-fill"></i>
                 Administrateur
               </a>
               <ul class="dropdown-menu">
                 <li>
                   <RouterLink :to="{ name: 'articles-edit' }" class="dropdown-item">
+                    <i class="bi bi-pencil-square"></i>
                     Editer un article
                   </RouterLink>
                 </li>
                 <li>
                   <RouterLink :to="{ name: 'articles-create' }" class="dropdown-item">
+                    <i class="bi bi-file-earmark-plus"></i>
                     Nouvel article
                   </RouterLink>
                 </li>
@@ -31,16 +34,19 @@ import { RouterLink } from "vue-router";
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="bi bi-bookmarks-fill"></i>
                 Actualité
               </a>
               <ul class="dropdown-menu">
                 <li>
                   <RouterLink :to="{ name: 'dgccrf' }" class="dropdown-item">
+                    <i class="bi bi-bank"></i>
                     Site de la DGCCRF
                   </RouterLink>
                 </li>
                 <li>
                   <RouterLink :to="{ name: 'actualité' }" class="dropdown-item">
+                    <i class="bi bi-hourglass-split"></i>
                     A la une
                   </RouterLink>
                 </li>
@@ -48,22 +54,25 @@ import { RouterLink } from "vue-router";
             </li>
             <li class="nav-item">
               <RouterLink :to="{ name: 'contact' }" class="nav-link">
+                <i class="bi bi-envelope-at-fill"></i>
                 Contact
               </RouterLink>
             </li>
             <li class="nav-item">
               <RouterLink :to="{ name: 'signIn' }" class="nav-link">
+                <i class="bi bi-box-arrow-in-right"></i>
                 Connexion
               </RouterLink>
             </li>
             <li class="nav-item">
               <RouterLink :to="{ name: 'signUp' }" class="nav-link">
+                <i class="bi bi-check-circle-fill"></i>
                 Inscription
               </RouterLink>
             </li>
             <li class="nav-item">
               <RouterLink :to="{ name: 'article-signal-arnaque' }" class="nav-link">
-                Signaler une arnaque
+                <i class="bi bi-bell-fill"></i> Signaler une arnaque
               </RouterLink>
             </li>
             <li class="nav-item logout">

@@ -11,13 +11,13 @@ import {
 import useValidate from "@vuelidate/core";
 import ValidationMessage from "./commons/ValidationMessage.vue";
 
-
 export default {
   name: "SignUp",
   components: {
     ValidationMessage,
   },
   setup() {
+
     const state = reactive({
       user: {
         firstName: null,
@@ -78,7 +78,7 @@ export default {
               required
             ),
             username: helpers.withMessage(
-              "Veuillez saisir votre adresse e-mail au format votrenom@example.com",
+              "Veuillez fournir une adresse électronique valide au format votrenom@example.com",
               email
             ),
           },
@@ -109,7 +109,7 @@ export default {
     return {
       state,
       v$,
-      validPassword,      // validPassword
+      validPassword,
       //validateEmailError
     };
 
@@ -203,7 +203,7 @@ export default {
                       <input v-model.trim="state.user.password" name="password" id="password" type="password"
                         class="form-control" :class="{ 'is-invalid': v$.user.password.$error }" />
                       <div id="passwordHelp" class="form-text">
-                        Au moins 1 majuscule et 1 miniscule, au moins un nombre
+                        Veuillez fournir au moins 5 caractères, 1 majuscule et 1 miniscule, au moins un nombre
                         au moins 1 de !@#%&*?
                       </div>
                       <ValidationMessage :model="v$.user.password" />
