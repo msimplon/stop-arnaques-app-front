@@ -26,9 +26,8 @@ export default {
 
 
 <template>
-    <section class="section2">
+    <!-- <section class="section2">
         <div class="row row-cols-1 row-cols-md-3 g-3 mb-3 p-2">
-            <!-- <h1>Who We Are</h1> -->
             <div class="col" v-for="article in articles">
                 <div class="card-title">
                 </div>
@@ -39,12 +38,6 @@ export default {
                             <h1>{{ article.title }}</h1>
                             <h2>{{ article.editor }}</h2>
                             <h3>{{ article.date }} </h3>
-                            <!-- <p>
-                                {{ article.introduction }}
-                            </p> -->
-                            <!-- <p class="card-subtitle mb-2 text-muted text-center">
-                                {{ article.description }}
-                            </p> -->
                             <p class="card-subtitle mb-2 text-muted text-center">
                                 {{ article.introduction }}
                             </p>
@@ -57,15 +50,29 @@ export default {
                 </div>
             </div>
         </div>
+    </section> -->
+    <section class=" row fw-semibold text-center m-4">
+        <div class="col-12 col-md-4 p-3 d-flex justify-content-center" v-for="article in articles">
+
+            <div class="card w-100 shadow">
+                <img :src="baseUrl + article.imageUrl" :alt="article.name" class="card-img-top">
+                <div class="card-body-info">
+                    <h2>{{ article.title }}</h2>
+                    <p class="card-text">{{ article.introduction }}</p>
+                    <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link"
+                        title="Details...">
+                        En savoir plus
+                    </RouterLink>
+                </div>
+            </div>
+        </div>
     </section>
 </template>
 
 <style>
-.card-list {
-    display: flex;
-    flex-direction: column;
+/* .card:hover {
+    box-shadow: 10px 5px 5px #887766;
 }
-
 
 .card-title {
     text-align: center;
@@ -74,7 +81,7 @@ export default {
 h1 {
     font-size: 20px;
 }
-
+ */
 
 
 
@@ -83,15 +90,15 @@ h1 {
     justify-content: space-around;
 } */
 
-.card {
-    /* width: 330px; */
+/* .card {
+
     -webkit-box-shadow: -1px -2px 15px 4px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -1px -2px 15px 4px rgba(0, 0, 0, 0.75);
     box-shadow: -1px -2px 15px 4px rgba(0, 0, 0, 0.75);
     margin-right: 10px;
-}
+} */
 
-img {
+/* img {
     width: 100%;
     height: 200px;
 }
@@ -108,7 +115,7 @@ img {
 
 p {
     color: black;
-}
+} */
 
 /* 
 :hover {
@@ -117,6 +124,27 @@ p {
 } */
 
 
+.link-title:hover {
+    text-decoration: underline;
+    color: #6a8478;
+}
+
+
+
+/********IMAGE AND TITLE*******/
+
+.card {
+    width: 18rem;
+}
+
+h2 {
+    font-family: 'Indie Flower', cursive;
+}
+
+
+.card-body-info:hover {
+    box-shadow: 10px 5px 5px #887766;
+}
 
 @media only screen and (max-width: 880px) {
     .cards {

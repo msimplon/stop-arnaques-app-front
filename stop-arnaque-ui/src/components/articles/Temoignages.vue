@@ -89,6 +89,7 @@ span {
 }
 
 
+
 .fw-bold {
     font-size: large;
     display: flex;
