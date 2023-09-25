@@ -107,7 +107,7 @@ export default {
                                 </div>
 
                                 <div class="text-center d-flex justify-content-end">
-                                    <button class="btn btn-outline-primary col-12 col-md-3 mt-3" type="submit">
+                                    <button class="btn btn-outline-primary col-2" type="submit">
                                         Se connecter
                                     </button>
                                 </div>
@@ -121,18 +121,6 @@ export default {
 </template>
 
 <style>
-button[type="submit"] {
-    background: rgb(0, 119, 255);
-    border: 20px;
-    padding: 10px 10px;
-    color: #fff;
-    transition: 0.4s;
-}
-
-button[type="submit"]:hover {
-    background: #78cbec;
-}
-
 fieldset {
     padding: 0 1em 1em;
     border: 1pt solid;

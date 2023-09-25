@@ -76,7 +76,7 @@ export default {
               </div>
             </div>
             <div class="text-center d-flex justify-content-end">
-              <button class="btn btn-outline-primary col-12 col-md-2 mt-3" type="submit">
+              <button class="btn btn-outline-primary col-2" type="submit">
                 Envoyer
               </button>
             </div>

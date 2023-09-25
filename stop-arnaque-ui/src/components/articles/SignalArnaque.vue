@@ -211,7 +211,11 @@ export default {
     all: revert;
 }
 
-.dropdown-toggle {}
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+
+}
 
 .fieldarnaque {
     width: 100%;

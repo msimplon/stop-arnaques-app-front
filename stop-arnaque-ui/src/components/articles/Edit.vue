@@ -94,6 +94,11 @@ tbody {
   color: red !important;
 }
 
+p,
+.text {
+  font-family: 'Raleway', sans-serif !important;
+
+}
 
 .page-link {
   color: #185999 !important;

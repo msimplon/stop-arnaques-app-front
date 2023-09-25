@@ -203,6 +203,7 @@ export default {
             <div class="form-text mb-3" v-else>Date de publication.</div>
           </div>
           <div class="col-md-4 mb-3">
+            {{ inputs.categoryId }}
             <label for="categoryId" class="form-label required">Catégorie</label>
             <select v-model.number="inputs.categoryId" id="categoryId" name="categoryId" class="form-select"
               :class="{ 'is-invalid': validator.inputs.categoryId.$error }">
@@ -218,7 +219,7 @@ export default {
           </div>
         </div>
         <div class="text-center d-flex justify-content-end">
-          <button class="btn btn-outline-primary col-12 col-md-2 mt-3" type="submit">
+          <button class="btn btn-outline-primary col-2" type="submit">
             Créer
           </button>
         </div>
@@ -235,6 +236,12 @@ form {
   background-color: whitesmoke
 }
 
+p,
+.text {
+  font-family: 'Raleway', sans-serif !important;
+
+}
+
 .form-control:focus {
   border: 3px solid grey;
   border-color: grey;
@@ -243,17 +250,5 @@ form {
 
 input {
   background-color: grey;
-}
-
-button[type="submit"] {
-  background: rgb(0, 119, 255);
-  border: 20px;
-  padding: 10px 10px;
-  color: #fff;
-  transition: 0.4s;
-}
-
-button[type="submit"]:hover {
-  background: #78cbec;
 }
 </style>

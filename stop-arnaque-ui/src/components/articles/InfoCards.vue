@@ -54,11 +54,16 @@ export default {
     <section class=" row fw-semibold text-center m-4">
         <div class="col-12 col-md-4 p-3 d-flex justify-content-center" v-for="article in articles">
 
-            <div class="card w-100 shadow">
+            <div class="cardi w-100 shadow">
                 <img :src="baseUrl + article.imageUrl" :alt="article.name" class="card-img-top">
-                <div class="card-body-info">
+                <div class="cardi-body-info">
                     <h2>{{ article.title }}</h2>
+                    <h3>{{ article.subTitle }}</h3>
                     <p class="card-text">{{ article.introduction }}</p>
+                    <div class="card-editor">
+                        <p>{{ article.editor }}</p>
+                        <p>{{ article.date }}</p>
+                    </div>
                     <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link"
                         title="Details...">
                         En savoir plus
@@ -133,16 +138,29 @@ p {
 
 /********IMAGE AND TITLE*******/
 
-.card {
+/* .cardi-body-info {
     width: 18rem;
-}
+} */
 
 h2 {
     font-family: 'Indie Flower', cursive;
 }
 
+p,
+.text {
+    font-family: 'Roboto', sans-serif !important;
 
-.card-body-info:hover {
+}
+
+.card-editor {
+    margin-left: 40%;
+    display: flex;
+    align-content: flex-end;
+    justify-content: space-evenly;
+    /* align-items: stretch; */
+}
+
+.card-img-top:hover {
     box-shadow: 10px 5px 5px #887766;
 }
 

@@ -1,7 +1,18 @@
 /******COMMUN ********/
-/* h1 {
-    margin-top: 1rem;
-} */
+button[type="submit"] {
+    background: rgb(0, 119, 255);
+    border: 20px;
+    padding: 10px 10px;
+    color: #fff;
+    transition: 0.4s;
+    text-align: center;
+}
+
+button[type="submit"]:hover {
+    background: #78cbec;
+}
+
+
 
 p,
 .text {

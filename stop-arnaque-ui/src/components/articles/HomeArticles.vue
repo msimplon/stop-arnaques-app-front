@@ -24,11 +24,10 @@ export default {
 
     <!-- <SearchComponent /> -->
     <InfoCards />
-
     <section>
-      <div class="my-5">
+      <div class="my-1">
         <div class="p-5 text-center bg-body-tertiary">
-          <div class="container py-5">
+          <div class="container py-2">
             <h1 class="text-body-emphasis">Full-width jumbotron</h1>
             <p class="col-lg-8 mx-auto lead">
               This takes the basic jumbotron above and makes its background edge-to-edge with a <code>.container</code>
@@ -72,20 +71,6 @@ export default {
         </div>
       </article>
     </section>
-
-    <!-- <section>
-      <h2 class="display-6 text-center mt-0">Ils nous font confiance</h2>
-      <div class="d-flex justify-content-center align-items-center">
-        <a href="https://simplon.co/" rel="noreferrer nofollow" target="_blank" class="mx-4">
-          <img src="/images/DGCCRF.jpg" class="img-circle" alt="Logo Simplon">
-        </a>
-        <a href="https://moovjee.fr/" rel="noreferrer nofollow" target="_blank" class="mx-4">
-          <img src="/images/DGCCRF.jpg" class="img-circle" alt="Logo Moovjee">
-        </a>
-      </div>
-    </section> -->
-
-
   </main>
 </template>
 
@@ -177,8 +162,6 @@ export default {
 
 
 
-
-
 /* *****TEXT***** */
 
 .align-items-center {
@@ -216,6 +199,13 @@ p {
   font-family: "Raleway", sans-serif !important;
 }
 
+
+p,
+.text {
+  font-family: 'Raleway', sans-serif !important;
+
+}
+
 .whiteBG {
   background-color: grey;
   background-size: cover;
@@ -224,9 +214,4 @@ p {
 .featurette-divider {
   background-color: rgb(232, 232, 245)
 }
-
-/* .darkgreyBG {
-  margin-bottom: 0px;
-  background-color: rgb(232, 232, 245)
-} */
 </style>

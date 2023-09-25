@@ -1,6 +1,5 @@
 <template>
     <section class="container-xxl mb-0  bg-light">
-        <h2 class="display-6 text-primary text-center mb-6">Nos conseils</h2>
         <div class="row g-3">
             <div class="col-12 col-lg-4">
                 <div class="card rounded-4 shadow h-100">
@@ -85,10 +84,25 @@
 
 <style>
 span {
-    font-size: xx-small
+    font-size: large;
 }
 
+.cardi {
+    width: 20rem;
+}
 
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+    font-size: medium;
+
+}
+
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+
+}
 
 .fw-bold {
     font-size: large;

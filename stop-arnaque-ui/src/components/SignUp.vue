@@ -24,23 +24,13 @@ export default {
         lastName: null,
         username: null,
         password: null,
-        confirmPassword: null,
+        // confirmPassword: null,
       },
     });
 
     const validPassword = helpers.regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*?]).{8,42}$/
     );
-    // const validateEmailError = function (email) {
-    //   const pattern = /^\w+([\.-]?\w+)*@/;
-    //   if (
-    //     pattern.test(email) &&
-    //     (email.endsWith("@gmail.com") ||
-    //       email.endsWith("@hotmail.com"))
-    //   ) {
-    //     return true;
-    //   }
-    // }
     const rules = computed(() => {
       return {
         user: {
@@ -92,16 +82,16 @@ export default {
               validPassword
             ),
           },
-          confirmPassword: {
-            required: helpers.withMessage(
-              "Veuillez renseigner ce champ.",
-              required
-            ),
-            sameAs: helpers.withMessage(
-              "Veuillez saisir les mots de passe identiques.",
-              sameAs(state.user.password)
-            ),
-          },
+          // confirmPassword: {
+          //   required: helpers.withMessage(
+          //     "Veuillez renseigner ce champ.",
+          //     required
+          //   ),
+          //   sameAs: helpers.withMessage(
+          //     "Veuillez saisir les mots de passe identiques.",
+          //     sameAs(state.user.password)
+          //   ),
+          // },
         },
       };
     });
@@ -185,7 +175,8 @@ export default {
                     </div>
 
                     <div class="col-md-4">
-                      <label for="username" class="form-label required"><i class="bi bi-envelope-at"></i> Username</label>
+                      <label for="username" class="form-label required"><i class="bi bi-envelope-at"></i> Adresse
+                        email</label>
                       <input v-model.trim="state.user.username" name="username" id="username" type="email"
                         class="form-control" aria-describedby="emailHelp"
                         :class="{ 'is-invalid': v$.user.username.$error }" />
@@ -209,7 +200,7 @@ export default {
                       <ValidationMessage :model="v$.user.password" />
                     </div>
 
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                       <label for="confirmPassword" class="form-label required"><i class="bi bi-key"></i> Confirmer le mot
                         de
                         passe</label>
@@ -218,7 +209,7 @@ export default {
                           'is-invalid': v$.user.confirmPassword.$error,
                         }" />
                       <ValidationMessage :model="v$.user.confirmPassword" />
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="aside-text-info">
@@ -230,7 +221,7 @@ export default {
 
 
                 <div class="text-center d-flex justify-content-end">
-                  <button class="btn btn-outline-primary col-12 col-md-3 mt-3" type="submit">
+                  <button class="btn btn-outline-primary col-2" type="submit">
                     S'inscrire
                   </button>
                 </div>
@@ -245,18 +236,6 @@ export default {
 </template>
 
 <style>
-button[type="submit"] {
-  background: rgb(0, 119, 255);
-  border: 20px;
-  padding: 10px 10px;
-  color: #fff;
-  transition: 0.4s;
-}
-
-button[type="submit"]:hover {
-  background: #78cbec;
-}
-
 fieldset {
   padding: 0 1em 1em;
   border: 1pt solid;
@@ -273,11 +252,6 @@ legend {
   text-transform: uppercase;
   white-space: nowrap;
 
-  /* h1 {
-    font-size: 0.7em;
-    text-transform:uppercase;
-    white-space:nowrap;
-  } */
 }
 
 

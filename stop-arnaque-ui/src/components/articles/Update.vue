@@ -1,6 +1,5 @@
 <script>
 import { useRoute } from "vue-router";
-
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength, minValue, between } from "@vuelidate/validators";
 
@@ -59,15 +58,15 @@ export default {
       const valid = await this.validator.$validate()
       if (valid) {
         const [year, month, day] = this.inputs.date.toString().split("-")
-        // if (this.inputs.imageUrl != null) {
-        //   formData.append("imageUrl", this.inputs.imageUrl)
-        // }
+        if (this.inputs.imageUrl != null) {
+          formData.append("imageUrl", this.inputs.imageUrl)
+        }
         formData.append("title", this.inputs.title);
         formData.append("subTitle", this.inputs.subTitle);
         formData.append("editor", this.inputs.editor);
         formData.append("description", this.inputs.description);
         formData.append("introduction", this.inputs.introduction);
-        formData.append("imageUrl", this.inputs.imageUrl);
+        // formData.append("imageUrl", this.inputs.imageUrl);
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
 
@@ -82,10 +81,9 @@ export default {
           Object.assign(this.inputs, this.$options.data().inputs);
           // this.validator.$reset();
           this.$toast.success("toast-global", "Article modifié avec succès");
-          this.$router.push({ name: "articles-edit" });
+          this.$router.push({ name: "articles-edit/" }); //REGLER PB AU PUSH
           this.router.navigateByUrl('my-articles');
         } else {
-          console.error(resp);
           this.$toast.error("toast-global", "problème de validation");
         }
       }
@@ -94,16 +92,18 @@ export default {
 
     handleFileUpload(event) {
       console.log(event.target.files[0]);
-      this.inputs.imageUrl = event.target.files[0]
+      this.inputs.imageUrl = event.target.files[0];
     },
     async initcategory() {
       const resp = await this.$http.get("/categories");
       this.categoryId = resp.body;
     },
   },
-  beforeMount() {
-    this.initcategory();
-    this.initInputs();
+  async beforeMount() {
+
+    await this.initcategory();
+    await this.initInputs();
+    console.log(this.inputs);
   },
 
 };
@@ -241,15 +241,9 @@ input {
   background-color: grey;
 }
 
-button[type="submit"] {
-  background: rgb(0, 119, 255);
-  border: 20px;
-  padding: 10px 10px;
-  color: #fff;
-  transition: 0.4s;
-}
+p,
+.text {
+  font-family: 'Raleway', sans-serif !important;
 
-button[type="submit"]:hover {
-  background: #78cbec;
 }
 </style>
