@@ -38,8 +38,8 @@ export default {
           <p class="card-subtitle mb-2 text-muted text-center">
             {{ article.introduction }}
           </p>
-          <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" title="Details..."><button
-              class="ms-btn btn-outline-success btn-sm"> En savoir plus </button>
+          <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link" title="Details...">
+            En savoir plus
           </RouterLink>
         </div>
       </div>
@@ -48,7 +48,7 @@ export default {
 </template>
 
 <style>
-@keyframes animation {
+/* @keyframes animation {
 
   0%,
   50%,
@@ -62,7 +62,7 @@ export default {
   }
 
 }
-
+ */
 
 /* ****DIVIDER**** */
 
@@ -94,7 +94,7 @@ export default {
   margin-inline: auto;
 }
 
-p,
+/* p,
 .text {
   font-family: 'Raleway', sans-serif !important;
 
@@ -116,5 +116,5 @@ h2 {
 
 body {
   font-family: system-ui, sans-serif;
-}
+} */
 </style>

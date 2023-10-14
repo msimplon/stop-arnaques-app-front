@@ -1,50 +1,36 @@
 <template>
-    <div id="header" class="container-xxl ">
+    <div id="header" class=" container-xxl wrapper bg-secondary text-white p-4 ">
+        <div class="top-landing container py-3 row mx-auto w-100">
+            <div class="col-md col-12 my-auto">
+                <h1 class="text-center demotext">ARRÊTEZ LES ARNAQUES<br>DANS LEUR ÉLAN <strong>AVEC
+                        STOP
+                        ARNAQUE</strong>
+                </h1>
 
-        <h1 class="text-center demotext">ARRÊTEZ LES ARNAQUES<br>DANS LEUR ÉLAN <strong>AVEC
-                STOP
-                ARNAQUE</strong>
-        </h1>
-
-        <!-- <p class="text-center slogan m-3 "> Stop arnaque est une application qui fait
-            référence à la diversité du territoire guyanais. Un pays pluriculturel où se mélange différentes communautés
-            (des
-            Amérindiens, des Hmongs, des Brésiliens, des Chinois, des Guyanais, des Businengés…). <br>
-            Ce pays méconnu et ayant parfois une mauvaise réputation se révèle comme une terre accueillante offrant une
-            expérience exceptionnelle et mémorable. <br>
-            <br>Que vous soyez seul, en famille ou entre amis, <span class="medium">Tout Koulèr Mélanjé</span> a pour
-            objectif
-            de vous faire découvrir ou redécouvrir la richesse de la Guyane Française à travers différentes activités. Avec
-            un
-            carnet à votre disposition, vous pourrez ajouter dans votre liste de favoris les activités souhaitées, prendre
-            contact avec les organisateurs, obtenir les informations nécessaires et échanger vos expériences inoubliables
-            entre
-            abonnés.
-        </p> -->
-
-        <div>
-            <p class="text-center activity-list">
-                <RouterLink to="signUp" class="btn search-button col-2 bg-primary text-light ">
-                    S'inscrire
-                </RouterLink>
-            </p>
+                <p class="text-center activity-list">
+                    <RouterLink to="signUp" class="btn search-button col-2 bg-primary text-light ">
+                        S'inscrire
+                    </RouterLink>
+                </p>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <img src="../../../public/images/project.png" alt="project">
+            </div>
         </div>
     </div>
 </template>
 
-
 <style>
 #header {
-    background-image: url("/images/project.png");
-    height: 250px;
+    height: 450px;
 
 }
 
-.align-items-center {
+/* .align-items-center {
 
     background-size: cover;
 
-}
+} */
 
 @media (min-width: 1400px) {
     .container-xxl {

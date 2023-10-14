@@ -12,7 +12,7 @@ export default {
             id: this.route.params.id,
             baseUrl: import.meta.env.VITE_IMG_BASE_URL,
             article: {},
-            // categoryId: [],
+
         }
     },
     methods: {
@@ -26,29 +26,6 @@ export default {
     }
 }
 </script>
-<!-- <template>
-    <div class="card mb-3 shadow-xl ">
-        <div class="row p-3 align-items-center">
-            <div class="col-md-4 text-center">
-                <img :src="baseUrl + article.imageUrl" class="img-fluid" :alt="article.name">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body p-0">
-                    <h2>{{ article.title }}</h2>
-                    <p class="card-text fs-5">
-                        <span>{{ article.categoryId }}</span>
-                    </p>
-                    <h3>{{ article.subTitle }}</h3>
-                    <h4>{{ article.editor }}</h4>
-                    <h5>{{ article.date }}</h5>
-                    <p class="card-text">{{ article.description }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</template> -->
-
-
 
 <template>
     <div class="container mt-5">
@@ -63,8 +40,8 @@ export default {
                         </div>
                     </div>
                     <div class="blog-card__head">
-                        <span class="date__box">
-                        </span>
+                        <!-- <span class="date__box">
+                        </span> -->
                     </div>
                     <div class="blog-card__info">
                         <div class="cat">
@@ -73,7 +50,7 @@ export default {
                         </div>
                         <hr class="icon">
                         <h5>{{ article.subTitle }}</h5>
-                        <p class="space">
+                        <p class="editor">
                             <i class="bi bi-pencil"></i>
                             Par {{ article.editor }}
                             <i class="bi bi-calendar"></i> Publié le {{ article.date }}
@@ -99,13 +76,13 @@ body {
 }
 
 .icon {
-    background: #333;
-    height: 2px;
-    margin: 25px auto;
-    width: 40px;
+    background: grey;
+    height: 5px;
+    margin: 15px auto;
+    width: 80px;
 }
 
-.date__box {
+/* .date__box {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -115,15 +92,13 @@ body {
     border: 4px solid;
     font-weight: bold;
     padding: 5px 10px;
-}
+} */
 
 .date__day {
     font-size: 22px;
 }
 
 .card-tag {
-    width: 80px;
-    max-width: 100px;
     padding: 0.2rem 0.5rem;
     font-size: 12px;
     text-align: center;
@@ -133,8 +108,9 @@ body {
     color: #fff;
 }
 
-.space {
+.editor {
     margin-top: 3%;
+    text-transform: uppercase;
 }
 
 .bi-calendar {
@@ -142,6 +118,8 @@ body {
 }
 
 .cat {
+    text-transform: uppercase;
+    letter-spacing: 1px;
     display: flex;
     justify-content: space-between;
     align-content: space-between;
@@ -161,11 +139,12 @@ p,
 
 }
 
+/* 
 .date__box {
     opacity: 0;
     transform: scale(0.5);
     transition: 300ms ease-in-out;
-}
+} */
 
 .blog-card__background,
 .card__background--layer {
@@ -197,15 +176,15 @@ p,
     background-size: cover;
 }
 
-.card__background--layer {
+/* .card__background--layer {
     z-index: 0;
     opacity: 0;
     background: rgba(#333, 0.9);
     transition: 300ms ease-in-out;
-}
+} */
 
 .blog-card__head {
-    height: 300px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -217,16 +196,11 @@ p,
     padding: 20px 15px;
 }
 
-h5 {
-    transition: 300ms ease-in-out;
-}
 
-
-
-.date__box:hover {
+/* .date__box:hover {
     opacity: 1;
     transform: scale(1);
-}
+} */
 
 .card__background--main {
     transform: scale(1.2) rotate(5deg);
@@ -239,17 +213,8 @@ h5 {
 
 
 
-/* .i {
-        color: #333
-    }
 
-    &:hover {
-        color: $primary;
-        text-decoration: none;
-    } */
-
-
-.btn {
+/* .btn {
     background: white;
     text-decoration-color: #333;
     font-weight: bold;
@@ -262,7 +227,7 @@ h5 {
     display: inline-block;
     padding: 0;
     border: none;
-}
+} */
 
 /* &:focus {
         box-shadow: none;
@@ -273,9 +238,9 @@ h5 {
         color: #fff;
     } */
 
-.btn--with-icon {
+/* .btn--with-icon {
     padding-right: 20px;
-}
+} */
 
 /* i {
     padding: 0px 30px 0px 15px;
@@ -287,8 +252,8 @@ h5 {
     clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
 } */
 
-
+/* 
 .btn--only-icon {
     width: 50px;
-}
+} */
 </style>

@@ -35,7 +35,7 @@ export default {
         subTitle: { required, maxLength: maxLength(100) },
         editor: { required, maxLenght: maxLength(100) },
         introduction: { required, maxLength: maxLength(700) },
-        description: { required, maxLength: maxLength(1000) },
+        description: { required },
         imageUrl: {
           required,
           maxValue: (file) => {
@@ -74,14 +74,9 @@ export default {
 
         const resp = await this.$http.post("/articles", formData);
 
-        console.log(formData)
-        console.log(resp, "resp")
-
         if (resp.status === 201) {
           Object.assign(this.inputs, this.$options.data().inputs);
-          // this.validator.$reset();
           this.$toast.success("toast-global", "L'article a été créé !!!");
-          // this.$router.push({ name: "articles-edit" });
           this.$router.push({ name: "articles-home" });
         } else {
           console.error(resp);
@@ -151,8 +146,8 @@ export default {
           <label for="description" class="form-label required">{{
             $t("categoryFormLabels.formDescription")
           }}</label>
-          <textarea v-model.trim="inputs.description" id="description" name="description" maxlength="1000" rows="12"
-            class="form-control" :class="{ 'is-invalid': validator.inputs.description.$error }"></textarea>
+          <textarea v-model.trim="inputs.description" id="description" name="description" rows="12" class="form-control"
+            :class="{ 'is-invalid': validator.inputs.description.$error }"></textarea>
           <div class="form-text text-danger" v-if="validator.inputs.description.$error">
             Veuillez renseigner ce champs.
           </div>
@@ -180,11 +175,6 @@ export default {
                 <div class="form-text text-danger"
                   v-if="validator.inputs.imageUrl.$error || validator.inputs.imageUrl.maxValue.$invalid">
                   Veillez renseiger ce champs et la taille de l'image ne peut pas dépasser 500ko. </div>
-
-                <!-- <div class="form-text text-danger" v-else-if="validator.inputs.imageUrl.maxValue.$invalid">
-                  La taille de l'image ne peut pas dépasser 500ko
-                </div> -->
-
                 <div class="form-text mb-3" v-else>Photo ou image.</div>
               </div>
             </div>
@@ -203,7 +193,6 @@ export default {
             <div class="form-text mb-3" v-else>Date de publication.</div>
           </div>
           <div class="col-md-4 mb-3">
-            {{ inputs.categoryId }}
             <label for="categoryId" class="form-label required">Catégorie</label>
             <select v-model.number="inputs.categoryId" id="categoryId" name="categoryId" class="form-select"
               :class="{ 'is-invalid': validator.inputs.categoryId.$error }">
@@ -227,28 +216,4 @@ export default {
     </div>
   </div>
 </template>
-<style>
-form {
-  padding: 30px;
-}
 
-.form-control {
-  background-color: whitesmoke
-}
-
-p,
-.text {
-  font-family: 'Raleway', sans-serif !important;
-
-}
-
-.form-control:focus {
-  border: 3px solid grey;
-  border-color: grey;
-  box-shadow: 0px 0px 1px 1px grey;
-}
-
-input {
-  background-color: grey;
-}
-</style>

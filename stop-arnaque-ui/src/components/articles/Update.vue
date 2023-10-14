@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      id: this.route.params.id,
+      // id: this.route.params.id,
       categoryId: [],
       inputs: {
         title: null,
@@ -66,7 +66,6 @@ export default {
         formData.append("editor", this.inputs.editor);
         formData.append("description", this.inputs.description);
         formData.append("introduction", this.inputs.introduction);
-        // formData.append("imageUrl", this.inputs.imageUrl);
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
 
@@ -79,10 +78,8 @@ export default {
 
         if (resp.status === 200) {
           Object.assign(this.inputs, this.$options.data().inputs);
-          // this.validator.$reset();
           this.$toast.success("toast-global", "Article modifié avec succès");
-          this.$router.push({ name: "articles-edit/" }); //REGLER PB AU PUSH
-          this.router.navigateByUrl('my-articles');
+          this.$router.push({ name: 'articles-home' }); //REGLER PB AU PUSH
         } else {
           this.$toast.error("toast-global", "problème de validation");
         }
@@ -99,8 +96,8 @@ export default {
       this.categoryId = resp.body;
     },
   },
-  async beforeMount() {
-
+  async mounted() {
+    this.id = this.route.params.id;
     await this.initcategory();
     await this.initInputs();
     console.log(this.inputs);
