@@ -24,17 +24,15 @@ export default {
 
 <template>
   <h2 class="fancy my-4" style="--w: 50vw;--c: #919191;--b:4px;--g:-5px">A la une</h2>
-  <div class="row row-cols-2 row-cols-md-2 g-5">
-    <div class="col" v-for="article in lastAddedArticles" :key="article.id">
-      <div class="card">
+  <!-- <div class=" col-md-4 col-md-12 p-3 d-flex justify-content-center"> -->
+  <div class="row">
+    <div class="col-md-4 p-3 d-flex justify-content-center cardo " v-for="article in lastAddedArticles" :key="article.id">
+      <div class="cardi w-100">
         <img :src="baseUrl + article.imageUrl" :alt="article.name" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title text-center">
             {{ article.title }}
           </h5>
-          <p class="card-subtitle mb-2 text-muted text-center">
-            {{ article.description }}
-          </p>
           <p class="card-subtitle mb-2 text-muted text-center">
             {{ article.introduction }}
           </p>
@@ -45,25 +43,10 @@ export default {
       </div>
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <style>
-/* @keyframes animation {
-
-  0%,
-  50%,
-  100% {
-    opacity: 1;
-  }
-
-  25%,
-  75% {
-    opacity: 0;
-  }
-
-}
- */
-
 /* ****DIVIDER**** */
 
 
@@ -94,27 +77,12 @@ export default {
   margin-inline: auto;
 }
 
-/* p,
-.text {
-  font-family: 'Raleway', sans-serif !important;
+@media only screen and (max-width: 880px) {
+  .cards {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
 
+  }
 }
-
-p {
-  font-size: 1.3rem;
-  text-align: justify;
-  margin-inline: max(20px, 50% - 800px/2);
-}
-
-h1 {
-  font-size: 2.3rem;
-}
-
-h2 {
-  font-size: 1.8rem;
-}
-
-body {
-  font-family: system-ui, sans-serif;
-} */
 </style>

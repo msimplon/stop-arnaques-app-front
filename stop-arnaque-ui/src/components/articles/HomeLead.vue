@@ -7,14 +7,14 @@
                         ARNAQUE</strong>
                 </h1>
 
-                <p class="text-center activity-list">
+                <p class="text-center activity-list mt-4">
                     <RouterLink to="signUp" class="btn search-button col-2 bg-primary text-light ">
                         S'inscrire
                     </RouterLink>
                 </p>
             </div>
             <div class="col d-flex justify-content-center">
-                <img src="../../../public/images/project.png" alt="project">
+                <img class="home" src="../../../public/images/online.png" alt="project">
             </div>
         </div>
     </div>
@@ -26,11 +26,10 @@
 
 }
 
-/* .align-items-center {
-
-    background-size: cover;
-
-} */
+.home {
+    width: 80%;
+    height: 80%;
+}
 
 @media (min-width: 1400px) {
     .container-xxl {
@@ -39,33 +38,11 @@
     }
 }
 
-/* p,
-.text {
-    font-family: 'Raleway', sans-serif !important;
-
-} */
 
 .slogan {
     color: #ffffff
 }
 
-/* .text-light {
-
-    text-align: center !important;
-} */
-
-/* .search-button {
-    background: rgb(0, 119, 255);
-    border: 20px;
-    color: #fff;
-    transition: 0.4s;
-    line-height: 30.5px;
-}
-
-
-.search-button:hover {
-    box-shadow: 10px 5px 5px #887766;
-} */
 
 .demotext {
     font-size: xx-large;

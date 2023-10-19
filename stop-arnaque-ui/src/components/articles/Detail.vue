@@ -40,15 +40,13 @@ export default {
                         </div>
                     </div>
                     <div class="blog-card__head">
-                        <!-- <span class="date__box">
-                        </span> -->
                     </div>
                     <div class="blog-card__info">
                         <div class="cat">
                             <h4>{{ article.title }}</h4>
                             <p class="card-tag">{{ article.categoryName }}</p>
                         </div>
-                        <hr class="icon">
+                        <hr class="divide">
                         <h5>{{ article.subTitle }}</h5>
                         <p class="editor">
                             <i class="bi bi-pencil"></i>
@@ -75,24 +73,12 @@ body {
     background: #eee;
 }
 
-.icon {
+.divide {
     background: grey;
     height: 5px;
     margin: 15px auto;
     width: 80px;
 }
-
-/* .date__box {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #ccc;
-    border: 4px solid;
-    font-weight: bold;
-    padding: 5px 10px;
-} */
 
 .date__day {
     font-size: 22px;
@@ -139,13 +125,6 @@ p,
 
 }
 
-/* 
-.date__box {
-    opacity: 0;
-    transform: scale(0.5);
-    transition: 300ms ease-in-out;
-} */
-
 .blog-card__background,
 .card__background--layer {
     z-index: -1;
@@ -176,13 +155,6 @@ p,
     background-size: cover;
 }
 
-/* .card__background--layer {
-    z-index: 0;
-    opacity: 0;
-    background: rgba(#333, 0.9);
-    transition: 300ms ease-in-out;
-} */
-
 .blog-card__head {
     height: 100px;
     display: flex;
@@ -197,11 +169,6 @@ p,
 }
 
 
-/* .date__box:hover {
-    opacity: 1;
-    transform: scale(1);
-} */
-
 .card__background--main {
     transform: scale(1.2) rotate(5deg);
 }
@@ -209,51 +176,4 @@ p,
 .card__background--layer {
     opacity: 1;
 }
-
-
-
-
-
-/* .btn {
-    background: white;
-    text-decoration-color: #333;
-    font-weight: bold;
-    outline: none;
-    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    border-radius: 0;
-    height: 50px;
-    line-height: 50px;
-    display: inline-block;
-    padding: 0;
-    border: none;
-} */
-
-/* &:focus {
-        box-shadow: none;
-    } */
-/* 
-    &:hover {
-        background: $primary;
-        color: #fff;
-    } */
-
-/* .btn--with-icon {
-    padding-right: 20px;
-} */
-
-/* i {
-    padding: 0px 30px 0px 15px;
-    margin-right: 10px;
-    height: 50px;
-    line-height: 50px;
-    vertical-align: bottom;
-    color: white;
-    clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
-} */
-
-/* 
-.btn--only-icon {
-    width: 50px;
-} */
 </style>

@@ -76,7 +76,7 @@ import { RouterLink } from "vue-router";
               </RouterLink>
             </li>
             <li class="nav-item logout">
-              <RouterLink :to="{ name: 'signUp' }" class="nav-link">
+              <RouterLink :to="{ name: 'signIn' }" class="nav-link">
                 <i class="bi bi-box-arrow-right"></i>
               </RouterLink>
             </li>

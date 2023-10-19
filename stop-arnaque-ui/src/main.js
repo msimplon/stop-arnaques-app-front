@@ -56,11 +56,6 @@ app.config.globalProperties.$fmt = {
 
 app.use(i18n)
 
-// app.use(VueGoogleMaps, {
-//     load: {
-//         key: `https://www.google.com/maps/embed/v1/view?key=${key}&center= 4.9370748,-52.3346534&zoom=15&language=fr`,
-//     },
-// })
 
 // On "monte" l'application dans l'element racine (lien avec le DOM) :
 app.mount('#app');
