@@ -24,10 +24,17 @@ export default {
 
     <!-- <SearchComponent /> -->
     <InfoCards />
+    <div class="text-center d-flex justify-content-end mt-4">
+      <button class="btn btn-outline-primary col-2" type="submit">
+        Charger plus
+      </button>
+    </div>
+    <section class="triangle mt-4">
+    </section>
     <section>
       <div class="my-1">
         <div class="p-5 text-center bg-body-tertiary">
-          <div class="container py-2">
+          <div class="container py-5">
             <h1 class="text-body-emphasis">Full-width jumbotron</h1>
             <p class="col-lg-8 mx-auto lead">
               This takes the basic jumbotron above and makes its background edge-to-edge with a <code>.container</code>
@@ -36,8 +43,11 @@ export default {
           </div>
         </div>
       </div>
-
     </section>
+
+
+
+    <section class="curved"></section>
 
     <Temoignages />
 
@@ -76,6 +86,33 @@ export default {
 
 
 <style>
+.curved {
+  position: relative;
+  background: grey;
+  height: 50vh;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+}
+
+.triangle {
+  position: relative;
+  background: grey;
+  height: 50vh;
+}
+
+.triangle::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 100px 100px 0 100px;
+  border-color: grey transparent transparent transparent;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+}
+
 /*BACK TO TOP BUTTON*/
 .toTheTop {
   height: 55px;

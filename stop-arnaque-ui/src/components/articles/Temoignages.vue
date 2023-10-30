@@ -1,9 +1,9 @@
 <template>
-    <section class="container-xxl mb-0  bg-light">
+    <section class="p-5">
         <div class="row g-3">
             <div class="col-12 col-lg-4">
                 <div class="card rounded-4 shadow h-100">
-                    <div class="card-header  text-white fw-bold">Que faut-il faire lorsque nous sommes victime
+                    <div class="card-header  text-white fw-bold">Que faire lorsque nous sommes victime
                         d'arnaques?</div>
                     <div class="d-flex card-body">
                         <i class="bi bi-quote text-secondary me-3 fs-1"></i>

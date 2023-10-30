@@ -36,8 +36,8 @@ export default {
           <p class="card-subtitle mb-2 text-muted text-center">
             {{ article.introduction }}
           </p>
-          <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link" title="Details...">
-            En savoir plus
+          <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link" title="Details..."> Lire
+            plus
           </RouterLink>
         </div>
       </div>
@@ -51,12 +51,7 @@ export default {
 
 
 .fancy {
-  --b: 6px;
-  /* control the border thickness */
-  --w: 80px;
-  /* control the width of the line*/
-  --g: 15px;
-  /* control the gap */
+
   --c: #0B486B;
 
   width: fit-content;

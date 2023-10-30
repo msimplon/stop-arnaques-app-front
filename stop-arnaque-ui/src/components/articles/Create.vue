@@ -1,6 +1,6 @@
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { required, maxLength, minValue, requiredIf, between, helpers } from "@vuelidate/validators";
+import { required, maxLength, minValue } from "@vuelidate/validators";
 
 export default {
 
@@ -45,13 +45,23 @@ export default {
         },
         categoryId: { required, minValue: minValue(1) },
         date: {
-          required, minValue: () => {
-            return this.inputs.date == this.inputs.date ? true : false
+          required, minValue: value => {
+            console.log(value)
+            return new Date(value) > new Date()
           }
         }
       },
     };
   },
+
+  computed: {
+    isValidDate() {
+      const selectedDate = new Date(this.inputs.date);
+      const currentDate = new Date();
+      return selectedDate.toDateString() === currentDate.toDateString();
+    },
+  },
+
   methods: {
     async submit() {
       const formData = new FormData()
@@ -71,7 +81,6 @@ export default {
         formData.append("categoryId", this.inputs.categoryId);
 
         console.log(formData)
-
         const resp = await this.$http.post("/articles", formData);
 
         if (resp.status === 201) {
@@ -99,7 +108,6 @@ export default {
   },
 
 };
-// const imageUrlPattern = helpers.$error(imageUrl === null)
 </script>
 
 <template>
@@ -171,25 +179,30 @@ export default {
                 <label for="imageUrl" class="form-label required">Ajouter une image</label>
                 <input :class="{ 'is-invalid': validator.inputs.imageUrl.$error }" name="imageUrl" id="imageUrl"
                   type="file" accept="images/png,images/jpeg,images/jpg" class="form-control" @change="handleFileUpload">
-
                 <div class="form-text text-danger"
-                  v-if="validator.inputs.imageUrl.$error || validator.inputs.imageUrl.maxValue.$invalid">
-                  Veillez renseiger ce champs et la taille de l'image ne peut pas dépasser 500ko. </div>
+                  v-if="validator.inputs.imageUrl.$error && !validator.inputs.imageUrl.maxValue.$invalid">
+                  Veuillez renseigner ce champ.
+                </div>
+
+                <div class="form-text text-danger" v-if="validator.inputs.imageUrl.maxValue.$invalid">
+                  La taille de l'image ne peut pas dépasser 500ko.
+                </div>
+
                 <div class="form-text mb-3" v-else>Photo ou image.</div>
               </div>
             </div>
-
-
           </div>
           <div class="col-md-4 mb-3">
             <label for="name" class="form-label required">Date</label>
             <input v-model.trim="inputs.date" id="date" name="date" type="date" class="form-control"
-              :class="{ 'is-invalid': validator.inputs.date.$error }" />
+              :class="{ 'is-invalid': validator.inputs.date.$error || (validator.inputs.date.customDateValidator === false && inputs.date) }" />
 
-            <div class="form-text text-danger" v-if="validator.inputs.date.$error">
-              Veuillez renseigner ce champs.
+            <div class="form-text text-danger" v-if="validator.inputs.date.$error && !inputs.date">
+              Veuillez renseigner ce champ.
             </div>
-
+            <div class="form-text text-danger" v-if="validator.inputs.date.customDateValidator === false && inputs.date">
+              La date ne peut pas être antérieure à la date actuelle.
+            </div>
             <div class="form-text mb-3" v-else>Date de publication.</div>
           </div>
           <div class="col-md-4 mb-3">

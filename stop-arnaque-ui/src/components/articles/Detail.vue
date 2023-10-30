@@ -28,6 +28,8 @@ export default {
 </script>
 
 <template>
+    <a href="#" class="toTheTop"><img src="/images/arrow.svg" alt="up"></a>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
@@ -53,7 +55,38 @@ export default {
                             Par {{ article.editor }}
                             <i class="bi bi-calendar"></i> Publié le {{ article.date }}
                         </p>
-                        <p>{{ article.description }}</p>
+
+                        <div id="sidebar">
+                            <img :src="baseUrl + article.imageUrl" :alt="article.name" class="detail">
+                            <hr class="divide2">
+                            <div id="lol">
+                                <ul>
+                                    <h3 class="mb-4"> Articles récents</h3>
+                                    <li class="mb-4">
+                                        <RouterLink style="text-decoration:none" :to="{ name: 'actualité' }">
+                                            Comment éviter le phishing ?
+                                        </RouterLink>
+                                    </li>
+                                    <li class="mb-4">
+                                        <RouterLink style="text-decoration:none" :to="{ name: 'actualité' }">
+                                            Comment éviter le phishing ?
+                                        </RouterLink>
+                                    </li>
+                                    <li class="mb-4">
+                                        <RouterLink style="text-decoration:none" :to="{ name: 'actualité' }">
+                                            Comment éviter le phishing ?
+                                        </RouterLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text mt-5">{{ article.introduction }}</p>
+                        <p class="text-titre">{{ article.subTitle }}</p>
+                        <p class="text">{{ article.description }}</p>
+                        <p class="text-titre">{{ article.subTitle }}</p>
+                        <p class="text">{{ article.description }}</p>
+                        <p class="text-titre">{{ article.subTitle }}</p>
+                        <p class="text">{{ article.description }}</p>
 
                     </div>
                 </article>
@@ -69,16 +102,63 @@ export default {
 </template>
 
 <style>
+#sidebar {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+}
+
+#lol {
+    margin-left: 20%;
+}
+
 body {
     background: #eee;
+}
+
+
+.detail {
+    width: 40%;
+    height: 55%;
+}
+
+.text-titre {
+    color: grey;
+    font-weight: bold;
+
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+
+ul {
+    text-decoration: none;
+
 }
 
 .divide {
     background: grey;
     height: 5px;
-    margin: 15px auto;
+    margin: 10px auto;
     width: 80px;
 }
+
+.divide2 {
+    border-left: thick solid #000;
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    background: grey;
+    height: 15%;
+    display: inline-flex;
+    flex-wrap: wrap;
+
+}
+
 
 .date__day {
     font-size: 22px;
@@ -122,6 +202,7 @@ body {
 p,
 .text {
     font-family: 'Raleway', sans-serif !important;
+    text-align: justify !important;
 
 }
 

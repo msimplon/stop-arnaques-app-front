@@ -35,7 +35,7 @@ export default {
         title: { required, maxLength: maxLength(100) },
         subTitle: { required, maxLength: maxLength(100) },
         editor: { required, maxLenght: maxLength(100) },
-        description: { required, maxLength: maxLength(1000) },
+        description: { required },
         introduction: { required, maxLength: maxLength(700) },
         imageUrl: {
           maxValue: (imageUrl) => {

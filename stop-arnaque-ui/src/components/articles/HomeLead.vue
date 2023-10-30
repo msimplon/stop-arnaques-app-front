@@ -8,7 +8,7 @@
                 </h1>
 
                 <p class="text-center activity-list mt-4">
-                    <RouterLink to="signUp" class="btn search-button col-2 bg-primary text-light ">
+                    <RouterLink to="signUp" class="btn search-button bg-primary text-light ">
                         S'inscrire
                     </RouterLink>
                 </p>
@@ -28,7 +28,7 @@
 
 .home {
     width: 80%;
-    height: 80%;
+    height: 65%;
 }
 
 @media (min-width: 1400px) {

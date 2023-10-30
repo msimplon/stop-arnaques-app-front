@@ -27,22 +27,21 @@ export default {
 
 <template>
     <section class=" row fw-semibold text-center">
-        <div class="col-md-4 p-3 d-flex justify-content-center cardo" v-for="article in articles">
+        <div class="col-md-4 p-5 d-flex justify-content-center cardo" v-for="article in articles">
 
             <div class="cardi w-100">
                 <img :src="baseUrl + article.imageUrl" :alt="article.name" class="card-img-top">
                 <div class="cardi-body-info">
                     <h2>{{ article.title }}</h2>
                     <hr class="divid">
-                    <h3>{{ article.subTitle }}</h3>
                     <p class="card-text text-muted ">{{ article.introduction }}</p>
-                    <div class="card-editor">
+                    <!-- <div class="card-editor">
                         <p>{{ article.editor }}</p>
                         <p>{{ article.date }}</p>
-                    </div>
+                    </div> -->
                     <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link"
                         title="Details...">
-                        En savoir plus
+                        Lire plus
                     </RouterLink>
                 </div>
             </div>
@@ -51,6 +50,10 @@ export default {
 </template>
 
 <style>
+.link {
+    margin-right: 80%;
+}
+
 .link-title:hover {
     text-decoration: underline;
     color: #6a8478;

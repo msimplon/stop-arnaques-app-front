@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     async submit() {
-      const resp = await this.$http.post('/users', this.inputs);
+      const resp = await this.$http.post('/users', this.state.user);
       this.v$.$validate();
       if (!this.v$.$error) {
         const my_user = this.state.user;
@@ -114,7 +114,7 @@ export default {
 
 
         if (resp.status === 201) {
-          Object.assign(this.inputs, this.$options.data().inputs);
+          Object.assign(this.user, this.$options.data().user);
           // this.validator.$reset();
           this.$toast.success("toast-global", "Le compte a été créé !!!");
           this.$router.push({ name: "signIn" });
@@ -140,12 +140,12 @@ export default {
     <div class="container-xl mt-2">
       <div class="presentation">
         <div class="welcome">Bienvenue sur stop arnaque!</div>
-        <div>
+        <!-- <div>
           <p>Arrêtez les arnaques dans leur élan avec stop arnaque !</p>
         </div>
         <div class="description">
           <p>Inscrivez-vous ou connectez-vous pour tester!</p>
-        </div>
+        </div> -->
       </div>
       <div class="row mt-4">
         <div class="col-md my-6 mx-auto">
@@ -218,8 +218,6 @@ export default {
                     conditions générales d’utilisation (CGU)
                   </RouterLink>
                 </div>
-
-
                 <div class="text-center d-flex justify-content-end">
                   <button class="btn btn-outline-primary col-2" type="submit">
                     S'inscrire
@@ -253,7 +251,6 @@ legend {
   white-space: nowrap;
 
 }
-
 
 .presentation {
   text-align: center;
