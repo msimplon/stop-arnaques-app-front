@@ -9,11 +9,13 @@ export default {
     return {
       route: useRoute(),
       validator: useVuelidate({ $autoDirty: true }),
+      existingTitles: [],
+
     };
   },
   data() {
+
     return {
-      // id: this.route.params.id,
       categoryId: [],
       inputs: {
         title: null,
@@ -25,22 +27,29 @@ export default {
         date: null,
         categoryId: 0,
       },
-
+      existingImage: null,
+      existingTitles: [], // Tableau des titres existants
+      baseUrl: import.meta.env.VITE_IMG_BASE_URL,
 
     };
   },
   validations() {
     return {
       inputs: {
-        title: { required, maxLength: maxLength(100) },
+        title: {
+          required, maxLength: maxLength(100), uniqueTitle: (value) => ({
+            isValid: this.isTitleUnique(value),
+            message: "Ce titre existe déjà. Veuillez en choisir un autre.",
+          }),
+        },
         subTitle: { required, maxLength: maxLength(100) },
         editor: { required, maxLenght: maxLength(100) },
         description: { required },
         introduction: { required, maxLength: maxLength(700) },
         imageUrl: {
-          maxValue: (imageUrl) => {
-            return imageUrl ? imageUrl.size <= 512000 : true;
-          }
+          // maxValue: (imageUrl) => {
+          //   return imageUrl ? imageUrl.size <= 512000 : true;
+          // }
         },
         categoryId: { required, minValue: minValue(1) },
         date: { required }
@@ -50,9 +59,34 @@ export default {
   methods: {
     async initInputs() {
       const resp = await this.$http.get(`/articles/article-view/${this.id}`);
-      // const data = response.data
       this.inputs = resp.body;
+      console.log(resp.body, "test")
+      this.existingImage = resp.body.imageUrl
+      this.inputs.imageUrl = null
+      console.log(this.inputs, this.existingImage, "null image")
     },
+
+    isTitleUnique(value) {
+      return !this.existingTitles.includes(value);
+    },
+
+    getFormattedDate() {
+      let today = new Date();
+      let day = today.getDate();
+      let month = today.getMonth() + 1;
+      let year = today.getFullYear();
+
+      if (day < 10) {
+        day = '0' + day;
+      }
+
+      if (month < 10) {
+        month = '0' + month;
+      }
+
+      return `${year}-${month}-${day}`;
+    },
+
     async submit() {
       const formData = new FormData()
       const valid = await this.validator.$validate()
@@ -62,6 +96,9 @@ export default {
           formData.append("imageUrl", this.inputs.imageUrl)
         }
         formData.append("title", this.inputs.title);
+        if (!this.validator.inputs.title.uniqueTitle.isValid) {
+          this.$toast.error("toast-global", "Ce titre existe déjà.Veuillez en choisir un autre.", this.validator.inputs.title.uniqueTitle.message);
+        }
         formData.append("subTitle", this.inputs.subTitle);
         formData.append("editor", this.inputs.editor);
         formData.append("description", this.inputs.description);
@@ -69,17 +106,16 @@ export default {
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
 
-        console.log(formData)
-
         const resp = await this.$http.patch(`/articles/${this.id}`, formData);
 
         console.log(formData)
         console.log(resp, "resp")
 
+        console.log("STATUS", resp.status);
         if (resp.status === 200) {
           Object.assign(this.inputs, this.$options.data().inputs);
           this.$toast.success("toast-global", "Article modifié avec succès");
-          this.$router.push({ name: 'articles-home' }); //REGLER PB AU PUSH
+          this.$router.push({ name: 'articles-home' });
         } else {
           this.$toast.error("toast-global", "problème de validation");
         }
@@ -88,7 +124,6 @@ export default {
     },
 
     handleFileUpload(event) {
-      console.log(event.target.files[0]);
       this.inputs.imageUrl = event.target.files[0];
     },
     async initcategory() {
@@ -175,12 +210,15 @@ export default {
                 <label for="imageUrl" class="form-label required">Ajouter une image</label>
                 <input name="imageUrl" id="imageUrl" type="file" class="form-control" @change="handleFileUpload">
 
-                <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
-                  La taille de l'image ne peut pas dépasser 500ko
+                <!-- <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
+                  Veuillez renseigner ce champs.
+                </div>
+                <div class="form-text mb-3" v-else>Photo ou image.</div> -->
+
+                <div>
+                  <img :src="baseUrl + existingImage" class="img-fluid rounded-top" :alt="inputs.title" />
                 </div>
 
-                <div class="form-text mb-3" v-else>Must be JPEG, PNG or GIF, and not exceed 1MB. Will replace current
-                  image.</div>
               </div>
             </div>
 
@@ -188,13 +226,17 @@ export default {
           </div>
           <div class="col-md-4 mb-3">
             <label for="name" class="form-label required">Date</label>
-            <input v-model.trim="inputs.date" id="date" name="date" type="date" class="form-control"
-              :class="{ 'is-invalid': validator.inputs.date.$error }" />
-            <div class="form-text text-danger" v-if="validator.inputs.date.$error">
-              Veuillez renseigner ce champs.
-            </div>
+            <input v-model.trim="inputs.date" id="date" name="date" :min="getFormattedDate()" type="date"
+              class="form-control"
+              :class="{ 'is-invalid': validator.inputs.date.$error || (validator.inputs.date === false && inputs.date) }" />
 
-            <div class="form-text mb-3" v-else>Date de publication.</div>
+            <div class="form-text text-danger" v-if="validator.inputs.date.$error && !inputs.date">
+              Veuillez renseigner ce champ.
+            </div>
+            <div class="form-text text-danger" v-if="validator.inputs.date === false && inputs.date">
+              La date ne peut pas être antérieure à la date actuelle.
+            </div>
+            <div class="form-text mb-3" v-else>Date de publication présente ou future.</div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="categoryId" class="form-label required">Catégorie</label>

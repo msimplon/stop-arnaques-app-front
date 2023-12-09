@@ -46,8 +46,7 @@ import { RouterLink } from "vue-router";
                 </li>
                 <li>
                   <RouterLink :to="{ name: 'actualité' }" class="dropdown-item">
-                    <i class="bi bi-hourglass-split"></i>
-                    A la une
+                    <i class="bi bi-house-door-fill"></i> A la une
                   </RouterLink>
                 </li>
               </ul>
@@ -60,7 +59,7 @@ import { RouterLink } from "vue-router";
             </li>
             <li class="nav-item">
               <RouterLink :to="{ name: 'signIn' }" class="nav-link">
-                <i class="bi bi-box-arrow-in-right"></i>
+                <i class="bi bi-gear-wide-connected"></i>
                 Connexion
               </RouterLink>
             </li>
@@ -85,17 +84,13 @@ import { RouterLink } from "vue-router";
           </ul>
         </div>
       </div>
-      <!-- <div class="locale-changer">
+      <div class="locale-changer">
         <select v-model="$i18n.locale" class="rounded">
-          <option
-            v-for="locale in $i18n.availableLocales"
-            :key="`locale-${locale}`"
-            :value="locale"
-          >
+          <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">
             {{ locale }}
           </option>
         </select>
-      </div> -->
+      </div>
     </nav>
   </header>
 </template>

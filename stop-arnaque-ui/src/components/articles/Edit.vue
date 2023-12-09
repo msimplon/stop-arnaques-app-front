@@ -43,7 +43,7 @@ export default {
           <th scope="col">Titre</th>
           <th scope="col">Sous-titre</th>
           <th scopr="col">Editeur</th>
-          <th scope="col">Date d'ajout</th>
+          <th scope="col">Date de publication</th>
           <th scope="col">Modifier</th>
           <th scope="col">Supprimer</th>
         </tr>
@@ -56,7 +56,7 @@ export default {
           <td class="text-center">{{ article.title }}</td>
           <td class="text-center">{{ article.subTitle }}</td>
           <td class="text-center">{{ article.editor }}</td>
-          <td class="text-center">{{ this.$fmt.date(article.dateAdded) }}</td>
+          <td class="text-center">{{ article.date }}</td>
           <td class="text-center">
             <RouterLink :to="{ name: 'article-update', params: { id: article.id } }" title="Update article">
               <i class="bi bi-pencil-square"></i>

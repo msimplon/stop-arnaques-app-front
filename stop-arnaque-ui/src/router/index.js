@@ -1,11 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-/*
- * Le router declare les composants en "lazy loading".
- * Ils ne sont pas importes avant que le composant ne soit utile a une route.
- * Le "lazy loading" revient a declarer une fonction qui importe le composant 
- * au lieu de referencer en "dur" le nom du composant importe en haut du script.
-*/
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,11 +7,9 @@ const router = createRouter({
     {
       path: '/',
       name: 'articles-home',
-      component: () => import('../components/articles/HomeArticles.vue'),
+      component: () => import('../views/HomeArticles.vue'),
       children: [
-        { path: 'infoCards', component: () => import('../components/articles/InfoCards.vue'), name: "infoCards" },
-        { path: 'homeLead', component: () => import('../components/articles/HomeLead.vue'), name: "homeLead" },
-      ],
+        { path: 'infoCards', component: () => import('../components/articles/InfoCards.vue'), name: "infoCards" }],
     }, {
       path: '/admin/articles',
       name: 'articles-edit',
@@ -26,15 +18,13 @@ const router = createRouter({
     {
       path: '/recours/articles',
       name: 'dgccrf',
-      // redirect: '/contact',
-      component: () => import('../components/articles/Dgccrf.vue'),
       beforeEnter() { location.href = 'https://www.economie.gouv.fr/dgccrf' }
 
     },
     {
       path: '/actualité/articles',
       name: 'actualité',
-      component: () => import('../components/articles/Actualité.vue')
+      component: () => import('../views/Actualité.vue')
     },
 
     {
@@ -53,28 +43,28 @@ const router = createRouter({
     {
       path: '/article/signal',
       name: 'article-signal-arnaque',
-      component: () => import('../components/articles/SignalArnaque.vue')
+      component: () => import('../views/SignalArnaque.vue')
     },
 
     {
       path: '/contact',
       name: 'contact',
-      component: () => import('../components/Contact.vue')
+      component: () => import('../views/Contact.vue')
     },
     {
       path: '/signIn',
       name: 'signIn',
-      component: () => import('../components/SignIn.vue')
+      component: () => import('../views/SignIn.vue')
     },
     {
       path: '/signUp',
       name: 'signUp',
-      component: () => import('../components/SignUp.vue')
+      component: () => import('../views/SignUp.vue')
     },
     {
       path: '/cgu',
       name: 'cgu',
-      component: () => import('../components/cgu/cgu.vue')
+      component: () => import('../views/cgu.vue')
     },
     {
       path: '/brouillon',
@@ -86,8 +76,6 @@ const router = createRouter({
       name: 'brouillon2',
       component: () => import('../components/commons/Brouillon2.vue')
     }
-
-
   ]
 
 })

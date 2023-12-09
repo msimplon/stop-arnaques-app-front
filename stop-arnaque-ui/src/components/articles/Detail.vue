@@ -53,15 +53,21 @@ export default {
                         <p class="editor">
                             <i class="bi bi-pencil"></i>
                             Par {{ article.editor }}
-                            <i class="bi bi-calendar"></i> Publié le {{ article.date }}
+                            <i class="bi bi-calendar"></i> Publié le
+                            {{ $d(article.date, 'long') }}
                         </p>
 
                         <div id="sidebar">
                             <img :src="baseUrl + article.imageUrl" :alt="article.name" class="detail">
                             <hr class="divide2">
                             <div id="lol">
-                                <ul>
+                                <ul class="lien">
                                     <h3 class="mb-4"> Articles récents</h3>
+                                    <li class="mb-4">
+                                        <RouterLink style="text-decoration:none" :to="{ name: 'actualité' }">
+                                            Comment éviter le phishing ?
+                                        </RouterLink>
+                                    </li>
                                     <li class="mb-4">
                                         <RouterLink style="text-decoration:none" :to="{ name: 'actualité' }">
                                             Comment éviter le phishing ?
@@ -102,11 +108,39 @@ export default {
 </template>
 
 <style>
+/*BACK TO TOP BUTTON*/
+.toTheTop {
+    height: 55px;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 10;
+
+
+    background-color: grey;
+    border-radius: 10px;
+}
+
+.toTheTop>img {
+    height: 50%;
+    width: 50%;
+    filter: invert();
+}
+
 #sidebar {
     display: inline-flex;
     flex-wrap: nowrap;
     flex-direction: row;
 
+}
+
+.lien {
+    font-size: x-large;
 }
 
 #lol {

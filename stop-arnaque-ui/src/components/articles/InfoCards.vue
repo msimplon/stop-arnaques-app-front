@@ -51,7 +51,7 @@ export default {
 
 <style>
 .link {
-    margin-right: 80%;
+    margin-left: 20%;
 }
 
 .link-title:hover {

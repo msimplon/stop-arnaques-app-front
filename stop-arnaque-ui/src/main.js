@@ -4,8 +4,8 @@ import App from './App.vue';
 import router from './router';
 import LabelValues from './components/commons/LabelValues.vue';
 // Import de nos plugins :
-import toast from './plugins/toast';
 import axios from './plugins/axios';
+import toast from './plugins/toast';
 import dayjs from 'dayjs';
 import i18n from './i18n/i18n.js';
 import VueSkeletor from 'vue-skeletor';
