@@ -1,6 +1,6 @@
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { required, maxLength, minValue, minLength, between, helpers } from "@vuelidate/validators";
+import { required, maxLength, minValue, minLength } from "@vuelidate/validators";
 
 export default {
 
@@ -19,8 +19,6 @@ export default {
                 password: null,
 
             },
-
-
         };
     },
     validations() {
@@ -46,7 +44,7 @@ export default {
 
             } else {
                 console.error(resp);
-                this.$toast.error("toast-global", "problème de validation");
+                this.$toast.error("toast-global", "problème de validatiosssn");
             }
         }
 
@@ -79,13 +77,13 @@ export default {
                                     <label for="name" class="form-label required"><i class="bi bi-envelope-at"></i> {{
                                         $t("authlabels.formUsername") }}</label>
                                     <div class="form-text text-danger" v-if="validator.inputs.username.$error">
-                                        Veuillez renseigner ce champs avec au minimum 2 caractère
+                                        Veuillez renseigner ce champs avec au minimum 2 caractères
                                     </div>
 
                                     <div class="form-text mb-3" v-else>Email.</div>
                                 </div>
                                 <div class="form-floating">
-                                    <input v-model.trim="inputs.password" id="password" name="password" type="text"
+                                    <input v-model.trim="inputs.password" id="password" name="password" type="password"
                                         maxlength="100" minlength="8" class="form-control"
                                         :class="{ 'is-invalid': validator.inputs.password.$error }" />
                                     <label for="password" class="form-label required"><i class="bi bi-key"></i>
@@ -121,57 +119,3 @@ export default {
     </main>
 </template>
 
-<style>
-.section-title {
-    text-align: center;
-}
-
-
-.section-title,
-.section-sub-title {
-    margin-bottom: 30px;
-}
-
-fieldset {
-    padding: 0 1em 1em;
-    border: 1pt solid;
-    border-radius: 4px;
-    margin: 0 auto 0.5em;
-    background: white;
-}
-
-legend {
-    float: none;
-    margin-bottom: 0;
-    width: auto;
-    padding: 0 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-/* 
-.signInContain {
-    margin-left: 30%;
-} */
-
-.presentation {
-    text-align: center;
-    margin-top: 1em;
-}
-
-.welcome {
-    margin-bottom: 0.25em;
-    font-weight: bold;
-    font-size: 2.25em;
-    color: rgb(0, 119, 255);
-}
-
-.description {
-    font-weight: bold;
-    font-size: 1.25em;
-}
-
-.p {
-    font-size: 1em;
-}
-</style>

@@ -13,11 +13,37 @@ export class ArticleHttp {
         return response;
     };
 
+    async get_all_articles() {
+        const url = `/articles/list-articles`;
+        const response = await http.get(url);
+        return response;
+    };
+
     async get_last_added_articles() {
         const url = `/articles/articleLastAdded`;
         const response = await http.get(url);
         return response;
     };
 
+    async get_one_article() {
+        const url = `/articles/article-view/${this.id}`;
+        const response = await http.get(url);
+        return response;
+    };
+    async update_article() {
+        const url = `/ articles/${this.id}`;
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        };
+        const response = await http.patch(url, config);
+        return response;
+    };
 
+    async remove_article(id) {
+        const url = `/articles/byId/${id}`;
+        const response = await http.delete(url);
+        return response;
+    }
 }

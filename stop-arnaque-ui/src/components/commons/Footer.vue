@@ -29,17 +29,6 @@
           </li>
         </ul>
       </div>
-      <!-- <div class="locale-changer d-flex justify-content-end mb-4">
-        <select v-model="$i18n.locale" class="rounded">
-          <option
-            v-for="locale in $i18n.availableLocales"
-            :key="`locale-${locale}`"
-            :value="locale"
-          >
-            {{ locale }}
-          </option>
-        </select>
-      </div> -->
     </div>
   </footer>
 </template>

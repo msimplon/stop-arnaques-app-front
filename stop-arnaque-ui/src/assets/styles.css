@@ -8,6 +8,14 @@
 
 }
 
+.logout {
+    margin-left: 20px;
+}
+
+.bi-box-arrow-right {
+    font-size: 20px;
+}
+
 button[type="submit"] {
     background: rgb(0, 119, 255);
     border: 20px;
@@ -60,6 +68,101 @@ label {
     color: red;
 }
 
+form {
+    padding: 30px;
+}
+
+.form-control {
+    background-color: whitesmoke
+}
+
+.form-control:focus {
+    border: 3px solid grey;
+    border-color: grey;
+    box-shadow: 0px 0px 1px 1px grey;
+}
+
+input {
+    background-color: grey;
+}
+
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+
+}
+
+/**********INFO-CARDS*******/
+
+.link {
+    margin-left: 20%;
+}
+
+.link-title:hover {
+    text-decoration: underline;
+    color: #6a8478;
+}
+
+.divid {
+    background: grey;
+    height: 3px;
+    margin: 25px auto;
+    width: 80px;
+}
+
+
+.card-editor {
+    display: flex;
+    align-content: flex-end;
+    justify-content: space-evenly;
+}
+
+.card-img-top:hover {
+    box-shadow: 10px 5px 5px white;
+}
+
+.cardo:hover {
+    box-shadow: 10px 5px 5px #887766;
+}
+
+@media only screen and (max-width: 880px) {
+    .cards {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center !important;
+
+    }
+}
+
+/**********EDIT*************/
+img {
+    padding: 5px;
+    width: 150px;
+}
+
+thead {
+    border: 1px solid #185999;
+    background: #f2f2f2;
+}
+
+tbody {
+    border: 1px solid #185999;
+}
+
+
+.bi-trash3 {
+    color: red !important;
+}
+
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+
+}
+
+.page-link {
+    color: #185999 !important;
+}
 
 /********* Navbar **********/
 
@@ -81,4 +184,451 @@ label {
 
 .navbar-brand:hover {
     transform: rotate(-2deg);
+}
+
+
+/*********SIGN-IN*************/
+
+.section-title {
+    text-align: center;
+}
+
+
+.section-title,
+.section-sub-title {
+    margin-bottom: 30px;
+}
+
+fieldset {
+    padding: 0 1em 1em;
+    border: 1pt solid;
+    border-radius: 4px;
+    margin: 0 auto 0.5em;
+    background: white;
+}
+
+legend {
+    float: none;
+    margin-bottom: 0;
+    width: auto;
+    padding: 0 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+
+.presentation {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.welcome {
+    margin-bottom: 0.25em;
+    font-weight: bold;
+    font-size: 2.25em;
+    color: rgb(0, 119, 255);
+}
+
+.description {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.p {
+    font-size: 1em;
+}
+
+
+
+/**************SIGN-UP**************/
+
+fieldset {
+    padding: 0 1em 1em;
+    border: 1pt solid;
+    border-radius: 4px;
+    margin: 0 auto 0.5em;
+    background: white;
+}
+
+legend {
+    float: none;
+    margin-bottom: 0;
+    width: auto;
+    padding: 0 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+}
+
+.presentation {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.welcome {
+    margin-bottom: 0.25em;
+    font-weight: bold;
+    font-size: 2.25em;
+    color: rgb(0, 119, 255);
+}
+
+.description {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.p {
+    font-size: 1em;
+}
+
+
+/*************ACTUALITE*************/
+
+.fancy {
+
+    --c: #0B486B;
+
+    width: fit-content;
+    padding: 0 1em;
+    line-height: 1.6em;
+    border: 1px solid;
+    color: #fff;
+    background:
+        conic-gradient(from 45deg at left, var(--c) 25%, #0000 0) 0,
+        conic-gradient(from -135deg at right, var(--c) 25%, #0000 0) 100%;
+    background-size: 51% 100%;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    border-image:
+        linear-gradient(#0000 calc(50% - var(--b)/2),
+            var(--c) 0 calc(50% + var(--b)/2),
+            #0000 0) 1/0 var(--w)/calc(var(--w) + var(--g));
+    margin-inline: auto;
+}
+
+@media only screen and (max-width: 880px) {
+    .cards {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center !important;
+
+    }
+}
+
+/*************CONTACT*************/
+
+.h2 {
+    justify-content: center;
+}
+
+.contact .info-box {
+    color: #313030;
+    box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+    padding: 15px;
+}
+
+.contact .info-box i {
+    font-size: 32px;
+    margin-right: 15px;
+    color: blue;
+    border-radius: 50%;
+    padding: 15px;
+    border: 2px dotted rgba(214, 215, 216, 0.6);
+    float: left;
+}
+
+.rich-text {
+    text-align: center !important;
+    overflow-wrap: break-word;
+}
+
+.contact .info-box h3 {
+    font-size: 20px;
+    color: #656262;
+    font-weight: 700;
+    margin: 10px 0 10px 68px;
+}
+
+.bi {
+    color: #313030
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.contact .info-box p {
+    padding: 0;
+    line-height: 24px;
+    font-size: 14px;
+    margin: 0 0 0 68px;
+}
+
+.contact .email-form {
+    box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+    padding: 30px;
+}
+
+.contact .email-form .error-message {
+    display: none;
+    color: #fff;
+    background: rgb(0, 119, 255);
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+}
+
+.contact .email-form .error-message br+br {
+    margin-top: 25px;
+}
+
+.contact .email-form .sent-message {
+    display: none;
+    color: #fff;
+    background: rgb(0, 119, 255);
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+}
+
+.contact .email-form .loading {
+    display: none;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+.contact .email-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 9px solid rgb(0, 119, 255);
+    border-top-color: #eee;
+    animation: animate-loading 1s linear infinite;
+}
+
+.contact .email-form input,
+.contact .email-form textarea {
+    border-radius: 10px;
+    box-shadow: none;
+    font-size: 14px;
+}
+
+.contact .email-form input:focus,
+.contact .email-form textarea:focus {
+    border-color: rgb(0, 119, 255);
+}
+
+.contact .email-form input {
+    padding: 10px 15px;
+}
+
+.contact .email-form textarea {
+    padding: 12px 15px;
+}
+
+.contact .email-form button[type="submit"] {
+    background: rgb(0, 119, 255);
+    border: 20px;
+    padding: 10px 10px;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.contact .email-form button[type="submit"]:hover {
+    background: #78cbec;
+}
+
+
+/************BACK TO TOP BUTTON*********/
+.toTheTop {
+    height: 55px;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 10;
+
+
+    background-color: grey;
+    border-radius: 10px;
+}
+
+.toTheTop>img {
+    height: 50%;
+    width: 50%;
+    filter: invert();
+}
+
+/************DETAILS*********/
+
+#sidebar {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+}
+
+.lien {
+    font-size: x-large;
+}
+
+#lol {
+    margin-left: 20%;
+}
+
+body {
+    background: #eee;
+}
+
+
+.detail {
+    width: 40%;
+    height: 55%;
+}
+
+.text-titre {
+    color: grey;
+    font-weight: bold;
+
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+
+ul {
+    text-decoration: none;
+
+}
+
+.divide {
+    background: grey;
+    height: 5px;
+    margin: 10px auto;
+    width: 80px;
+}
+
+.divide2 {
+    border-left: thick solid #000;
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    background: grey;
+    height: 15%;
+    display: inline-flex;
+    flex-wrap: wrap;
+
+}
+
+
+.date__day {
+    font-size: 22px;
+}
+
+.card-tag {
+    padding: 0.2rem 0.5rem;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #505f79;
+    color: #fff;
+}
+
+.editor {
+    margin-top: 3%;
+    text-transform: uppercase;
+}
+
+.bi-calendar {
+    margin-left: 10%;
+}
+
+.cat {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.blog-card {
+    padding: 30px;
+    position: relative;
+
+}
+
+p,
+.text {
+    font-family: 'Raleway', sans-serif !important;
+    text-align: justify !important;
+
+}
+
+.blog-card__background,
+.card__background--layer {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.blog-card__background {
+    padding: 15px;
+    background: white;
+}
+
+.card__background--wrapper {
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 60%);
+    position: relative;
+    overflow: hidden;
+}
+
+.card__background--main {
+    height: 100%;
+    position: relative;
+    transition: 300ms ease-in-out;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.blog-card__head {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-card__info {
+    z-index: 10;
+    background: white;
+    padding: 20px 15px;
+}
+
+
+.card__background--main {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.card__background--layer {
+    opacity: 1;
 }

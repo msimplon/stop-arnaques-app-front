@@ -6,7 +6,6 @@ import {
   minLength,
   maxLength,
   required,
-  sameAs,
 } from "@vuelidate/validators";
 import useValidate from "@vuelidate/core";
 import ValidationMessage from "../components/commons/ValidationMessage.vue";
@@ -24,7 +23,6 @@ export default {
         lastName: null,
         username: null,
         password: null,
-        // confirmPassword: null,
       },
     });
 
@@ -144,12 +142,6 @@ export default {
     <div class="container-xl mt-2">
       <div class="presentation">
         <div class="welcome">{{ $t("authlabels.formwelcom") }}</div>
-        <!-- <div>
-          <p>Arrêtez les arnaques dans leur élan avec stop arnaque !</p>
-        </div>
-        <div class="description">
-          <p>Inscrivez-vous ou connectez-vous pour tester!</p>
-        </div> -->
       </div>
       <div class="row mt-4">
         <div class="col-md my-6 mx-auto">
@@ -202,17 +194,6 @@ export default {
                       </div>
                       <ValidationMessage :model="v$.user.password" />
                     </div>
-
-                    <!-- <div class="col-md-6">
-                      <label for="confirmPassword" class="form-label required"><i class="bi bi-key"></i> Confirmer le mot
-                        de
-                        passe</label>
-                      <input v-model.trim="state.user.confirmPassword" name="confirmPassword" id="confirmPassword"
-                        type="password" class="form-control" :class="{
-                          'is-invalid': v$.user.confirmPassword.$error,
-                        }" />
-                      <ValidationMessage :model="v$.user.confirmPassword" />
-                    </div> -->
                   </div>
                 </div>
                 <div class="aside-text-info">
@@ -235,43 +216,4 @@ export default {
   </main>
 </template>
 
-<style>
-fieldset {
-  padding: 0 1em 1em;
-  border: 1pt solid;
-  border-radius: 4px;
-  margin: 0 auto 0.5em;
-  background: white;
-}
 
-legend {
-  float: none;
-  margin-bottom: 0;
-  width: auto;
-  padding: 0 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-
-}
-
-.presentation {
-  text-align: center;
-  margin-top: 1em;
-}
-
-.welcome {
-  margin-bottom: 0.25em;
-  font-weight: bold;
-  font-size: 2.25em;
-  color: rgb(0, 119, 255);
-}
-
-.description {
-  font-weight: bold;
-  font-size: 1.25em;
-}
-
-.p {
-  font-size: 1em;
-}
-</style>

@@ -41,7 +41,6 @@ export default {
         <tr class="text-center align-middle">
           <th scope="col">Image</th>
           <th scope="col">Titre</th>
-          <th scope="col">Sous-titre</th>
           <th scopr="col">Editeur</th>
           <th scope="col">Date de publication</th>
           <th scope="col">Modifier</th>
@@ -54,9 +53,8 @@ export default {
             <img :src="baseUrl + article.imageUrl" class="img-fluid rounded-top" :alt="article.title" />
           </td>
           <td class="text-center">{{ article.title }}</td>
-          <td class="text-center">{{ article.subTitle }}</td>
           <td class="text-center">{{ article.editor }}</td>
-          <td class="text-center">{{ article.date }}</td>
+          <td class="text-center">{{ $d(article.date, 'long') }}</td>
           <td class="text-center">
             <RouterLink :to="{ name: 'article-update', params: { id: article.id } }" title="Update article">
               <i class="bi bi-pencil-square"></i>
@@ -70,37 +68,3 @@ export default {
     </table>
   </div>
 </template>
-
-<style>
-img {
-  padding: 5px;
-  width: 150px;
-}
-
-thead {
-  border: 1px solid #185999;
-  background: #f2f2f2;
-}
-
-tbody {
-  border: 1px solid #185999;
-}
-
-.bi-pencil-square {
-  color: #185999 !important;
-}
-
-.bi-trash3 {
-  color: red !important;
-}
-
-p,
-.text {
-  font-family: 'Raleway', sans-serif !important;
-
-}
-
-.page-link {
-  color: #185999 !important;
-}
-</style>

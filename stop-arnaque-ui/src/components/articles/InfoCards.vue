@@ -35,10 +35,6 @@ export default {
                     <h2>{{ article.title }}</h2>
                     <hr class="divid">
                     <p class="card-text text-muted ">{{ article.introduction }}</p>
-                    <!-- <div class="card-editor">
-                        <p>{{ article.editor }}</p>
-                        <p>{{ article.date }}</p>
-                    </div> -->
                     <RouterLink :to="{ name: 'article-detail', params: { id: article.id } }" class="link"
                         title="Details...">
                         Lire plus
@@ -49,45 +45,3 @@ export default {
     </section>
 </template>
 
-<style>
-.link {
-    margin-left: 20%;
-}
-
-.link-title:hover {
-    text-decoration: underline;
-    color: #6a8478;
-}
-
-.divid {
-    background: grey;
-    height: 3px;
-    margin: 25px auto;
-    width: 80px;
-}
-
-
-.card-editor {
-    /* margin-left: 40%; */
-    display: flex;
-    align-content: flex-end;
-    justify-content: space-evenly;
-}
-
-.card-img-top:hover {
-    box-shadow: 10px 5px 5px white;
-}
-
-.cardo:hover {
-    box-shadow: 10px 5px 5px #887766;
-}
-
-@media only screen and (max-width: 880px) {
-    .cards {
-        display: flex;
-        flex-direction: column !important;
-        align-items: center !important;
-
-    }
-}
-</style>

@@ -97,13 +97,3 @@ import { RouterLink } from "vue-router";
 <!-- <img src="favicon.ico"> -->
 
 
-<style>
-.logout {
-  margin-left: 20px;
-  /* font-size: medium; */
-}
-
-.bi-box-arrow-right {
-  font-size: 20px;
-}
-</style>

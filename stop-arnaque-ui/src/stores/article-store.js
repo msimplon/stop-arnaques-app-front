@@ -20,6 +20,27 @@ export const ArticleStore = defineStore('article-store', {
                 this.lastAddedArticles = promise.body;
             }
             return promise;
-        }
+        },
+        async get_all_articles() {
+            const articleHttp = new ArticleHttp();
+            const promise = await articleHttp.get_all_articles();
+            return promise;
+        },
+        async get_one_article() {
+            const articleHttp = new ArticleHttp();
+            const promise = await articleHttp.get_one_article();
+            return promise;
+        },
+        async update_article() {
+            const articleHttp = new ArticleHttp();
+            const promise = await articleHttp.update_article();
+            return promise;
+        },
+        async remove_article() {
+            const articleHttp = new ArticleHttp();
+            const promise = await articleHttp.remove_article();
+            return promise;
+        },
     },
+
 })

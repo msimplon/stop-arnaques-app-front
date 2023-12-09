@@ -1,7 +1,7 @@
 <script>
 import { useRoute } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
-import { required, maxLength, minValue, between } from "@vuelidate/validators";
+import { required, maxLength, minValue } from "@vuelidate/validators";
 
 export default {
 
@@ -209,12 +209,6 @@ export default {
               <div class="mb-3">
                 <label for="imageUrl" class="form-label required">Ajouter une image</label>
                 <input name="imageUrl" id="imageUrl" type="file" class="form-control" @change="handleFileUpload">
-
-                <!-- <div class="form-text text-danger" v-if="validator.inputs.imageUrl.$error">
-                  Veuillez renseigner ce champs.
-                </div>
-                <div class="form-text mb-3" v-else>Photo ou image.</div> -->
-
                 <div>
                   <img :src="baseUrl + existingImage" class="img-fluid rounded-top" :alt="inputs.title" />
                 </div>
@@ -261,28 +255,4 @@ export default {
     </div>
   </div>
 </template>
-<style>
-form {
-  padding: 30px;
-}
 
-.form-control {
-  background-color: whitesmoke
-}
-
-.form-control:focus {
-  border: 3px solid grey;
-  border-color: grey;
-  box-shadow: 0px 0px 1px 1px grey;
-}
-
-input {
-  background-color: grey;
-}
-
-p,
-.text {
-  font-family: 'Raleway', sans-serif !important;
-
-}
-</style>

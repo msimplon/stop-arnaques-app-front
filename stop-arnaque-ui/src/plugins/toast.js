@@ -26,16 +26,11 @@ export default {
     install: (app) => {
         app.config.globalProperties.$toast = {
             success: (id, msg) => {
-                showToast(id, 'text-bg-success', msg);
-                console.log("coucou")
+                showToast(id, 'text-bg-primary', msg);
             },
             error: (id, msg) => {
                 showToast(id, 'text-bg-danger', msg);
-            },
-            update: (id, msg) => {
-                showToast(id, 'text-bg-success', msg);
-                console.log("updated")
-            },
+            }
         }
     }
 };
