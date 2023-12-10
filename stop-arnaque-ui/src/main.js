@@ -21,10 +21,10 @@ app.use(httpCommon);
 app.use(VueSkeletor);
 
 // Gestionnaire global des erreurs qui ne sont pas gerees ailleurs(selon les besoins) :
-app.config.errorHandler = (err, comp) => {
-    console.error('ErrorHandler', err);
-    comp.$toast.error('toast-global', 'Oups, un problème est survenu');
-};
+// app.config.errorHandler = (err, comp) => {
+//     console.error('ErrorHandler', err);
+//     comp.$toast.error('toast-global', 'Oupssss, un problème est survenu');
+// };
 
 app.use(i18n)
 

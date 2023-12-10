@@ -549,9 +549,21 @@ ul {
     color: #fff;
 }
 
+.editor-info {
+    display: flex;
+    display: inline;
+    width: 100%;
+}
+
+.editor-date {
+    margin-left: 70px;
+    width: 60%;
+
+}
+
 .editor {
-    margin-top: 3%;
     text-transform: uppercase;
+
 }
 
 .bi-calendar {

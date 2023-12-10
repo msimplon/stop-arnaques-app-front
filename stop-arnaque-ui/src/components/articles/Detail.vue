@@ -50,13 +50,16 @@ export default {
                         </div>
                         <hr class="divide">
                         <h5>{{ article.subTitle }}</h5>
-                        <p class="editor">
-                            <i class="bi bi-pencil"></i>
-                            Par {{ article.editor }}
-                            <i class="bi bi-calendar"></i> Publié le
-                            {{ $d(article.date, 'long') }}
-                        </p>
-
+                        <div class="editor-info d-flex flex-column flex-md-row">
+                            <p class="editor">
+                                <i class="bi bi-pencil"></i>
+                                Par {{ article.editor }}
+                            </p>
+                            <p class="editor-date">
+                                <i class="bi bi-calendar"></i> Publié le
+                                {{ $d(article.date, 'long') }}
+                            </p>
+                        </div>
                         <div id="sidebar">
                             <img :src="baseUrl + article.imageUrl" :alt="article.name" class="detail">
                             <hr class="divide2">
@@ -99,11 +102,5 @@ export default {
             </div>
         </div>
     </div>
-
-    <section class="detail-page">
-        <div class="container mt-5">
-
-        </div>
-    </section>
 </template>
 
