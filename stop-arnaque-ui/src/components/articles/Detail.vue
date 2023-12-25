@@ -1,29 +1,24 @@
 <script>
 import { useRoute } from 'vue-router';
+import { ArticleStore } from "../../stores/article-store";
+
 
 export default {
     setup() {
+        const articleStoreObj = ArticleStore();
+        const { articleDetail } = storeToRefs(articleStoreObj);
+        onBeforeMount(() => {
+            articleStoreObj.articleDetail();
+        });
+
         return {
-            route: useRoute()
-        }
-    },
-    data() {
-        return {
+            articleDetail,
+            route: useRoute(),
             id: this.route.params.id,
             baseUrl: import.meta.env.VITE_IMG_BASE_URL,
             article: {},
-
         }
     },
-    methods: {
-        async initArticle() {
-            const resp = await this.$http.get(`/articles/article-view/${this.id}`);
-            this.article = resp.body;
-        }
-    },
-    beforeMount() {
-        this.initArticle();
-    }
 }
 </script>
 

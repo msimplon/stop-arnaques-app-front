@@ -23,3 +23,4 @@ export default {
         app.config.globalProperties.$http = http;
     }
 };
+

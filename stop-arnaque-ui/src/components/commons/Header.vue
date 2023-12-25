@@ -84,13 +84,13 @@ import { RouterLink } from "vue-router";
           </ul>
         </div>
       </div>
-      <div class="locale-changer">
+      <!-- <div class="locale-changer">
         <select v-model="$i18n.locale" class="rounded">
           <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">
             {{ locale }}
           </option>
         </select>
-      </div>
+      </div> -->
     </nav>
   </header>
 </template>

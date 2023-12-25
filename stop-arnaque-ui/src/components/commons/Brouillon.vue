@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Welcome To Our Studio!</div>
@@ -6,7 +6,6 @@
             <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
         </div>
     </header>
-    <!-- Services-->
     <section class="page-section" id="services">
         <div class="container">
             <div class="text-center">
@@ -25,8 +24,8 @@
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="bi bi-circle fa-stack-2x text-primary"></i>
-                        <i class="bi bi-arrow-down-square-fill"></i>
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="my-3">Responsive Design</h4>
                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
@@ -44,6 +43,83 @@
             </div>
         </div>
     </section>
+    <section class="page-section bg-light" id="team">
+        <div class="container">
+            <div class="row text-center">
+                <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="../../../public/images/1.jpg" alt="..." />
+                        <h4>Parveen Anand</h4>
+                        <h5 class="text-muted mt-2">Lead Developer</h5>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="../../../public/images/2.jpg" alt="..." />
+                        <h4>Diana Petersen</h4>
+                        <h5 class="text-muted mt-2">Lead Developer</h5>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="../../../public/images/3.jpg" alt="..." />
+                        <h4>Larry Parker</h4>
+                        <h5 class="text-muted mt-2">Lead Developer</h5>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque,
+                        laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="../../../public/images/microsoft.svg"
+                            alt="..." aria-label="Microsoft Logo" /></a>
+                </div>
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="../../../public/images/google.svg"
+                            alt="..." aria-label="Google Logo" /></a>
+                </div>
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="../../../public/images/facebook.svg"
+                            alt="..." aria-label="Facebook Logo" /></a>
+                </div>
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="../../../public/images/ibm.svg"
+                            alt="..." aria-label="IBM Logo" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <style>
 header.masthead {
@@ -57,6 +133,7 @@ header.masthead {
     background-position: center center;
     background-size: cover;
 }
+
 
 header.masthead .masthead-subheading {
     font-size: 1.5rem;
@@ -120,5 +197,34 @@ header.masthead .masthead-heading {
     section {
         padding: 9rem 0;
     }
+
+    .team-member {
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .team-member img {
+        width: 14rem;
+        height: 14rem;
+        border: 0.5rem solid rgba(0, 0, 0, 0.1);
+    }
+
+    .team-member h4,
+    .team-member .h4 {
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+    }
+
+    .img-brand {
+        height: 2.75rem;
+    }
+
+    .text-muted {
+        --bs-text-opacity: 1;
+        color: #6c757d !important;
+        text-align: center;
+    }
+
+
 }
-</style>
+</style> -->

@@ -12,7 +12,6 @@ export default {
   },
   data() {
     return {
-
       categoryId: [],
       inputs: {
         title: null,
@@ -24,8 +23,6 @@ export default {
         date: null,
         categoryId: 0,
       },
-      // date: this.getFormattedDate(),
-
       existingTitles: [], // Tableau des titres existants
     };
   },
@@ -115,8 +112,6 @@ export default {
         formData.append("introduction", this.inputs.introduction);
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
-
-
         const resp = await this.$http.post("/articles", formData);
 
         if (resp.status === 201) {

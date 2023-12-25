@@ -7,6 +7,7 @@ import toast from './plugins/toast';
 import i18n from './i18n/i18n.js';
 import VueSkeletor from 'vue-skeletor';
 import httpCommon from './services/http-common.js';
+import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/styles.css';
 
 // Instanciation de l'application Vue a partir du "root component" App.vue :
