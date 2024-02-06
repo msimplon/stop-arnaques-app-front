@@ -1,7 +1,7 @@
 <script>
 
 // import SearchComponent from "../commons/SearchComponent.vue";
-import InfoCards from "../components/articles/infoCards.vue";
+import InfoCards from "../components/articles/infocards.vue";
 export default {
   name: "HomeArticles",
   components: {
@@ -122,7 +122,7 @@ export default {
         </div>
       </div>
     </section>
-    <div class="py-5">
+    <!-- <div class="py-5">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-3 col-sm-6 my-3">
@@ -143,6 +143,6 @@ export default {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </main>
 </template>

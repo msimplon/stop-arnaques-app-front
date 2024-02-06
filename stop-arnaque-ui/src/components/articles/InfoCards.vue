@@ -13,6 +13,7 @@ export default {
         async initArticles() {
             const resp = await this.$http.get("/articles/list-articles");
             this.articles = resp.body;
+            console.log('Articles récupérés:', this.articles);
         },
 
 

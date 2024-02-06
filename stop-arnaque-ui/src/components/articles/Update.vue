@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     async initInputs() {
-      const resp = await this.$http.get(`/articles/article-view/${this.id}`);
+      const resp = await this.$http.get(`/articles/${this.id}/detail`);
       this.inputs = resp.body;
       console.log(resp.body, "test")
       this.existingImage = resp.body.imageUrl

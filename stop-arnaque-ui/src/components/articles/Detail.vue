@@ -1,20 +1,33 @@
 <script>
+import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router';
+import { storeToRefs } from "pinia";
 import { ArticleStore } from "../../stores/article-store";
 
 
 export default {
     setup() {
         const articleStoreObj = ArticleStore();
-        const { articleDetail } = storeToRefs(articleStoreObj);
+        const { get_one_article } = storeToRefs(articleStoreObj);
+        const route = useRoute();
         onBeforeMount(() => {
-            articleStoreObj.articleDetail();
+            const id = route.params.id;
+            if (id !== undefined) {
+                articleStoreObj.get_one_article(id)
+                    .then(response => {
+                        console.log('Réponse de la méthode get_one_article dans le composant Vue :', response);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+
         });
 
         return {
-            articleDetail,
-            route: useRoute(),
-            id: this.route.params.id,
+            get_one_article,
+            route,
+            id: route.params.id,
             baseUrl: import.meta.env.VITE_IMG_BASE_URL,
             article: {},
         }
@@ -23,8 +36,6 @@ export default {
 </script>
 
 <template>
-    <a href="#" class="toTheTop"><img src="/images/arrow.svg" alt="up"></a>
-
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
@@ -40,7 +51,10 @@ export default {
                     </div>
                     <div class="blog-card__info">
                         <div class="cat">
-                            <h4>{{ article.title }}</h4>
+                            <h4>{{ this.article.title }}</h4>
+                            <h4>{{ article.id }}</h4>
+
+
                             <p class="card-tag">{{ article.categoryName }}</p>
                         </div>
                         <hr class="divide">
@@ -50,10 +64,10 @@ export default {
                                 <i class="bi bi-pencil"></i>
                                 Par {{ article.editor }}
                             </p>
-                            <p class="editor-date">
+                            <!-- <p class="editor-date">
                                 <i class="bi bi-calendar"></i> Publié le
-                                {{ $d(article.date, 'long') }}
-                            </p>
+                                {{ article.date }}
+                            </p> -->
                         </div>
                         <div id="sidebar">
                             <img :src="baseUrl + article.imageUrl" :alt="article.name" class="detail">
@@ -87,10 +101,10 @@ export default {
                         <p class="text mt-5">{{ article.introduction }}</p>
                         <p class="text-titre">{{ article.subTitle }}</p>
                         <p class="text">{{ article.description }}</p>
-                        <p class="text-titre">{{ article.subTitle }}</p>
+                        <!-- <p class="text-titre">{{ article.subTitle }}</p>
                         <p class="text">{{ article.description }}</p>
                         <p class="text-titre">{{ article.subTitle }}</p>
-                        <p class="text">{{ article.description }}</p>
+                        <p class="text">{{ article.description }}</p> -->
 
                     </div>
                 </article>

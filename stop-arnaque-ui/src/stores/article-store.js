@@ -1,13 +1,12 @@
 import { defineStore } from 'pinia';
 import { ArticleHttp } from "../services/ArticleHttp";
 
-
 export const ArticleStore = defineStore('article-store', {
     state: () => ({
         lastAddedArticles: [],
+        article: {}
     }),
     actions: {
-
         async add_new_article() {
             const articleHttp = new ArticleHttp();
             const promise = await articleHttp.add_new_book();
@@ -26,11 +25,19 @@ export const ArticleStore = defineStore('article-store', {
             const promise = await articleHttp.get_all_articles();
             return promise;
         },
-        async get_one_article() {
+        async get_one_article(id) {
             const articleHttp = new ArticleHttp();
-            const promise = await articleHttp.get_one_article();
+            const promise = await articleHttp.get_one_article(id);
+            if (promise.status === 200) {
+                this.article = promise.body;
+                console.log("Article chargé avec succès :", this.article);
+            }
+            else {
+                console.error("La promesse ne contient pas la propriété 'status'.", promise);
+            }
             return promise;
         },
+
         async update_article() {
             const articleHttp = new ArticleHttp();
             const promise = await articleHttp.update_article();
@@ -42,5 +49,4 @@ export const ArticleStore = defineStore('article-store', {
             return promise;
         },
     },
-
-})
+});
