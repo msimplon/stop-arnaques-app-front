@@ -5,8 +5,10 @@ import { RouterLink } from "vue-router";
   <header class="bg-light sticky-top">
     <nav class="container-xl navbar-light navbar navbar-expand-md">
       <div class="container-fluid">
-        <RouterLink :to="{ name: 'articles-home' }" class="navbar-brand">Stop Arnaque
-        </RouterLink>
+        <div class="lol">
+          <RouterLink :to="{ name: 'articles-home' }" class="navbar-brand">Stop Arnaque
+          </RouterLink>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -79,8 +81,6 @@ import { RouterLink } from "vue-router";
                 <i class="bi bi-box-arrow-right"></i>
               </RouterLink>
             </li>
-
-
           </ul>
         </div>
       </div>
@@ -94,6 +94,9 @@ import { RouterLink } from "vue-router";
     </nav>
   </header>
 </template>
-<!-- <img src="favicon.ico"> -->
-
-
+<style>
+.navbar-nav .nav-item {
+  margin-right: 25px;
+  /* Ajustez la valeur de la marge selon vos préférences */
+}
+</style>

@@ -24,7 +24,7 @@ const ACCEPTED_STATUS = [200, 201, 202, 204, 400, 404];
 
 export default {
     install: (app) => {
-        const httpBase = new HttpBase();  // Créez une instance de HttpBase
-        app.config.globalProperties.$http = httpBase.http;  // Utilisez httpBase.http au lieu de http
+        const httpBase = new HttpBase();
+        app.config.globalProperties.$http = httpBase.http;
     }
 };

@@ -1,90 +1,85 @@
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { required, maxLength, minValue, between } from "@vuelidate/validators";
+import { required, maxLength } from "@vuelidate/validators";
 
 export default {
     setup() {
-        // return {
-        //     validator: useVuelidate({ $autoDirty: true }),
-        // };
+        return {
+            validator: useVuelidate({ $autoDirty: true }),
+        };
     },
-    // data() {
-    //     return {
-    //         categoryId: [],
-    //         inputs: {
-    //             title: null,
-    //             subTitle: null,
-    //             editor: null,
-    //             description: null,
-    //             imageUrl: null,
-    //             date: null,
-    //             categoryId: 0,
-    //         },
+    data() {
+        return {
+            dispute: [],
+            inputs: {
+                object: null,
+                email: null,
+                incidentNumber: null,
+                attachement: null,
+                details: null,
+                dispute: 0,
+            },
+        };
+    },
+    validations() {
+        return {
+            inputs: {
+                object: { required, maxLength: maxLength(100) },
+                email: { required, maxLength: maxLength(100) },
+                details: { required, maxLenght: maxLength(1000) },
+                incidentNumber: { required, maxLength: maxLength(1000) },
+                attachement: {
+                    maxValue: (file) => {
+                        return file === null || file.size < 512000
+                    }
+                },
+                dispute: { required }
+            },
+        };
+    },
+    methods: {
+        async submit() {
+            const formData = new FormData()
+            const valid = await this.validator.$validate()
+            if (valid) {
+                if (this.inputs.attachement != null) {
+                    formData.append("attachement", this.inputs.attachement)
+                }
+                formData.append("object", this.inputs.object);
+                formData.append("email", this.inputs.email);
+                formData.append("incidentNumber", this.inputs.incidentNumber);
+                formData.append("details", this.inputs.details);
+                formData.append("dispute", this.inputs.dispute);
 
+                console.log(formData)
+                const resp = await this.$http.post("/forms", formData);
+                console.log(formData)
+                console.log(resp, "resp")
 
-    //     };
-    // },
-    // validations() {
-    //     return {
-    //         inputs: {
-    //             title: { required, maxLength: maxLength(100) },
-    //             subTitle: { required, maxLength: maxLength(100) },
-    //             editor: { required, maxLenght: maxLength(100) },
-    //             description: { required, maxLength: maxLength(1000) },
-    //             imageUrl: {
-    //                 maxValue: (imageUrl) => {
-    //                     return imageUrl === null || imageUrl.size < 512000
-    //                 }
-    //             },
-    //             categoryId: { required },
-    //             date: { required }
-    //         },
-    //     };
-    // },
-    // methods: {
-    //     async submit() {
-    //         const formData = new FormData()
-    //         const valid = await this.validator.$validate()
-    //         if (valid) {
-    //             const [year, month, day] = this.inputs.date.toString().split("-")
-    //             if (this.inputs.imageUrl != null) {
-    //                 formData.append("imageUrl", this.inputs.imageUrl)
-    //             }
-    //             formData.append("title", this.inputs.title);
-    //             formData.append("subTitle", this.inputs.subTitle);
-    //             formData.append("editor", this.inputs.editor);
-    //             formData.append("description", this.inputs.description);
-    //             formData.append("date", `${day}/${month}/${year}`);
-    //             formData.append("categoryId", this.inputs.categoryId);
+                if (resp.status === 201) {
+                    Object.assign(this.inputs, this.$options.data().inputs);
 
-    //             console.log(formData)
-    //             const resp = await this.$http.post("/articles", formData);
-    //             console.log(formData)
-    //             console.log(resp, "resp")
+                    this.$toast.success("toast-global", "Votre signalement a bien été envoyé");
+                } else {
+                    console.error(resp);
+                    this.$toast.error("toast-global", "problème de validation");
+                }
+            }
 
-    //             if (resp.status === 201) {
-    //                 Object.assign(this.inputs, this.$options.data().inputs);
+        },
 
-    //                 this.$toast.success("toast-global", "Votre signalement a bien été envoyé");
-    //             } else {
-    //                 console.error(resp);
-    //                 this.$toast.error("toast-global", "problème de validation");
-    //             }
-    //         }
+        handleFileUpload(event) {
+            this.inputs.attachement = event.target.files[0]
+        },
+        async initdispute() {
+            const resp = await this.$http.get("/disputes");
+            this.dispute = resp.body;
 
-    //     },
-
-    //     handleFileUpload(event) {
-    //         this.inputs.imageUrl = event.target.files[0]
-    //     },
-    //     async initcategory() {
-    //         const resp = await this.$http.get("/categories");
-    //         this.categoryId = resp.body;
-    //     },
-    // },
-    // beforeMount() {
-    //     this.initcategory();
-    // },
+        },
+    },
+    beforeMount() {
+        this.initdispute();
+    },
 };
 </script>
 
@@ -95,19 +90,49 @@ export default {
                 Formulaire de signalement </h1>
             <form novalidate @submit.prevent="submit">
                 <div class="row">
-                    <div class="col-12">
-                        <label for="name" class="form-label required">Votre e-mail</label>
-                        <input id="title" name="title" type="text" maxlength="100" class="form-control" />
+                    <div class="col-md-4 mb-3">
+                        <label for="incidentNumber" class="form-label required">Numéro d'incident
+                        </label>
+                        <input v-model.trim="inputs.incidentNumber" id="incidentNumber" name="incidentNumber"
+                            class="form-control" :class="{ 'is-invalid': validator.inputs.incidentNumber.$error }" />
+                        <div class="form-text text-danger" v-if="validator.inputs.incidentNumber.$error">
+                            Veuillez renseigner ce champs.
+                        </div>
+                        <div class="form-text mb-3" v-else>numéro d'incident</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="incidentNumber" class="form-label required">E-mail
+                        </label>
+                        <input v-model.trim="inputs.email" id="email" name="email" type="text" maxlength="100"
+                            class="form-control" :class="{ 'is-invalid': validator.inputs.email.$error }" />
+
+                        <div class="form-text text-danger" v-if="validator.inputs.email.$error">
+                            Veuillez renseigner ce champs avec au minimum 2 caractères
+                        </div>
+                        <div class="form-text mb-3" v-else>Votre adresse E-mail.</div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="incidentNumber" class="form-label required">Object
+                        </label>
+                        <input v-model.trim="inputs.object" id="object" name="object" type="text" maxlength="100"
+                            class="form-control" :class="{ 'is-invalid': validator.inputs.object.$error }" />
+
+                        <div class="form-text text-danger" v-if="validator.inputs.object.$error">
+                            Veuillez renseigner ce champs avec au minimum 2 caractères
+                        </div>
+
+                        <div class="form-text mb-3" v-else>Saisir un object à votre signalement.</div>
                     </div>
                 </div>
-                <div class="fieldarnaque mt-4">
+                <div class="fieldarnaque">
                     <hr>
                     <i class="bi bi-exclamation-triangle"></i>
-                    <p> DÉCRIVEZ L'ARNAQUE</p>
+                    <p style="margin-left: 5%; justify-items: center; size: 20%;"> DÉCRIVEZ L'ARNAQUE </p>
                     <i class="bi bi-exclamation-triangle"></i>
                     <hr>
                 </div>
-                <fieldset>
+                <!-- <fieldset>
                     <legend class="w-auto px-2 mt-4">
                         <p>Que souhaitez-vous signaler ?
                         </p>
@@ -144,46 +169,62 @@ export default {
                             </label>
                         </div>
                     </legend>
-                </fieldset>
+                </fieldset> -->
                 <div class=" dropdown d-grid gap-3 mt-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Raison </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Publicité mensongère</a></li>
-                        <li><a class="dropdown-item" href="#">Phishing(hameconnage)</a></li>
-                        <li><a class="dropdown-item" href="#">Fraude en ligne</a></li>
-                        <li><a class="dropdown-item" href="#">Arnaque au don</a></li>
-                        <li><a class="dropdown-item" href="#">Pyramide de Ponzi</a></li>
-                        <li><a class="dropdown-item" href="#">Arnaque sentimentale</a></li>
-                        <li><a class="dropdown-item" href="#">Autre arnaque et escroquerie</a></li>
-                    </ul>
+                    <label for="dispute" class="form-label required">Raison du signalement</label>
+                    <select v-model.number="inputs.dispute" id="dispute" name="dispute" class="form-select"
+                        :class="{ 'is-invalid': validator.inputs.dispute.$error }">
+                        <option selected disabled value="0">Type de litige</option>
+                        console.log(this.dispute)
+                        <LabelValues :items="dispute" />
+                    </select>
+
+                    <div class="form-text text-danger" v-if="validator.inputs.dispute.$error">
+                        Veuillez saisir un type de litige
+                    </div>
 
                 </div>
+
                 <div class="col-12 mt-4">
-                    <label for="description" class="form-label required">Message</label>
-                    <textarea id="description" name="description" maxlength="1000" rows="12"
-                        class="form-control"></textarea>
+                    <label for="details" class="form-label required">Détail du signalement
+                    </label>
+                    <textarea v-model.trim="inputs.details" id="details" name="details" rows="12" class="form-control"
+                        :class="{ 'is-invalid': validator.inputs.details.$error }"></textarea>
+                    <div class="form-text text-danger" v-if="validator.inputs.details.$error">
+                        Veuillez renseigner ce champs.
+                    </div>
+                    <div class="form-text mb-3" v-else>Veuillez saisir votre litige</div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-4 mb-3">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label for="imageUrl" class="form-label required">Ajouter un document</label>
-                                <input name="imageUrl" id="imageUrl" type="file" class="form-control">
+                                <label for="attachement" class="form-label required">Pièce-jointe</label>
+                                <input :class="{ 'is-invalid': validator.inputs.attachement.$error }" name="attachement"
+                                    id="attachement" type="file" accept="images/png,images/jpeg,images/jpg"
+                                    class="form-control" @change="handleFileUpload">
+                                <div class="form-text text-danger"
+                                    v-if="validator.inputs.attachement.$error && !validator.inputs.attachement.maxValue.$invalid">
+                                    Veuillez renseigner ce champ.
+                                </div>
+                                <div class="form-text text-danger" v-if="validator.inputs.attachement.maxValue.$invalid">
+                                    La taille du document ou image ne peut pas dépasser 500ko.
+                                </div>
+
+                                <div class="form-text mb-3" v-else> formats acceptés : pdf, jpg, pnj</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <fieldset class="reset">
-                    <legend class="w-auto px-1">
-                        <p>Ne signalez que des arnaques ou publicités trompeuses avérées. En incluant aucune
-                            preuve ou
-                            élément factuel, votre signalement ne sera pas publié. Dans le cas où vous souhaiteriez
-                            simplement partager un avis ou retour d'expérience, merci d'utiliser Trustpilot.
-                        </p>
-                    </legend>
-                </fieldset> -->
+                <fieldset class="reset">
+                    <legend class="w-auto px-1">Avant de confirmer</legend>
+                    <p>Ne signalez que des arnaques ou publicités trompeuses avérées. En incluant aucune
+                        preuve ou
+                        élément factuel, votre signalement ne sera pas publié. Dans le cas où vous souhaiteriez
+                        simplement partager un avis ou retour d'expérience, merci d'utiliser Trustpilot.
+                    </p>
+
+                </fieldset>
                 <div class="text-center d-flex justify-content-end">
                     <button class="btn btn-outline-primary col-12 col-md-2 mt-3" type="submit">
                         Confirmer
@@ -198,7 +239,6 @@ export default {
     display: flex;
     flex-basis: 100%;
     align-items: center;
-    /* margin: 8px 0; */
     justify-content: center;
 }
 
@@ -214,6 +254,7 @@ export default {
 p,
 .text {
     font-family: 'Raleway', sans-serif !important;
+    font-size: 15px !important;
 
 }
 
@@ -230,13 +271,13 @@ p,
 .fieldarnaque>p {
     color: var(--color-white);
     margin: 0;
-    width: 12rem;
+    width: 17rem;
     text-align: center;
 }
 
 .fieldarnaque>hr {
     width: 40%;
-    size: 1px;
+    size: 3px;
     color: var(--color-white);
 }
 

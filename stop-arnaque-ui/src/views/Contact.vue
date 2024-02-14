@@ -2,19 +2,19 @@
 export default {
   data() {
     return {
-      count: 0,
+      // count: 0,
     };
   },
   methods: {
-    getElementFromDOM() {
-      return document.getElementById("element");
-    },
-    isAvailableInDOM() {
-      return this.getElementFromDOM() !== null;
-    },
-    getDOMCountValue() {
-      return document.getElementById("count").textContent;
-    },
+    //   getElementFromDOM() {
+    //     return document.getElementById("element");
+    //   },
+    //   isAvailableInDOM() {
+    //     return this.getElementFromDOM() !== null;
+    //   },
+    //   getDOMCountValue() {
+    //     return document.getElementById("count").textContent;
+    //   },
   },
 };
 </script>

@@ -9,7 +9,7 @@ export const ArticleStore = defineStore('article-store', {
     actions: {
         async add_new_article() {
             const articleHttp = new ArticleHttp();
-            const promise = await articleHttp.add_new_book();
+            const promise = await articleHttp.add_new_article();
             return promise;
         },
         async get_last_added_articles() {
