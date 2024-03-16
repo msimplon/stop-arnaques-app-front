@@ -80,7 +80,7 @@ export default {
               minLength(8)
             ),
             validPassword: helpers.withMessage(
-              "Mot de passe non valide.",
+              "Format non valide.",
               validPassword
             ),
           },

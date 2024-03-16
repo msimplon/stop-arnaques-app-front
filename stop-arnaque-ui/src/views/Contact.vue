@@ -1,23 +1,46 @@
 <script>
+import { useVuelidate } from "@vuelidate/core";
+import { required, maxLength, email } from "@vuelidate/validators";
+
 export default {
+  setup() {
+    return {
+      validator: useVuelidate({ $autoDirty: true }),
+    };
+  },
   data() {
     return {
-      // count: 0,
+      inputs: {
+        primaryRecipient: null,
+        subject: null,
+        body: null,
+      },
+    };
+  },
+  validations() {
+    return {
+      inputs: {
+        primaryRecipient: { required, email },
+        subject: { required, maxLength: maxLength(100) },
+        body: { required, maxLength: maxLength(1000) },
+      },
     };
   },
   methods: {
-    //   getElementFromDOM() {
-    //     return document.getElementById("element");
-    //   },
-    //   isAvailableInDOM() {
-    //     return this.getElementFromDOM() !== null;
-    //   },
-    //   getDOMCountValue() {
-    //     return document.getElementById("count").textContent;
-    //   },
+    async submit() {
+      const resp = await this.$http.post("/send-mail", this.inputs);
+      if (resp.status === 204) {
+        Object.assign(this.inputs, this.$options.data().inputs);
+        this.validator.$reset();
+      } else {
+        console.error(resp);
+      }
+    },
   },
 };
 </script>
+
+
 <template>
   <section id="contact" class="contact">
     <div class="container">
@@ -53,27 +76,36 @@ export default {
 
       <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
         <div class="col-xl-9 col-lg-12 mt-4">
-          <form method="post" role="form" class="email-form">
+          <form novalidate @submit.prevent="submit" class="email-form">
             <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="title" class="form-control" id="title" placeholder="Votre nom" required />
-              </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" required />
+                <input for="primaryRecipient" type="email" class="form-control"
+                  :class="{ 'is-invalid': validator.inputs.primaryRecipient.$error }" id="primaryRecipient"
+                  name="primaryRecipient" v-model="inputs.primaryRecipient" placeholder="Votre Email" required />
+                <span v-if="validator.inputs.primaryRecipient.$error">
+                  {{ validator.inputs.primaryRecipient.$errors[0].$message }}
+                </span>
               </div>
+
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input for="subject" type="text" class="form-control"
+                  :class="{ 'is-invalid': validator.inputs.subject.$error }" name="subject" id="subject"
+                  v-model="inputs.subject" placeholder="Votre sujet" required />
+              </div>
+              <span v-if="validator.inputs.subject.$error">
+                {{ validator.inputs.subject.$errors[0].$message }}
+              </span>
             </div>
+
             <div class="form-group mt-3">
-              <input type="text" class="form-control" name="sujet" id="subject" placeholder="Sujet" required />
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message " required></textarea>
+              <textarea for="body" class="form-control" :class="{ 'is-invalid': validator.inputs.body.$error }" id="body"
+                name="body" rows="3" v-model="inputs.body" placeholder="Votre message" required></textarea>
+              <span v-if="validator.inputs.body.$error">
+                {{ validator.inputs.body.$errors[0].$message }}
+              </span>
             </div>
             <div class="my-3">
-              <div class="loading">Chargement</div>
-              <div class="error-message"></div>
-              <div class="sent-message">
-                Votre message à été envoyé. Merci !
-              </div>
+
             </div>
             <div class="text-center d-flex justify-content-end">
               <button class="btn btn-outline-primary col-2" type="submit">
