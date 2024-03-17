@@ -32,8 +32,11 @@ export default {
       if (resp.status === 204) {
         Object.assign(this.inputs, this.$options.data().inputs);
         this.validator.$reset();
+        this.$toast.success("toast-global", "Votre message a bien été envoyé");
+        this.$router.push({ name: "articles-home" });
       } else {
         console.error(resp);
+        this.$toast.error("toast-global", "problème de validation");
       }
     },
   },

@@ -44,7 +44,7 @@ export default {
 
             } else {
                 console.error(resp);
-                this.$toast.error("toast-global", "problème de validatiosssn");
+                this.$toast.error("toast-global", "problème de validation");
             }
         }
 
