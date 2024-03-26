@@ -47,9 +47,7 @@ export default {
         description: { required },
         introduction: { required, maxLength: maxLength(700) },
         imageUrl: {
-          // maxValue: (imageUrl) => {
-          //   return imageUrl ? imageUrl.size <= 512000 : true;
-          // }
+          required
         },
         categoryId: { required, minValue: minValue(1) },
         date: { required }
@@ -172,8 +170,8 @@ export default {
 
           <div class="col-md-4 mb-3">
             <label for="editor" class="form-label required">Editeur</label>
-            <input v-model.trim="inputs.editor" id="editor" name="editor" type="text" maxlength="100" class="form-control"
-              :class="{ 'is-invalid': validator.inputs.editor.$error }" />
+            <input v-model.trim="inputs.editor" id="editor" name="editor" type="text" maxlength="100"
+              class="form-control" :class="{ 'is-invalid': validator.inputs.editor.$error }" />
             <div class="form-text text-danger" v-if="validator.inputs.editor.$error">
               Veuillez renseigner ce champs.
             </div>
@@ -183,8 +181,8 @@ export default {
         </div>
         <div class="col-12">
           <label for="description" class="form-label required">{{
-            $t("categoryFormLabels.formDescription")
-          }}</label>
+        $t("categoryFormLabels.formDescription")
+      }}</label>
           <textarea v-model.trim="inputs.description" id="description" name="description" maxlength="1000" rows="12"
             class="form-control" :class="{ 'is-invalid': validator.inputs.description.$error }"></textarea>
           <div class="form-text text-danger" v-if="validator.inputs.description.$error">
@@ -255,4 +253,3 @@ export default {
     </div>
   </div>
 </template>
-

@@ -471,18 +471,6 @@ body {
     background: #eee;
 }
 
-
-.detail {
-    width: 40%;
-    height: 55%;
-}
-
-.text-titre {
-    color: grey;
-    font-weight: bold;
-
-}
-
 ul,
 li {
     list-style-type: none;
