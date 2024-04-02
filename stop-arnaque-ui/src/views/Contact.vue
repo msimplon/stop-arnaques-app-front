@@ -56,7 +56,7 @@ export default {
           <div class="info-box">
             <i class="bi bi-geo-alt mydimension"></i>
             <h3>Localisation</h3>
-            <p class="justify-content">A108 Adam Street,73400, Paris, France</p>
+            <p>Rue d'adam,73400 Paris,France</p>
           </div>
         </div>
 
@@ -101,8 +101,8 @@ export default {
             </div>
 
             <div class="form-group mt-3">
-              <textarea for="body" class="form-control" :class="{ 'is-invalid': validator.inputs.body.$error }" id="body"
-                name="body" rows="3" v-model="inputs.body" placeholder="Votre message" required></textarea>
+              <textarea for="body" class="form-control" :class="{ 'is-invalid': validator.inputs.body.$error }"
+                id="body" name="body" rows="3" v-model="inputs.body" placeholder="Votre message" required></textarea>
               <span v-if="validator.inputs.body.$error">
                 {{ validator.inputs.body.$errors[0].$message }}
               </span>
@@ -121,4 +121,3 @@ export default {
     </div>
   </section>
 </template>
-

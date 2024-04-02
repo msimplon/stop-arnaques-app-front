@@ -3,7 +3,7 @@ import { RouterLink } from "vue-router";
 </script>
 <template>
   <header class="bg-light sticky-top">
-    <nav class="container-xl navbar-light navbar navbar-expand-md">
+    <nav class="container-xxl navbar-light navbar navbar-expand-md">
       <div class="container-fluid">
         <div class="lol">
           <RouterLink :to="{ name: 'articles-home' }" class="navbar-brand">Stop Arnaque
@@ -73,7 +73,7 @@ import { RouterLink } from "vue-router";
             </li>
             <li class="nav-item">
               <RouterLink :to="{ name: 'article-signal-arnaque' }" class="nav-link">
-                <i class="bi bi-bell-fill"></i> Signaler une arnaque
+                <i class="bi bi-bell-fill"></i> Signaler
               </RouterLink>
             </li>
             <li class="nav-item logout">
@@ -96,7 +96,10 @@ import { RouterLink } from "vue-router";
 </template>
 <style>
 .navbar-nav .nav-item {
-  margin-right: 25px;
-  /* Ajustez la valeur de la marge selon vos préférences */
+  margin-right: 5px;
+}
+
+.navbar {
+  padding: 20px;
 }
 </style>

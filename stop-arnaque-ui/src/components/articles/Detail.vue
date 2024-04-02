@@ -43,7 +43,7 @@ export default {
                     <div class="blog-card__head">
                     </div>
                     <div class="blog-card__info">
-                        <div class="cat">
+                        <div class="blog-card-style">
                             <h4>{{ article?.title }}</h4>
                             <p class="card-tag">{{ article?.categoryName }}</p>
                         </div>
@@ -80,6 +80,5 @@ export default {
 .text-titre {
     color: blue;
     font-weight: bold;
-
 }
 </style>

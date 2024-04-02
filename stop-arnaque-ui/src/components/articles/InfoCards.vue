@@ -30,7 +30,7 @@ export default {
     <section class=" row fw-semibold text-center">
         <div class="col-md-4 p-5 d-flex justify-content-center cardo" v-for="article in articles">
 
-            <div class="cardi w-100">
+            <div class="cardi">
                 <img :src="baseUrl + article.imageUrl" :alt="article.name" class="card-img-top">
                 <div class="cardi-body-info">
                     <h2>{{ article.title }}</h2>
