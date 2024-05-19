@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-
+import navigationGuard from "../components/commons/navigationGuard.js";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,7 +9,10 @@ const router = createRouter({
       name: 'articles-home',
       component: () => import('../views/HomeArticles.vue'),
       children: [
-        { path: 'infoCards', component: () => import('../components/articles/InfoCards.vue'), name: "infoCards" }],
+        {
+          path: 'infoCards', component: () => import('../components/articles/InfoCards.vue'),
+          name: "infoCards"
+        }],
     }, {
       path: '/admin/articles',
       name: 'articles-edit',
@@ -24,13 +27,14 @@ const router = createRouter({
     {
       path: '/actualité/articles',
       name: 'actualité',
-      component: () => import('../views/Actualité.vue')
+      component: () => import('../views/Actualité.vue'),
+      meta: { requiresAuth: true },
     },
 
     {
       path: '/admin/article/create',
       name: 'articles-create',
-      component: () => import('../components/articles/Create.vue')
+      component: () => import('../components/articles/Create.vue'),
     }, {
       path: '/articles/:id/detail',
       name: 'article-detail',
@@ -75,5 +79,6 @@ const router = createRouter({
   ]
 
 })
+router.beforeEach(navigationGuard);
 
 export default router;
