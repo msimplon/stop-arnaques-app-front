@@ -10,21 +10,21 @@ export default {
     },
     data() {
         return {
-            dispute: [],
+            disputeId: [],
             inputs: {
-                object: null,
+                subject: null,
                 email: null,
                 incidentNumber: null,
                 attachement: null,
                 details: null,
-                dispute: 0,
+                disputeId: 0,
             },
         };
     },
     validations() {
         return {
             inputs: {
-                object: { required, maxLength: maxLength(100) },
+                subject: { required, maxLength: maxLength(100) },
                 email: { required, maxLength: maxLength(100) },
                 details: { required, maxLenght: maxLength(1000) },
                 incidentNumber: { required, maxLength: maxLength(1000) },
@@ -33,7 +33,7 @@ export default {
                         return file === null || file.size < 512000
                     }
                 },
-                dispute: { required }
+                disputeId: { required }
             },
         };
     },
@@ -45,11 +45,11 @@ export default {
                 if (this.inputs.attachement != null) {
                     formData.append("attachement", this.inputs.attachement)
                 }
-                formData.append("object", this.inputs.object);
+                formData.append("subject", this.inputs.subject);
                 formData.append("email", this.inputs.email);
                 formData.append("incidentNumber", this.inputs.incidentNumber);
                 formData.append("details", this.inputs.details);
-                formData.append("dispute", this.inputs.dispute);
+                formData.append("disputeId", this.inputs.disputeId);
 
                 console.log(formData)
                 const resp = await this.$http.post("/forms", formData);
@@ -60,6 +60,7 @@ export default {
                     Object.assign(this.inputs, this.$options.data().inputs);
 
                     this.$toast.success("toast-global", "Votre signalement a bien été envoyé");
+                    this.$router.push({ name: "articles-home" });
                 } else {
                     console.error(resp);
                     this.$toast.error("toast-global", "problème de validation");
@@ -73,7 +74,7 @@ export default {
         },
         async initdispute() {
             const resp = await this.$http.get("/disputes");
-            this.dispute = resp.body;
+            this.disputeId = resp.body;
 
         },
     },
@@ -115,10 +116,10 @@ export default {
                     <div class="col-md-4 mb-3">
                         <label for="incidentNumber" class="form-label required">Object
                         </label>
-                        <input v-model.trim="inputs.object" id="object" name="object" type="text" maxlength="100"
-                            class="form-control" :class="{ 'is-invalid': validator.inputs.object.$error }" />
+                        <input v-model.trim="inputs.subject" id="subject" name="subject" type="text" maxlength="100"
+                            class="form-control" :class="{ 'is-invalid': validator.inputs.subject.$error }" />
 
-                        <div class="form-text text-danger" v-if="validator.inputs.object.$error">
+                        <div class="form-text text-danger" v-if="validator.inputs.subject.$error">
                             Veuillez renseigner ce champs avec au minimum 2 caractères
                         </div>
 
@@ -171,15 +172,15 @@ export default {
                     </legend>
                 </fieldset> -->
                 <div class=" dropdown d-grid gap-3 mt-4">
-                    <label for="dispute" class="form-label required">Raison du signalement</label>
-                    <select v-model.number="inputs.dispute" id="dispute" name="dispute" class="form-select"
-                        :class="{ 'is-invalid': validator.inputs.dispute.$error }">
+                    <label for="disputeId" class="form-label required">Raison du signalement</label>
+                    <select v-model.number="inputs.disputeId" id="disputeId" name="disputeId" class="form-select"
+                        :class="{ 'is-invalid': validator.inputs.disputeId.$error }">
                         <option selected disabled value="0">Type de litige</option>
-                        console.log(this.dispute)
-                        <LabelValues :items="dispute" />
+                        console.log(this.disputeId)
+                        <LabelValues :items="disputeId" />
                     </select>
 
-                    <div class="form-text text-danger" v-if="validator.inputs.dispute.$error">
+                    <div class="form-text text-danger" v-if="validator.inputs.disputeId.$error">
                         Veuillez saisir un type de litige
                     </div>
 
@@ -207,7 +208,8 @@ export default {
                                     v-if="validator.inputs.attachement.$error && !validator.inputs.attachement.maxValue.$invalid">
                                     Veuillez renseigner ce champ.
                                 </div>
-                                <div class="form-text text-danger" v-if="validator.inputs.attachement.maxValue.$invalid">
+                                <div class="form-text text-danger"
+                                    v-if="validator.inputs.attachement.maxValue.$invalid">
                                     La taille du document ou image ne peut pas dépasser 500ko.
                                 </div>
 

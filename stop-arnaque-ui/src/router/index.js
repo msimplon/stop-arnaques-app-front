@@ -28,7 +28,7 @@ const router = createRouter({
       path: '/actualité/articles',
       name: 'actualité',
       component: () => import('../views/Actualité.vue'),
-      meta: { requiresAuth: true },
+      // meta: { requiresAuth: true },
     },
 
     {

@@ -2,19 +2,15 @@
 import { useRoute } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength, minValue } from "@vuelidate/validators";
-
 export default {
-
   setup() {
     return {
       route: useRoute(),
       validator: useVuelidate({ $autoDirty: true }),
       existingTitles: [],
-
     };
   },
   data() {
-
     return {
       categoryId: [],
       inputs: {
@@ -30,7 +26,6 @@ export default {
       existingImage: null,
       existingTitles: [], // Tableau des titres existants
       baseUrl: import.meta.env.VITE_IMG_BASE_URL,
-
     };
   },
   validations() {
@@ -63,28 +58,22 @@ export default {
       this.inputs.imageUrl = null
       console.log(this.inputs, this.existingImage, "null image")
     },
-
     isTitleUnique(value) {
       return !this.existingTitles.includes(value);
     },
-
     getFormattedDate() {
       let today = new Date();
       let day = today.getDate();
       let month = today.getMonth() + 1;
       let year = today.getFullYear();
-
       if (day < 10) {
         day = '0' + day;
       }
-
       if (month < 10) {
         month = '0' + month;
       }
-
       return `${year}-${month}-${day}`;
     },
-
     async submit() {
       const formData = new FormData()
       const valid = await this.validator.$validate()
@@ -103,12 +92,9 @@ export default {
         formData.append("introduction", this.inputs.introduction);
         formData.append("date", `${day}/${month}/${year}`);
         formData.append("categoryId", this.inputs.categoryId);
-
         const resp = await this.$http.patch(`/articles/${this.id}`, formData);
-
         console.log(formData)
         console.log(resp, "resp")
-
         console.log("STATUS", resp.status);
         if (resp.status === 200) {
           Object.assign(this.inputs, this.$options.data().inputs);
@@ -118,9 +104,7 @@ export default {
           this.$toast.error("toast-global", "problème de validation");
         }
       }
-
     },
-
     handleFileUpload(event) {
       this.inputs.imageUrl = event.target.files[0];
     },
@@ -135,10 +119,8 @@ export default {
     await this.initInputs();
     console.log(this.inputs);
   },
-
 };
 </script>
-
 <template>
   <div class="row justify-content-center mt-2" data-aos="fade-up" data-aos-delay="300">
     <div class="col-xl-9 col-lg-12">
@@ -154,7 +136,6 @@ export default {
             <div class="form-text text-danger" v-if="validator.inputs.title.$error">
               Veuillez renseigner ce champs.
             </div>
-
             <div class="form-text mb-3" v-else>Titre de l'article.</div>
           </div>
           <div class="col-md-4 mb-3">
@@ -164,7 +145,6 @@ export default {
             <div class="form-text text-danger" v-if="validator.inputs.subTitle.$error">
               Veuillez renseigner ce champs.
             </div>
-
             <div class="form-text mb-3" v-else>Sous-titre de l'article.</div>
           </div>
 
@@ -175,7 +155,6 @@ export default {
             <div class="form-text text-danger" v-if="validator.inputs.editor.$error">
               Veuillez renseigner ce champs.
             </div>
-
             <div class="form-text mb-3" v-else>Editeur de l'article.</div>
           </div>
         </div>
@@ -190,7 +169,6 @@ export default {
           </div>
           <div class="form-text mb-3" v-else>Contenu de l'article.</div>
         </div>
-
         <div class="col-12">
           <label for="introduction" class="form-label required">Introduction</label>
           <textarea v-model.trim="inputs.introduction" id="introduction" name="introduction" maxlength="1000" rows="12"
@@ -200,7 +178,6 @@ export default {
           </div>
           <div class="form-text mb-3" v-else>Introduction de l'article.</div>
         </div>
-
         <div class="row mt-4">
           <div class="col-md-4 mb-3">
             <div class="mb-3">
@@ -210,18 +187,14 @@ export default {
                 <div>
                   <img :src="baseUrl + existingImage" class="img-fluid rounded-top" :alt="inputs.title" />
                 </div>
-
               </div>
             </div>
-
-
           </div>
           <div class="col-md-4 mb-3">
             <label for="name" class="form-label required">Date</label>
             <input v-model.trim="inputs.date" id="date" name="date" :min="getFormattedDate()" type="date"
               class="form-control"
               :class="{ 'is-invalid': validator.inputs.date.$error || (validator.inputs.date === false && inputs.date) }" />
-
             <div class="form-text text-danger" v-if="validator.inputs.date.$error && !inputs.date">
               Veuillez renseigner ce champ.
             </div>
@@ -240,7 +213,6 @@ export default {
             <div class="form-text text-danger" v-if="validator.inputs.categoryId.$error">
               Veuillez saisir une catégorie
             </div>
-
             <div class="form-text mb-3" v-else>Actualité ou conseil.</div>
           </div>
         </div>

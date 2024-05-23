@@ -85,9 +85,9 @@ export default {
                 <input for="primaryRecipient" type="email" class="form-control"
                   :class="{ 'is-invalid': validator.inputs.primaryRecipient.$error }" id="primaryRecipient"
                   name="primaryRecipient" v-model="inputs.primaryRecipient" placeholder="Votre Email" required />
-                <span v-if="validator.inputs.primaryRecipient.$error">
+                <!-- <span v-if="validator.inputs.primaryRecipient.$error">
                   {{ validator.inputs.primaryRecipient.$errors[0].$message }}
-                </span>
+                </span> -->
               </div>
 
               <div class="col-md-6 form-group mt-3 mt-md-0">
