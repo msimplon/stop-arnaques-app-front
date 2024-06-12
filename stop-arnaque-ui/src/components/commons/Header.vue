@@ -1,5 +1,14 @@
-<script>
+<script setup>
 import { RouterLink } from "vue-router";
+import { storeToRefs } from "pinia";
+import { useAuthStore } from "@/stores/auth-store";
+
+const authStore = useAuthStore();
+const { isAdmin, isLoggedIn, userFullName } = storeToRefs(authStore);
+const logout = () => {
+  authStore.logout();
+};
+
 </script>
 <template>
   <header class="bg-light sticky-top">
@@ -76,10 +85,10 @@ import { RouterLink } from "vue-router";
                 <i class="bi bi-bell-fill"></i> Signaler
               </RouterLink>
             </li>
-            <li class="nav-item logout">
-              <RouterLink :to="{ name: 'signIn' }" class="nav-link">
-                <i class="bi bi-box-arrow-right"></i>
-              </RouterLink>
+            <li class="nav-item">
+              <a href="#" @click="logout">
+                <i class="bi bi-box-arrow-right fs-2 logout me-4"></i>
+              </a>
             </li>
           </ul>
         </div>

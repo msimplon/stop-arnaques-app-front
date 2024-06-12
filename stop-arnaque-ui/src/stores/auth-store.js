@@ -1,14 +1,21 @@
 import { defineStore } from 'pinia'
 import { AuthHttp } from "../services/AuthHttp";
+import { useStorage } from '@vueuse/core'
 
-export const AuthStore = defineStore('auth-store', {
+export const useAuthStore = defineStore('auth-store', {
     state: () => ({
         users: [],
-        user: null,
-        userRole: null,
-        loggedIn: false,
-        token: null
+        user: useStorage('user', null),
+        userRole: useStorage('user-role', null),
+        isLoggedIn: useStorage('is-logged-in', false),
+        token: useStorage('token', null),
+        userFullName: useStorage('userFullName', null),
+        isEnabled: false,
     }),
+    getters: {
+        isAuthenticated: (state) => !!state?.user,
+        isAdmin: (state) => state?.userRole === 'ADMIN',
+    },
     actions: {
         async register(payload) {
             const authHttp = new AuthHttp();
@@ -22,9 +29,27 @@ export const AuthStore = defineStore('auth-store', {
             if (promise.status === 200) {
                 this.token = promise.body.token;
                 this.userRole = promise.body.role
-                this.loggedIn = true;
+                this.isLoggedIn = true;
+                this.userFullName = `${promise.body.firstName} ${promise.body.lastName}`;
             }
             return promise;
+        },
+        async verifyUserRegistration(token) {
+            const authHttp = new AuthHttp();
+            const promise = await authHttp.verifyUserRegistration(token);
+            if (promise.status === 200) {
+                this.isEnabled = true;
+            }
+            return promise;
+        },
+
+        async logout() {
+            this.token = null;
+            this.userRole = null;
+            this.isLoggedIn = false;
+            this.user = null;
+            this.userFullName = null;
+            // Ajoutez appele d'API de déconnexion
         },
     },
 })

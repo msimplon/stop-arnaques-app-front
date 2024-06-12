@@ -1,8 +1,6 @@
-import { HttpBase } from "../plugins/axios.js"
+import { http } from "../plugins/axios.js"
 
-
-
-export class ArticleHttp extends HttpBase {
+export class ArticleHttp {
     async get_all_articles() {
         const url = `/articles/list-articles`;
         const response = await http.get(url);
@@ -22,13 +20,13 @@ export class ArticleHttp extends HttpBase {
 
     async get_last_added_articles() {
         const url = `/articles/articleLastAdded`;
-        const response = await this.http.get(url);
+        const response = await http.get(url);
         return response;
     };
 
     async get_one_article(id) {
         const url = `articles/${id}/detail`;
-        const response = await this.http.get(url);
+        const response = await http.get(url);
         return response;
 
     };
