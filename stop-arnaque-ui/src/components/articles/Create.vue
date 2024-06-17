@@ -172,8 +172,8 @@ export default {
 
           <div class="col-md-4 mb-3">
             <label for="editor" class="form-label required">{{ $t('categoryFormLabels.formEditor') }}</label>
-            <input v-model.trim="inputs.editor" id="editor" name="editor" type="text" maxlength="100" class="form-control"
-              :class="{ 'is-invalid': validator.inputs.editor.$error }" />
+            <input v-model.trim="inputs.editor" id="editor" name="editor" type="text" maxlength="100"
+              class="form-control" :class="{ 'is-invalid': validator.inputs.editor.$error }" />
             <div class="form-text text-danger" v-if="validator.inputs.editor.$error">
               Veuillez renseigner ce champs.
             </div>
@@ -194,8 +194,8 @@ export default {
 
         <div class="col-12">
           <label for="description" class="form-label required">{{
-            $t("categoryFormLabels.formDescription")
-          }}</label>
+          $t("categoryFormLabels.formDescription")
+        }}</label>
           <textarea v-model.trim="inputs.description" id="description" name="description" rows="12" class="form-control"
             :class="{ 'is-invalid': validator.inputs.description.$error }"></textarea>
           <div class="form-text text-danger" v-if="validator.inputs.description.$error">
@@ -211,13 +211,14 @@ export default {
               <div class="mb-3">
                 <label for="imageUrl" class="form-label required">{{ $t("categoryFormLabels.formImageUrl") }}</label>
                 <input :class="{ 'is-invalid': validator.inputs.imageUrl.$error }" name="imageUrl" id="imageUrl"
-                  type="file" accept="images/png,images/jpeg,images/jpg" class="form-control" @change="handleFileUpload">
+                  type="file" accept="images/png,images/jpeg,images/jpg" class="form-control"
+                  @change="handleFileUpload">
                 <div class="form-text text-danger"
                   v-if="validator.inputs.imageUrl.$error && !validator.inputs.imageUrl.maxValue.$invalid">
                   Veuillez renseigner ce champ.
                 </div>
                 <div class="form-text text-danger" v-if="validator.inputs.imageUrl.maxValue.$invalid">
-                  La taille de l'image ne peut pas dépasser 500ko.
+                  L'image que vous téléchargez ne doit pas dépasser 2 Mo.
                 </div>
 
                 <div class="form-text mb-3" v-else>{{ $t("formElse.elseImage") }}</div>
@@ -257,10 +258,10 @@ export default {
         </div>
         <div class="text-center d-flex justify-content-end">
           <button class="btn btn-outline-primary col-2" type="submit">
-            {{ $t("button.create") }} </button>
+            {{ $t("button.create") }}
+            <i class="bi bi-send"></i></button>
         </div>
       </form>
     </div>
   </div>
 </template>
-

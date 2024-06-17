@@ -14,16 +14,14 @@
  * next : permet d'autoriser la navigation à se poursuivre ou rediriger etc
  */
 
-const navigationGuard = (to, from, next) => {
-  const isAuthenticated = Boolean(localStorage.getItem("isAuthenticated"));
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    // Si la route nécessite une authentification et que l'utilisateur n'est pas authentifié,
-    // Redirection vers la page de connexion
-    next("/signIn");
-  } else {
-    // Sinon, permettre la navigation
-    next();
-  }
-};
+// const navigationGuard = (to, from, next) => {
+//   const isAuthenticated = Boolean(localStorage.getItem("isAuthenticated"));
+//   if (to.meta.requiresAuth && !isAuthenticated) {
+//     next("/signIn");
+//   } else {
+    
+//     next();
+//   }
+// };
 
-export default navigationGuard;
+// export default navigationGuard;

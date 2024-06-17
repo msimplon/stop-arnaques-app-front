@@ -8,7 +8,7 @@
               <use xlink:href="#bootstrap" />
             </svg>
           </a>
-          <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Company, Inc</span>
+          <span class="mb-3 mb-md-0 text-muted">&copy; 2023 Company, Inc Tous droits réservés. v0.0.1</span>
         </div>
 
         <ul class="list-unstyled d-flex">

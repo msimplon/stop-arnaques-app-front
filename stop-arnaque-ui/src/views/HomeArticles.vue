@@ -26,7 +26,7 @@ export default {
         </a>
       </div>
     </header>
-    <!-- <section class="page-section" id="services">
+    <section class="page-section" id="services">
       <div class="container">
         <div class="text-center">
           <h2 class="section-heading text-uppercase">Services</h2>
@@ -62,7 +62,7 @@ export default {
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
 
     <InfoCards />
@@ -121,7 +121,28 @@ export default {
         </div>
       </div>
     </section>
-    <!-- <div class="py-5">
+
+    <div class="b-example-divider"></div>
+
+    <div class="bg-dark text-secondary px-4 py-5 text-center">
+      <div class="py-5">
+        <h2 class="display-5 fw-bold text-white">De nouveaux services arrivent bientôt</h2>
+        <div class="col-lg-6 mx-auto">
+          <p class="fs-5 mb-4">Un contentieux ou une réclamation qui n'aboutit pas ? Nos avocats partenaires peuvent
+            vous accompagner.</p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" class="btn btn-outline-primary btn-lg px-4 me-sm-3 fw-bold">Signaler une
+              arnaque <i class="bi bi-alarm"></i>
+            </button>
+            <button type="button" class="btn btn-outline-light btn-lg px-4">Nous contacter <i
+                class="bi bi-envelope white-envelope"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-example-divider mb-0"></div>
+    <div class="py-5">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-3 col-sm-6 my-3">
@@ -142,6 +163,6 @@ export default {
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </main>
 </template>

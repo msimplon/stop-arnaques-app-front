@@ -2,11 +2,21 @@
 import { RouterLink } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useAuthStore } from "@/stores/auth-store";
+import { usePageStore } from "@/stores/page-store";
 
 const authStore = useAuthStore();
+const pageStore = usePageStore();
+const { userRole } = storeToRefs(authStore);
 const { isAdmin, isLoggedIn, userFullName } = storeToRefs(authStore);
-const logout = () => {
-  authStore.logout();
+const logout = async () => {
+  await authStore.logout();
+  pageStore.alert.type = "success";
+  pageStore.alert.message = `vous vous êtes déconnecté !😊`;
+  pageStore.alert.show = true;
+  setTimeout(() => {
+    pageStore.alert.show = false;
+  }, 3000);
+  router.push("/");
 };
 
 </script>
@@ -29,13 +39,13 @@ const logout = () => {
                 Administrateur
               </a>
               <ul class="dropdown-menu">
-                <li>
+                <li v-if="isLoggedIn && isAdmin">
                   <RouterLink :to="{ name: 'articles-edit' }" class="dropdown-item">
                     <i class="bi bi-pencil-square"></i>
                     Editer un article
                   </RouterLink>
                 </li>
-                <li>
+                <li v-if="isLoggedIn && isAdmin">
                   <RouterLink :to="{ name: 'articles-create' }" class="dropdown-item">
                     <i class="bi bi-file-earmark-plus"></i>
                     Nouvel article
@@ -55,7 +65,7 @@ const logout = () => {
                     Site de la DGCCRF
                   </RouterLink>
                 </li>
-                <li>
+                <li v-if="isLoggedIn && isAdmin">
                   <RouterLink :to="{ name: 'actualité' }" class="dropdown-item">
                     <i class="bi bi-house-door-fill"></i> A la une
                   </RouterLink>
@@ -68,13 +78,13 @@ const logout = () => {
                 Contact
               </RouterLink>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!isLoggedIn">
               <RouterLink :to="{ name: 'signIn' }" class="nav-link">
                 <i class="bi bi-gear-wide-connected"></i>
                 Connexion
               </RouterLink>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!isLoggedIn">
               <RouterLink :to="{ name: 'signUp' }" class="nav-link">
                 <i class="bi bi-check-circle-fill"></i>
                 Inscription
@@ -86,20 +96,13 @@ const logout = () => {
               </RouterLink>
             </li>
             <li class="nav-item">
-              <a href="#" @click="logout">
+              <a href="#" @click="logout" v-if="isLoggedIn">
                 <i class="bi bi-box-arrow-right fs-2 logout me-4"></i>
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <!-- <div class="locale-changer">
-        <select v-model="$i18n.locale" class="rounded">
-          <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">
-            {{ locale }}
-          </option>
-        </select>
-      </div> -->
     </nav>
   </header>
 </template>

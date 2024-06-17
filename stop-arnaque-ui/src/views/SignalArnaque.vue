@@ -133,44 +133,6 @@ export default {
                     <i class="bi bi-exclamation-triangle"></i>
                     <hr>
                 </div>
-                <!-- <fieldset>
-                    <legend class="w-auto px-2 mt-4">
-                        <p>Que souhaitez-vous signaler ?
-                        </p>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Site Internet
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                E-mail </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Instagram </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Facebook </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Telegram </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Snapchat
-                            </label>
-                        </div>
-                    </legend>
-                </fieldset> -->
                 <div class=" dropdown d-grid gap-3 mt-4">
                     <label for="disputeId" class="form-label required">Raison du signalement</label>
                     <select v-model.number="inputs.disputeId" id="disputeId" name="disputeId" class="form-select"
@@ -230,6 +192,7 @@ export default {
                 <div class="text-center d-flex justify-content-end">
                     <button class="btn btn-outline-primary col-12 col-md-2 mt-3" type="submit">
                         Confirmer
+                        <i class="bi bi-send"></i>
                     </button>
                 </div>
             </form>

@@ -113,6 +113,7 @@ export default {
             <div class="text-center d-flex justify-content-end">
               <button class="btn btn-outline-primary col-2" type="submit">
                 Envoyer
+                <i class="bi bi-envelope white-envelope"></i>
               </button>
             </div>
           </form>

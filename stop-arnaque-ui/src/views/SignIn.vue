@@ -26,9 +26,6 @@ const rules = computed(() => {
 
 });
 
-// const v$ = useValidate({ $autoDirty: true }, user, rules);
-// const validator = useVuelidate({ $autoDirty: true }, user, rules);
-
 const v$ = useValidate(rules, user);
 const authStore = useAuthStore();
 const { userRole } = storeToRefs(authStore);
@@ -44,7 +41,7 @@ const submit = async () => {
             if (userRole.value == "ADMIN") {
                 router.push("/admin/articles");
                 pageStore.alert.type = "success";
-                pageStore.alert.message = `Utilisateur ${user.username} est connecté`;
+                pageStore.alert.message = `${user.username} est connecté 😊`;
                 pageStore.alert.show = true;
                 setTimeout(() => {
                     pageStore.alert.show = false;
@@ -52,7 +49,7 @@ const submit = async () => {
             } else {
                 router.push("/");
                 pageStore.alert.type = "success";
-                pageStore.alert.message = `Utilisateur ${user.username} est connecté`;
+                pageStore.alert.message = `${user.username} est connecté 😊`;
                 pageStore.alert.show = true;
                 setTimeout(() => {
                     pageStore.alert.show = false;

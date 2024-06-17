@@ -57,6 +57,11 @@ p,
     color: rgb(0, 119, 255) ! important;
 }
 
+.white-envelope,
+.bi-send {
+    color: #eee !important;
+}
+
 /******FORM *****/
 
 label {
@@ -448,8 +453,8 @@ p {
     transition: 0.4s;
 }
 
-.contact .email-form button[type="submit"]:hover {
-    background: #78cbec;
+.white-envelope .alarm {
+    color: white !important;
 }
 
 
@@ -524,6 +529,7 @@ ul {
     display: flex;
     display: inline;
     width: 100%;
+    justify-content: space-between;
 }
 
 .editor-date {

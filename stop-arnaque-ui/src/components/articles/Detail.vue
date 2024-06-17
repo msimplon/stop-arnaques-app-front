@@ -14,7 +14,6 @@ export default {
             const id = route.params.id;
             if (id !== undefined) {
                 articleStoreObj.get_one_article(id);
-
             }
         });
 
@@ -40,8 +39,7 @@ export default {
                             </div>
                         </div>
                     </div>
-                    <div class="blog-card__head">
-                    </div>
+                    <div class="blog-card__head"></div>
                     <div class="blog-card__info">
                         <div class="blog-card-style">
                             <h4>{{ article?.title }}</h4>
@@ -59,26 +57,66 @@ export default {
                                 {{ article?.date }}
                             </p>
                         </div>
-                        <div id="sidebar">
-                            <img :src="baseUrl + article.imageUrl" :alt="article.name" class="detail">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <img :src="baseUrl + article.imageUrl" :alt="article.name" class="detail">
+                                <p class="text mt-5">{{ article?.introduction }}</p>
+                                <p class="text-titre">{{ article?.subTitle }}</p>
+                                <p class="text">{{ article?.description }}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sidebar">
+                                    <h4>Informations supplémentaires</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+                                        Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
+                                        elementum imperdiet.</p>
+                                    <p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
+                                        Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+                                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                        himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.</p>
+                                    <h4>Informations supplémentaires</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+                                        Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
+                                        elementum imperdiet.</p>
+                                    <p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
+                                        Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+                                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                        himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.</p>
+                                    <p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
+                                        Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+                                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                        himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.</p>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text mt-5">{{ article?.introduction }}</p>
-                        <p class="text-titre">{{ article?.subTitle }}</p>
-                        <p class="text">{{ article?.description }}</p>
                     </div>
                 </article>
             </div>
         </div>
     </div>
 </template>
+
 <style>
 .detail {
-    width: 90%;
-    height: 85%;
+    width: 100%;
+    height: auto;
 }
 
 .text-titre {
     color: blue;
     font-weight: bold;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .detail {
+        width: 100%;
+    }
 }
 </style>
